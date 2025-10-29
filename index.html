@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주식 투자의 황금 원칙</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Poppins & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        // Tailwind CSS 커스텀 설정
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // 기본 폰트
+                        sans: ['Inter', 'sans-serif'],
+                        // 제목용 폰트
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        // 브랜드 컬러
+                        'brand-blue': '#3b82f6',
+                        'brand-teal': '#14b8a6',
+                        'dark-bg': '#0a0f1f', // 더 깊은 네이비/블랙 배경
+                        'card-bg': '#1e293b', // 카드 배경
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        /* 그라데이션 텍스트를 위한 헬퍼 클래스 */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-200 font-sans antialiased">
+
+    <!-- 헤더 -->
+    <header class="container mx-auto px-6 py-6">
+        <nav class="flex justify-between items-center">
+            <div class="font-heading text-3xl font-bold text-white">
+                <span class="text-gradient bg-gradient-to-r from-brand-blue to-brand-teal">Golden</span>Waterwheel
+            </div>
+            <div>
+                <a href="#principles" class="text-gray-300 hover:text-white px-4 py-2 rounded-md transition duration-300">핵심 원칙</a>
+                <a href="#join" class="bg-brand-blue hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-full transition duration-300 shadow-lg">
+                    지금 합류하기
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 메인 히어로 섹션 -->
+    <main class="container mx-auto px-6">
+        <section class="text-center py-20 md:py-32">
+            <h1 class="font-heading font-extrabold text-5xl md:text-7xl mb-6 leading-tight">
+                <span class="text-gradient bg-gradient-to-r from-brand-blue to-brand-teal">수익이 마르지 않는</span><br> 투자의 샘을 발견하라
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10">
+                물레방아가 멈추지 않고 돌듯, 당신의 계좌가 스스로 일하게 만드는
+                투자의 핵심 원칙을 공개합니다.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#join" class="bg-gradient-to-r from-brand-blue to-brand-teal hover:from-brand-blue hover:to-blue-500 text-white font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 shadow-xl text-lg">
+                    황금 원칙 자세히 보기
+                </a>
+            </div>
+        </section>
+
+        <!-- 핵심 원칙 섹션 -->
+        <section id="principles" class="py-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <!-- 원칙 1: 마르지 않는 샘물 -->
+                <div class="bg-card-bg p-8 rounded-2xl shadow-2xl border border-gray-700">
+                    <!-- 이미지 플레이스홀더 -->
+                    <img src="https://placehold.co/600x400/1e3a8a/93c5fd?text=Principle+1%3A+Endless+Spring" alt="마르지 않는 샘물" class="w-full h-64 object-cover rounded-lg mb-6 shadow-lg">
+                    
+                    <span class="text-brand-blue font-semibold text-sm uppercase">원칙 01</span>
+                    <h2 class="font-heading font-bold text-4xl text-white my-3">
+                        마르지 않는 샘물
+                    </h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        투자의 본질은 일회성 대박이 아닌, <strong>지속 가능한 현금 흐름</strong>을 만드는 것입니다. 우리는 가뭄에도 마르지 않는 샘물처럼, 시장의 변동성에도 흔들리지 않고 꾸준히 수익을 제공하는 강력한 자산 포트폴리오를 구축합니다.
+                    </p>
+                </div>
+
+                <!-- 원칙 2: 회전하는 물레방아 -->
+                <div class="bg-card-bg p-8 rounded-2xl shadow-2xl border border-gray-700">
+                    <!-- 이미지 플레이스홀더 -->
+                    <img src="https://placehold.co/600x400/047857/a7f3d0?text=Principle+2%3A+Turning+Waterwheel" alt="회전하는 물레방아" class="w-full h-64 object-cover rounded-lg mb-6 shadow-lg">
+                    
+                    <span class="text-brand-teal font-semibold text-sm uppercase">원칙 02</span>
+                    <h2 class="font-heading font-bold text-4xl text-white my-3">
+                        회전하는 물레방아
+                    </h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        샘물에서 나온 물이 물레방아를 돌리듯, 발생한 수익은 멈춰있는 것이 아니라 <strong>즉시 재투자</strong>되어야 합니다. 이것이 바로 '복리의 마법'입니다. 우리는 수익이 다시 수익을 낳는 역동적인 순환 구조를 만들어, 계좌가 스스로 멈춤 없이 돌아가게 만듭니다.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 회원 가입 유도 (CTA) 섹션 -->
+        <section id="join" class="py-24 my-20 bg-gradient-to-r from-gray-800 to-card-bg rounded-2xl shadow-2xl text-center px-6">
+            <h3 class="font-heading font-extrabold text-4xl md:text-5xl text-white mb-6">
+                당신의 계좌를<br>
+                <span class="text-gradient bg-gradient-to-r from-brand-blue to-brand-teal">황금 물레방아</span>로 만들 시간입니다.
+            </h3>
+            <p class="text-gray-300 text-xl max-w-2xl mx-auto mb-10">
+                추측에 기반한 투자는 이제 그만.
+                검증된 원칙과 시스템으로 부의 순환을 경험하십시오.
+            </p>
+            <a href="#" class="bg-gradient-to-r from-brand-blue to-brand-teal hover:from-brand-blue hover:to-blue-500 text-white font-bold py-4 px-10 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 shadow-xl text-xl">
+                지금 바로 멤버십 합류하기
+            </a>
+        </section>
+
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="text-center py-10 mt-20 border-t border-gray-800">
+        <p class="text-gray-500">
+            &copy; 2025 최진성 대표. All Rights Reserved.
+        </p>
+        <p class="text-gray-600 text-sm mt-2">
+            본 사이트의 정보는 투자 조언이 아니며, 모든 투자의 책임은 본인에게 있습니다.
+        </p>
+    </footer>
+
+</body>
+</html>
+
+
