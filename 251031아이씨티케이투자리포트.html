@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Narrative Plan: Introduce ICTK's focus (PUF Security Chips), explain core tech (PUF & PQC link), show financial growth driven by mass production & new customers, present analyst views (incl. PQC value), summarize investment points/SWOT, and outline future vision (global, PQC platform). -->
+    <!-- Visualization Plan: 
+        1. Financials: Bar/Line Chart (Revenue/OP Trend) - Goal: Change, Library: Chart.js, Why: Show post-IPO growth. NO SVG.
+        2. Revenue Mix: Donut Chart (PUF Chips vs Platform vs Other) - Goal: Compare, Library: Chart.js, Why: Show business structure. NO SVG.
+        3. Customer Growth: Bar Chart (Number of Partners/Clients) - Goal: Change, Library: Chart.js, Why: Visualize adoption. NO SVG.
+        4. Investment Radar: Radar Chart (Key Investment Metrics) - Goal: Organize, Library: Chart.js, Why: Summarize investment appeal visually. NO SVG. 
+    -->
+    <!-- Chosen Palette: Use blues, greens, and yellows for a tech/security feel -->
+    <!-- Mermaid JS and SVG graphics were NOT used in this file. -->
+    <title>아이씨티케이(ICTK) 기업 분석 리포트 (PQC & 증권사 평가 포함, 2025년 전망)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #0d9488; /* Teal */
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        .ictk-color { color: #0d9488; } /* Teal */
+        .border-ictk-color { border-color: #0d9488; }
+        .pqc-color { color: #4f46e5; } /* Indigo for PQC */
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">아이씨티케이(ICTK) 기업 분석 리포트</h1>
+            <p class="text-lg text-gray-600">AI & 양자 시대, '복제불가' PQC 보안 리더 (2025.10 Update)</p>
+             <p class="text-sm text-gray-500 mt-2">참고: 증권사 평가는 분석 시점에 따라 변동될 수 있습니다.</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="card text-center border-t-4 border-ictk-color">
+                <h3 class="text-lg font-semibold ictk-color mb-2">핵심 기술</h3>
+                <p class="kpi-value ictk-color">PUF 보안칩</p>
+                <p class="text-gray-500">물리적 복제 방지 '반도체 지문'</p>
+            </div>
+            <div class="card text-center border-t-4 border-indigo-600">
+                <h3 class="text-lg font-semibold pqc-color mb-2">핵심 성장 동력</h3>
+                <p class="kpi-value pqc-color">양자 내성 암호(PQC)</p>
+                <p class="text-gray-500">하드웨어 보안 시장 선점</p>
+            </div>
+            <div class="card text-center border-t-4 border-green-500">
+                <h3 class="text-lg font-semibold text-green-600 mb-2">2025년 전망</h3>
+                <p class="kpi-value text-green-600">본격 성장 원년</p>
+                <p class="text-gray-500">흑자 전환 및 매출 급증</p>
+            </div>
+        </section>
+
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center">아이씨티케이의 역할: 반도체의 '지문'으로 세상을 연결하다</h2>
+             
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">아이씨티케이(ICTK)는 반도체 제조 공정에서 자연적으로 발생하는 미세한 차이를 '지문'처럼 추출하여, 세상에 단 하나뿐인 고유 식별자(ID)와 암호키를 만드는 **PUF(물리적 복제 방지) 기술**을 보유하고 있습니다. 이는 소프트웨어 방식과 달리 물리적으로 복제가 불가능하여 IoT 기기에 최고 수준의 보안을 제공합니다.<br>특히, **양자 컴퓨터의 등장으로 기존 암호 체계가 위협받는 '양자 내성 암호(PQC)' 시대에, 물리적으로 복제나 해킹이 불가능한 PUF 기술은 가장 강력한 하드웨어 기반 신뢰점(Root of Trust)으로 부각**되고 있습니다.</p>
+             <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-2 text-center">
+                 <div class="flow-step">
+                     <div class="text-4xl mb-2">💡</div>
+                     <h4 class="font-bold">반도체 칩</h4>
+                 </div>
+                 <div class="flex justify-center"><span class="flow-arrow font-bold transform rotate-90 md:rotate-0">→</span></div>
+                 <div class="flow-step bg-teal-50 rounded-lg">
+                     <div class="text-4xl mb-2">🧬</div>
+                     <h4 class="font-bold ictk-color">PUF 기술 적용</h4>
+                     <p class="text-sm text-gray-500">(고유 '지문' 생성)</p>
+                 </div>
+                 <div class="flex justify-center"><span class="flow-arrow font-bold transform rotate-90 md:rotate-0">→</span></div>
+                 <div class="flow-step">
+                     <div class="text-4xl mb-2">🔒</div>
+                     <h4 class="font-bold">복제 불가 보안칩</h4>
+                      <p class="text-sm text-gray-500">(IoT/PQC 대응)</p>
+                 </div>
+             </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">연간 재무 실적 및 전망 (2025년)</h2>
+                <p class="text-center text-gray-600 mb-6">2024년 5월 상장 이후, LGU+ 등 국내 고객사향 양산이 시작되었으며 2025년에는 글로벌 신규 고객사 확보 및 적용처 확대로 본격적인 매출 성장과 흑자 전환이 기대됩니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="financialsBarLineChart"></canvas>
+                </div>
+            </div>
+             <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">사업 부문별 매출 비중 (2025년 전망)</h2>
+                <p class="text-center text-gray-600 mb-6">PUF 기술을 적용한 보안칩 및 모듈 매출이 성장을 주도하며, 이를 기반으로 한 보안 플랫폼 및 솔루션 서비스 매출 비중도 점차 확대될 전망입니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="revenueBySegmentDonutChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+         <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-4">증권가 시각 및 평가 핵심 논거 (2025년 10월 기준)</h2>
+             <p class="text-center text-gray-600 mb-6">증권사들은 아이씨티케이의 독보적인 PUF 기술력과 IoT 및 PQC 보안 시장의 높은 성장성에 주목하며 긍정적인 평가를 내리고 있습니다. 핵심 논거는 다음과 같습니다:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li><strong class="text-ictk-color">PUF 기술의 독점성 및 확장성:</strong> 물리적 복제가 불가능한 PUF 기술은 최고 수준의 보안을 제공하며, 이는 IoT, 스마트 팩토리, 차량용 반도체 등 무한한 확장성을 가집니다. 기술적 해자가 매우 높다고 평가됩니다.</li>
+                <li><strong class="pqc-color font-bold">양자 내성 암호(PQC) 시대의 핵심 수혜:</strong> 양자 컴퓨터의 위협에 대응하기 위한 PQC 전환이 가속화되면서, 소프트웨어만으로는 한계가 명확합니다. 증권사들은 ICTK의 PUF 기술이 PQC 알고리즘을 안전하게 저장하고 실행할 하드웨어 보안의 핵심 솔루션이 될 것으로 기대하며, 이를 중장기적 기업가치 상승의 강력한 모멘텀으로 평가합니다.</li>
+                <li><strong class="text-blue-600">IoT 보안 시장 개화의 수혜:</strong> AI 시대가 도래하며 모든 기기가 연결됨에 따라, '보안'은 선택이 아닌 필수가 되었습니다. ICTK는 이 시장 개화의 직접적인 수혜주로 꼽힙니다.</li>
+                <li><strong class="text-green-600">2025년 본격적인 실적 성장:</strong> 2024년이 LGU+ 등 국내 레퍼런스를 확보하는 해였다면, 2025년은 글로벌 대형 고객사(통신사, IT 기업 등)와의 계약이 성사되며 실적이 본격적으로 성장하는 원년이 될 것으로 기대됩니다.</li>
+                 <li><strong class="text-yellow-500">플랫폼 비즈니스로의 진화:</strong> 단순 칩 판매를 넘어, PUF 기술을 기반으로 기기를 등록하고 인증하는 보안 플랫폼 서비스(SaaS)로의 진화 가능성을 높게 평가합니다.</li>
+            </ul>
+             <p class="text-sm text-gray-500 mt-4">※ 증권사 평가는 시장 상황, 신규 고객사 확보 속도, 경쟁 환경 등에 따라 변동될 수 있으므로 참고 자료로만 활용하시기 바랍니다.</p>
+        </section>
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">투자 매력도 분석</h2>
+                 <p class="text-center text-gray-600 mb-6">IoT 및 PQC 보안 시장의 폭발적인 성장 속에서 '복제 불가'라는 독보적인 기술력을 보유한 점이 핵심 투자 매력입니다. 글로벌 고객사 확보 여부에 따른 높은 성장 잠재력이 기대됩니다.</p>
+                 <div class="chart-container" style="height: 350px;">
+                    <canvas id="investmentRadarChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">SWOT 분석 (2025년 관점)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="swot-quadrant bg-green-50 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 text-lg">강점 (Strengths)</h3>
+                        <ul class="list-disc list-inside text-green-700 mt-2 text-sm">
+                            <li>독보적인 PUF 원천 기술력</li>
+                            <li class="font-bold">양자 내성 하드웨어 보안 기술</li>
+                            <li>국내 대형 고객사(LGU+) 레퍼런스</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 text-lg">약점 (Weaknesses)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-sm">
+                            <li>높은 R&D 비용 부담 (초기 적자)</li>
+                            <li>글로벌 시장 인지도 부족</li>
+                            <li>신규 시장 진입에 따른 긴 인증 기간</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 text-lg">기회 (Opportunities)</h3>
+                        <ul class="list-disc list-inside text-blue-700 mt-2 text-sm">
+                            <li class="font-bold">IoT 기기 폭발적 증가</li>
+                            <li class="font-bold">양자 내성 암호(PQC) 시장 개화</li>
+                            <li>보안 위협 증가에 따른 수요 급증</li>
+                            <li>글로벌 빅테크 기업과의 파트너십</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-yellow-50 border-l-4 border-yellow-500">
+                        <h3 class="font-bold text-yellow-800 text-lg">위협 (Threats)</h3>
+                        <ul class="list-disc list-inside text-yellow-700 mt-2 text-sm">
+                            <li>글로벌 반도체/보안 기업과의 경쟁</li>
+                            <li>경기 침체에 따른 IT 기기 수요 둔화</li>
+                            <li>대체 보안 기술의 등장 가능성</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+         <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-6">미래 비전: 글로벌 No.1 IoT & PQC 보안 팹리스</h2>
+            <div class="relative border-l-2 border-ictk-color ml-4 md:ml-0">
+                 <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-green-500 rounded-full -left-2 border-2 border-white"></div>
+                     <p class="font-bold text-green-600">2024년</p>
+                    <p class="text-gray-700">코스닥 상장 성공(5월). LGU+향 PUF 기반 USIM/eSIM 'ViA' 칩 양산 시작.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-ictk-color rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold ictk-color">2025년</p>
+                    <p class="text-gray-700">북미/유럽 등 글로벌 통신사 및 빅테크 고객사 확보 추진. 스마트 그리드, 스마트 팩토리, 방산 등 적용처 확대.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute w-4 h-4 bg-pqc-color rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold pqc-color">2026년</p>
+                    <p class="text-gray-700">차량용(Automotive) 반도체 보안 시장 진출. PQC 알고리즘을 탑재한 차세대 보안 칩 출시. PUF 기반 보안 플랫폼 서비스(SaaS) 론칭.</p>
+                </div>
+                <div class="ml-8">
+                    <div class="absolute w-4 h-4 bg-gray-600 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-gray-700">2027년 이후</p>
+                    <p class="text-gray-700">글로벌 IoT & PQC 보안 팹리스 리더로 도약. PUF 기술을 다양한 시스템 반도체에 라이선싱하는 비즈니스 모델 확대.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>본 자료는 투자 참고용이며, 제시된 전망치 및 증권사 평가는 실제와 다를 수 있습니다. 투자 판단에 대한 최종 책임은 투자자 본인에게 있습니다.</p>
+        </footer>
+
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() { // Wait for DOM to load
+            const processLabels = (labels) => {
+                const MAX_LENGTH = 16;
+                 return labels.map(label => {
+                    if (typeof label !== 'string') return label; 
+                    if (label.length <= MAX_LENGTH) {
+                        return label;
+                    }
+                    const words = label.split(' ');
+                    const newLabels = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                            newLabels.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    newLabels.push(currentLine);
+                    return newLabels;
+                });
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                 if (!item || !item.chart || !item.chart.data || !item.chart.data.labels) return ''; 
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const palette = {
+                teal: '#0d9488', // ICTK Color
+                blue: '#3b82f6',
+                green: '#16a34a',
+                red: '#ef4444',
+                yellow: '#f59e0b',
+                gray: '#6b7280',
+                purple: '#4f46e5' // PQC Color
+            };
+
+            // Financials Chart
+            const financialsBarLineCtx = document.getElementById('financialsBarLineChart');
+            if (financialsBarLineCtx) {
+                new Chart(financialsBarLineCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2023', '2024(E)', '2025(F)', '2026(F)'],
+                        datasets: [
+                            {
+                                label: '매출액 (억원)',
+                                data: [160, 250, 700, 1500], 
+                                backgroundColor: palette.blue,
+                                yAxisID: 'y',
+                            },
+                            {
+                                label: '영업이익 (억원)',
+                                data: [-45, -20, 120, 300], 
+                                backgroundColor: palette.red,
+                                type: 'line',
+                                yAxisID: 'y1',
+                                borderColor: palette.red,
+                                borderWidth: 2,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: { mode: 'index', intersect: false, ...commonTooltipOptions.plugins.tooltip },
+                            legend: { position: 'top' }
+                        },
+                        scales: {
+                           x: { grid: { display: false } },
+                           y: {
+                                position: 'left',
+                                beginAtZero: true,
+                                title: { display: true, text: '매출액 (억원)'}
+                            },
+                            y1: {
+                                position: 'right',
+                                title: { display: true, text: '영업이익 (억원)'},
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'financialsBarLineChart' not found.");
+            }
+            
+            // Revenue by Segment Chart
+            const revenueBySegmentDonutCtx = document.getElementById('revenueBySegmentDonutChart');
+             if (revenueBySegmentDonutCtx) {
+                 new Chart(revenueBySegmentDonutCtx.getContext('2d'), {
+                     type: 'doughnut',
+                     data: {
+                         labels: ['보안 칩 (PUF)', '보안 플랫폼/솔루션', '기타'],
+                         datasets: [{
+                             label: '사업 부문별 매출 비중',
+                             data: [65, 25, 10], 
+                             backgroundColor: [palette.teal, palette.blue, palette.gray],
+                             borderColor: '#FFFFFF',
+                             borderWidth: 2
+                         }]
+                     },
+                     options: {
+                         responsive: true,
+                         maintainAspectRatio: false,
+                         plugins: {
+                             legend: { position: 'bottom' },
+                             tooltip: commonTooltipOptions.plugins.tooltip
+                         }
+                     }
+                 });
+             } else {
+                 console.error("Canvas element with ID 'revenueBySegmentDonutChart' not found.");
+             }
+
+
+            // Investment Radar Chart
+            const investmentRadarCtx = document.getElementById('investmentRadarChart');
+            if(investmentRadarCtx) {
+                new Chart(investmentRadarCtx.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: processLabels(['기술 독창성(PUF)', '시장 성장성(IoT/PQC)', '글로벌 확장 기대', '수익성 개선']),
+                        datasets: [{
+                            label: '아이씨티케이',
+                            data: [95, 92, 80, 85], // Upped growth score for PQC
+                            backgroundColor: 'rgba(13, 148, 136, 0.2)', // Teal with transparency
+                            borderColor: palette.teal,
+                            borderWidth: 2,
+                            pointBackgroundColor: palette.teal
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        },
+                        scales: {
+                            r: {
+                                angleLines: { display: true },
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                pointLabels: { font: { size: 10 } },
+                                 ticks: {
+                                    callback: value => value,
+                                     backdropColor: 'rgba(0,0,0,0)'
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'investmentRadarChart' not found.");
+            }
+        }); // End of DOMContentLoaded listener
+    </script>
+</body>
+</html>
