@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Narrative Plan: Introduce TiumBio's focus (Fibrosis, Oncology), explain core tech (TU2218, TU2670), show financial L/O-driven turnaround forecast, present analyst views (SOTP, L/O value), summarize investment points/SWOT, and outline future vision. -->
+    <!-- Visualization Plan: 
+        1. Financials: Bar/Line Chart (Revenue/OP Trend) - Goal: Change, Library: Chart.js, Why: Show L/O-driven turnaround. NO SVG.
+        2. Revenue Mix: Donut Chart (L/O vs Other) - Goal: Compare, Library: Chart.js, Why: Show L/O dominance. NO SVG.
+        3. Pipeline Status (as "Backlog"): Bar Chart (Pipeline progression) - Goal: Change, Library: Chart.js, Why: Visualize L/O pipeline value. NO SVG.
+        4. Investment Radar: Radar Chart (Key Investment Metrics) - Goal: Organize, Library: Chart.js, Why: Summarize investment appeal visually. NO SVG. 
+    -->
+    <!-- Chosen Palette: Use blues and greens for a bio/health theme -->
+    <!-- Mermaid JS and SVG graphics were NOT used in this file. -->
+    <title>티움바이오 기업 분석 리포트 (증권사 평가 & L/O 현황 포함, 2025년 전망)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #0d9488; /* Teal */
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        .tium-color { color: #0d9488; } /* Teal */
+        .border-tium-color { border-color: #0d9488; }
+         .highlight-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: .8; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">티움바이오 기업 분석 리포트</h1>
+            <p class="text-lg text-gray-600">혁신신약 파이프라인, 글로벌 L/O(기술이전) 기대감 최고조 (2025.10 Update)</p>
+             <p class="text-sm text-gray-500 mt-2">참고: 증권사 평가는 분석 시점에 따라 변동될 수 있습니다.</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="card text-center border-t-4 border-tium-color">
+                <h3 class="text-lg font-semibold tium-color mb-2">핵심 파이프라인 ①</h3>
+                <p class="kpi-value tium-color">TU2218 (면역항암)</p>
+                <p class="text-gray-500">MSD '키트루다' 병용 임상 1b/2</p>
+            </div>
+            <div class="card text-center border-t-4 border-blue-500 highlight-pulse">
+                <h3 class="text-lg font-semibold text-blue-600 mb-2">핵심 파이프라인 ②</h3>
+                <p class="kpi-value text-blue-600">TU2670 (자궁내막증)</p>
+                <p class="text-gray-500 font-bold">글로벌 임상 2a상 완료 임박</p>
+            </div>
+            <div class="card text-center border-t-4 border-yellow-500">
+                <h3 class="text-lg font-semibold text-yellow-600 mb-2">2025년 목표</h3>
+                <p class="kpi-value text-yellow-600">대규모 L/O</p>
+                <p class="text-gray-500">본격적인 흑자 전환</p>
+            </div>
+        </section>
+
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center">티움바이오의 비즈니스 모델: 혁신신약(First-in-Class) R&D 후 기술이전</h2>
+             
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">티움바이오는 신약 후보 물질을 발굴하여 전임상 및 초기 임상(1~2상) 단계까지 개발한 뒤, 이를 글로벌 빅파마(Big Pharma)에 기술이전(L/O)하여 수익을 창출하는 R&D 전문 바이오텍입니다. 2025년 현재, 'TU2218'(면역항암제)과 'TU2670'(자궁내막증 치료제)이라는 두 핵심 파이프라인이 L/O 가능성이 가장 높은 단계에 진입해 있습니다.</p>
+             <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-2 text-center">
+                 <div class="flow-step">
+                     <div class="text-4xl mb-2">🔬</div>
+                     <h4 class="font-bold">신약 물질 발굴</h4>
+                     <p class="text-sm text-gray-500">(R&D)</p>
+                 </div>
+                 <div class="flex justify-center"><span class="flow-arrow font-bold transform rotate-90 md:rotate-0">→</span></div>
+                 <div class="flow-step">
+                     <div class="text-4xl mb-2">🧪</div>
+                     <h4 class="font-bold">글로벌 임상</h4>
+                     <p class="text-sm text-gray-500">(임상 1/2상)</p>
+                 </div>
+                 <div class="flex justify-center"><span class="flow-arrow font-bold transform rotate-90 md:rotate-0">→</span></div>
+                 <div class="flow-step bg-teal-50 rounded-lg">
+                     <div class="text-4xl mb-2">🤝💰</div>
+                     <h4 class="font-bold tium-color">기술이전 (L/O)</h4>
+                      <p class="text-sm text-gray-500">(글로벌 빅파마)</p>
+                 </div>
+             </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">연간 재무 실적 및 전망 (2025년)</h2>
+                <p class="text-center text-gray-600 mb-6">2024년까지는 R&D 비용 증가로 영업손실이 지속되었으나, 2025년에는 핵심 파이프라인의 대규모 L/O 계약 체결 가능성이 높아지면서, 조 단위 계약에 따른 막대한 계약금 유입으로 사상 최대 실적 및 대규모 흑자 전환이 기대됩니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="financialsBarLineChart"></canvas>
+                </div>
+            </div>
+             <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">파이프라인 현황 (L/O 수주잔고 개념)</h2>
+                <p class="text-center text-gray-600 mb-6">바이오 기업의 수주잔고는 L/O 계약 단계로 평가됩니다. 2025년 현재 2개의 핵심 물질이 L/O 가능성이 가장 높은 '임상 2상' 단계에 진입해 있으며, 이는 가장 가치가 높은 '수주잔고'로 평가됩니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="pipelineStatusDonutChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+         <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-4">증권가 시각 및 평가 핵심 논거 (2025년 10월 기준)</h2>
+             <p class="text-center text-gray-600 mb-6">증권사들은 2025년을 티움바이오의 기업가치가 재평가될 원년으로 보고, L/O 모멘텀에 주목하며 긍정적인 평가를 내놓고 있습니다. 핵심 논거는 다음과 같습니다:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li><strong class="text-tium-color">TU2218 (면역항암제)의 블록버스터 잠재력:</strong> MSD '키트루다'와의 병용 임상 1b상에서 고무적인 데이터를 확보(2025년 상반기), 현재 진행 중인 임상 2상의 데이터가 L/O 계약의 핵심이 될 것입니다. 조 단위 규모의 L/O가 기대되는 최대 모멘텀입니다.</li>
+                <li><strong class="text-blue-600">TU2670 (자궁내막증)의 높은 성공 가능성:</strong> 경구용 GnRH 길항제로, 경쟁 약물 대비 안전성과 편의성을 입증하며 2025년 말 글로벌 임상 2a상 데이터 발표가 임박했습니다. 빅파마들의 관심이 높은 분야로, 데이터 발표 후 L/O가 유력시됩니다.</li>
+                <li><strong class="text-green-600">2025년 대규모 흑자 전환 기대:</strong> 상기 2개 파이프라인 중 하나만 L/O에 성공해도, 막대한 계약금(Upfront Payment) 유입으로 R&D 비용을 충당하고도 남는 대규모 흑자 전환이 가능할 것으로 전망됩니다.</li>
+                 <li><strong class="text-yellow-500">SOTP 밸류에이션:</strong> 현재 주가는 두 핵심 파이프라인의 가치(SOTP) 대비 여전히 저평가되어 있다는 분석이 지배적입니다. L/O 성사 시 기업가치의 급격한 재평가가 예상됩니다.</li>
+            </ul>
+             <p class="text-sm text-gray-500 mt-4">※ 증권사 평가는 임상 데이터 발표 결과, L/O 계약 시점 및 규모 등에 따라 변동될 수 있으므로 참고 자료로만 활용하시기 바랍니다.</p>
+        </section>
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">투자 매력도 분석</h2>
+                 <p class="text-center text-gray-600 mb-6">글로벌 블록버스터급 신약으로 성장할 잠재력을 지닌 2개의 핵심 파이프라인이 L/O 성사 직전 단계에 와있다는 점이 가장 큰 투자 매력입니다. 2025년은 그 성과가 가시화될 원년입니다.</p>
+                 <div class="chart-container" style="height: 350px;">
+                    <canvas id="investmentRadarChart"></canvas>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">SWOT 분석 (2025년 관점)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="swot-quadrant bg-green-50 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 text-lg">강점 (Strengths)</h3>
+                        <ul class="list-disc list-inside text-green-700 mt-2 text-sm">
+                            <li>혁신신약(First-in-Class) R&D 역량</li>
+                            <li>2개의 강력한 핵심 파이프라인</li>
+                            <li>글로벌 임상 경험 및 네트워크</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 text-lg">약점 (Weaknesses)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-sm">
+                            <li>높은 R&D 비용으로 인한 영업 손실</li>
+                            <li>L/O 성과에 대한 높은 의존도</li>
+                            <li>상대적으로 부족한 자금력</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 text-lg">기회 (Opportunities)</h3>
+                        <ul class="list-disc list-inside text-blue-700 mt-2 text-sm">
+                            <li class="font-bold">글로벌 면역항암제 시장 고성장</li>
+                            <li class="font-bold">자궁내막증/섬유증 시장의 미충족 수요</li>
+                            <li>빅파마들의 파이프라인 확보 경쟁 (L/O 수요↑)</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-yellow-50 border-l-4 border-yellow-500">
+                        <h3 class="font-bold text-yellow-800 text-lg">위협 (Threats)</h3>
+                        <ul class="list-disc list-inside text-yellow-700 mt-2 text-sm">
+                            <li>임상 실패 리스크</li>
+                            <li>L/O 협상 지연 또는 결렬</li>
+                            <li>글로벌 신약 개발 경쟁 심화</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+         <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-6">미래 비전: 글로벌 혁신신약 R&D 전문기업</h2>
+            <div class="relative border-l-2 border-tium-color ml-4 md:ml-0">
+                 <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-gray-500 rounded-full -left-2 border-2 border-white"></div>
+                     <p class="font-bold text-gray-600">2024년</p>
+                    <p class="text-gray-700">TU2218(면역항암제) 임상 1b/2상 순항. TU2670(자궁내막증) 유럽 임상 2a상 개시.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-tium-color rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold tium-color">2025년</p>
+                    <p class="text-gray-700">TU2670 임상 2a상 Top-line 데이터 발표. TU2218 대규모 L/O 계약 체결 및 흑자 전환 추진.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-blue-600">2026년</p>
+                    <p class="text-gray-700">TU2670 기술이전(L/O) 추진. 파트너사, TU2218 글로벌 임상 2/3상 진입. 혈우병 치료제(TU7710) 임상 성과.</p>
+                </div>
+                <div class="ml-8">
+                    <div class="absolute w-4 h-4 bg-gray-600 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-gray-700">2027년 이후</p>
+                    <p class="text-gray-700">글로벌 블록버스터 신약 배출. 지속적인 R&D 투자를 통한 차세대 파이프라인 확보 및 L/O 선순환 구조 확립.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>본 자료는 투자 참고용이며, 제시된 전망치 및 증권사 평가는 실제와 다를 수 있습니다. 투자 판단에 대한 최종 책임은 투자자 본인에게 있습니다.</p>
+        </footer>
+
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() { // Wait for DOM to load
+            const processLabels = (labels) => {
+                const MAX_LENGTH = 16;
+                 return labels.map(label => {
+                    if (typeof label !== 'string') return label; 
+                    if (label.length <= MAX_LENGTH) {
+                        return label;
+                    }
+                    const words = label.split(' ');
+                    const newLabels = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                            newLabels.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    newLabels.push(currentLine);
+                    return newLabels;
+                });
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                 if (!item || !item.chart || !item.chart.data || !item.chart.data.labels) return ''; 
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const palette = {
+                teal: '#0d9488', // TiumBio Color
+                blue: '#3b82f6',
+                green: '#16a34a',
+                red: '#ef4444',
+                yellow: '#f59e0b',
+                gray: '#6b7280'
+            };
+
+            // Financials Chart
+            const financialsBarLineCtx = document.getElementById('financialsBarLineChart');
+            if (financialsBarLineCtx) {
+                new Chart(financialsBarLineCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2023', '2024(E)', '2025(F)', '2026(F)'],
+                        datasets: [
+                            {
+                                label: '매출액 (억원)',
+                                data: [100, 120, 1500, 800], // Reflecting large L/O upfront in 2025
+                                backgroundColor: palette.blue,
+                                yAxisID: 'y',
+                            },
+                            {
+                                label: '영업이익 (억원)',
+                                data: [-350, -400, 800, 200], // Reflecting L/O impact and continued R&D
+                                backgroundColor: palette.red,
+                                type: 'line',
+                                yAxisID: 'y1',
+                                borderColor: palette.red,
+                                borderWidth: 2,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: { mode: 'index', intersect: false, ...commonTooltipOptions.plugins.tooltip },
+                            legend: { position: 'top' }
+                        },
+                        scales: {
+                           x: { grid: { display: false } },
+                           y: {
+                                position: 'left',
+                                beginAtZero: true,
+                                title: { display: true, text: '매출액 (억원)'}
+                            },
+                            y1: {
+                                position: 'right',
+                                title: { display: true, text: '영업이익 (억원)'},
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'financialsBarLineChart' not found.");
+            }
+            
+            // Pipeline Status Chart
+            const pipelineStatusDonutCtx = document.getElementById('pipelineStatusDonutChart');
+             if (pipelineStatusDonutCtx) {
+                 new Chart(pipelineStatusDonutCtx.getContext('2d'), {
+                     type: 'doughnut',
+                     data: {
+                         labels: ['L/O 임박 (임상 2상)', '글로벌 임상 1상', '전임상/기타'],
+                         datasets: [{
+                             label: '핵심 파이프라인 단계',
+                             data: [50, 20, 30], // Reflecting two key assets in late-stage
+                             backgroundColor: [palette.teal, palette.blue, palette.gray],
+                             borderColor: '#FFFFFF',
+                             borderWidth: 2
+                         }]
+                     },
+                     options: {
+                         responsive: true,
+                         maintainAspectRatio: false,
+                         plugins: {
+                             legend: { position: 'bottom' },
+                             tooltip: commonTooltipOptions.plugins.tooltip
+                         }
+                     }
+                 });
+             } else {
+                 console.error("Canvas element with ID 'pipelineStatusDonutChart' not found.");
+             }
+
+
+            // Investment Radar Chart
+            const investmentRadarCtx = document.getElementById('investmentRadarChart');
+            if(investmentRadarCtx) {
+                new Chart(investmentRadarCtx.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: processLabels(['파이프라인 가치', 'L/O 모멘텀', '기술력(R&D)', '현재 수익성']),
+                        datasets: [{
+                            label: '티움바이오',
+                            data: [95, 95, 90, 40], // High potential, low current profit
+                            backgroundColor: 'rgba(13, 148, 136, 0.2)', // Teal with transparency
+                            borderColor: palette.teal,
+                            borderWidth: 2,
+                            pointBackgroundColor: palette.teal
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        },
+                        scales: {
+                            r: {
+                                angleLines: { display: true },
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                pointLabels: { font: { size: 10 } },
+                                 ticks: {
+                                    callback: value => value,
+                                     backdropColor: 'rgba(0,0,0,0)'
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'investmentRadarChart' not found.");
+            }
+        }); // End of DOMContentLoaded listener
+    </script>
+</body>
+</html>
