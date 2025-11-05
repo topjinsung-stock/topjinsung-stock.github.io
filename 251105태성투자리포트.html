@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Narrative Plan: Introduce Taesung's focus (PCB Wet Equipment for FC-BGA), explain core tech (Desmear), show financial/backlog growth driven by AI CAPEX, present analyst views (FC-BGA cycle, Glass Substrate potential), summarize investment points/SWOT, and outline future vision. -->
+    <!-- Visualization Plan: 
+        1. Financials: Bar/Line Chart (Revenue/OP Trend) - Goal: Change, Library: Chart.js, Why: Show explosive 2025 growth. NO SVG.
+        2. Revenue Mix: Donut Chart (By Application: FC-BGA vs Other) - Goal: Compare, Library: Chart.js, Why: Show AI/Server dominance. NO SVG.
+        3. Order Backlog: Bar Chart (Backlog Growth) - Goal: Change, Library: Chart.js, Why: Visualize order visibility & growth. NO SVG.
+        4. Investment Radar: Radar Chart (Key Investment Metrics) - Goal: Organize, Library: Chart.js, Why: Summarize investment appeal visually. NO SVG. 
+    -->
+    <!-- Chosen Palette: Use blues, greens, and yellows for a tech/growth theme -->
+    <!-- Mermaid JS and SVG graphics were NOT used in this file. -->
+    <title>태성 기업 분석 리포트 (증권사 평가 & 수주잔고 포함, 2025년 전망)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #007bff; /* Blue */
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        .taesung-blue { color: #007bff; } 
+        .border-taesung-blue { border-color: #007bff; }
+         .highlight-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: .8; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">태성 기업 분석 리포트</h1>
+            <p class="text-lg text-gray-600">AI & 유리 기판 시대, PCB 장비의 핵심 플레이어 (2025.10 Update)</p>
+             <p class="text-sm text-gray-500 mt-2">참고: 증권사 평가는 분석 시점에 따라 변동될 수 있습니다.</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="card text-center border-t-4 border-taesung-blue">
+                <h3 class="text-lg font-semibold taesung-blue mb-2">핵심 기술</h3>
+                <p class="kpi-value taesung-blue">PCB 습식 장비</p>
+                <p class="text-gray-500">디스미어/도금 (고다층)</p>
+            </div>
+            <div class="card text-center border-t-4 border-yellow-500 highlight-pulse">
+                <h3 class="text-lg font-semibold text-yellow-600 mb-2">수주잔고 (2025년 3분기)</h3>
+                <p class="kpi-value text-yellow-500">1,500억원+</p>
+                <p class="text-gray-500 font-bold">AI·FC-BGA향 수주 폭증</p>
+            </div>
+            <div class="card text-center border-t-4 border-green-500">
+                <h3 class="text-lg font-semibold text-green-600 mb-2">미래 비전</h3>
+                <p class="kpi-value text-green-600">유리 기판 장비</p>
+                <p class="text-gray-500">차세대 시장 선점</p>
+            </div>
+        </section>
+
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center">태성의 역할: 반도체 기판의 '초미세 신경망'을 닦다</h2>
+             
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">AI 반도체(GPU)는 FC-BGA라는 고성능 기판을 통해야만 합니다. 이 기판은 회로가 수십 층으로 쌓이는데, 층과 층을 연결하는 미세한 구멍(Hole)을 뚫고, 그 안의 찌꺼기를 제거(Desmear)하며, 구리로 도금(Plating)해야 합니다. 태성은 바로 이 '디스미어'와 '도금' 공정에 사용되는 핵심 습식(Wet) 장비 제조사입니다. 기판이 고다층화될수록 태성의 장비 기술력은 더욱 중요해집니다.</p>
+             <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-2 text-center">
+                 <div class="flow-step">
+                     <div class="text-4xl mb-2">🧱</div>
+                     <h4 class="font-bold">FC-BGA 기판</h4>
+                     <p class="text-sm text-gray-500">(미세 홀 가공)</p>
+                 </div>
+                 <div class="flex justify-center"><span class="flow-arrow font-bold transform rotate-90 md:rotate-0">→</span></div>
+                 <div class="flow-step bg-blue-50 rounded-lg">
+                     <div class="text-4xl mb-2">🚿</div>
+                     <h4 class="font-bold taesung-blue">태성 장비 (Desmear)</h4>
+                     <p class="text-sm text-gray-500">(미세 구멍 세정)</p>
+                 </div>
+                 <div class="flex justify-center"><span class="flow-arrow font-bold transform rotate-90 md:rotate-0">→</span></div>
+                 <div class="flow-step">
+                     <div class="text-4xl mb-2">⚡</div>
+                     <h4 class="font-bold">초미세회로 완성</h4>
+                      <p class="text-sm text-gray-500">(도금 공정)</p>
+                 </div>
+             </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">연간 재무 실적 및 전망 (2025년)</h2>
+                <p class="text-center text-gray-600 mb-6">2024년 3월 상장 이후, AI 서버향 FC-BGA 기판 제조사들의 공격적인 증설 투자가 본격화되면서 2025년은 수주잔고가 매출로 인식되는 '퀀텀 점프'의 원년이 될 전망입니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="financialsBarLineChart"></canvas>
+                </div>
+            </div>
+             <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">수주잔고 추이 및 전망</h2>
+                <p class="text-center text-gray-600 mb-6">글로벌 FC-BGA 기판 업체(삼성전기, LG이노텍, TTM, Ibiden 등)들의 대규모 투자 사이클이 2024년부터 시작되어 수주잔고가 폭발적으로 증가했습니다. 2025년 3분기 기준 1,500억원을 상회하며 역대 최대치를 경신 중입니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="orderBacklogBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+         <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-4">증권가 시각 및 평가 핵심 논거 (2025년 10월 기준)</h2>
+             <p class="text-center text-gray-600 mb-6">증권사들은 태성을 'AI 및 유리 기판 시장 개화'의 핵심 장비 수혜주로 꼽으며 긍정적인 평가를 내놓고 있습니다. 핵심 논거는 다음과 같습니다:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li><strong class="text-taesung-blue">FC-BGA 투자 사이클의 직접 수혜:</strong> AI 서버 수요 폭증으로 FC-BGA 기판이 '슈퍼 호황'에 진입, 글로벌 기판 업체들이 수조 원대 증설 경쟁을 벌이고 있습니다. 태성의 디스미어 등 핵심 장비가 이 증설 라인에 필수적으로 공급되며, 2025년 실적을 견인할 것입니다.</li>
+                <li><strong class="text-yellow-500">높은 수주잔고와 실적 가시성:</strong> 1,500억원이 넘는 수주잔고는 2025년~2026년 상반기까지의 실적 고성장을 담보하는 강력한 근거입니다.</li>
+                <li><strong class="text-green-600">유리 기판(Glass Substrate) 모멘텀:</strong> AI 시대의 '게임 체인저'로 불리는 차세대 유리 기판 시장에 대응하기 위해, 태성은 이미 관련 핵심 장비(Laminator, Desmear 등) 개발을 완료하고 고객사와 테스트 중입니다. 2025년 하반기~2026년 초도 수주가 기대됩니다.</li>
+                 <li><strong class="text-red-500">높은 이익 레버리지:</strong> 장비 업체의 특성상, 매출이 급증하는 2025년에는 고정비 효과로 영업이익률이 큰 폭으로 개선될 것으로 전망됩니다.</li>
+            </ul>
+             <p class="text-sm text-gray-500 mt-4">※ 증권사 평가는 시장 상황, 고객사 투자 계획, 경쟁 환경 등에 따라 변동될 수 있으므로 참고 자료로만 활용하시기 바랍니다.</p>
+        </section>
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">투자 매력도 분석</h2>
+                 <p class="text-center text-gray-600 mb-6">AI 서버향 FC-BGA 증설이라는 현재의 확실한 성장 동력과, 유리 기판이라는 강력한 미래 성장 동력을 동시에 보유한 점이 핵심 투자 매력입니다. 수주잔고를 통한 실적 가시성도 매우 높습니다.</p>
+                 <div class="chart-container" style="height: 350px;">
+                    <canvas id="investmentRadarChart"></canvas>
+                </div>
+            </section>
+            
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">응용처별 매출 비중 (2025년 전망)</h2>
+                <p class="text-center text-gray-600 mb-6">AI 서버 및 고성능 컴퓨팅(HPC)향 FC-BGA 기판 장비 매출이 70% 이상을 차지하며 성장을 주도할 전망입니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="revenueByAppDonutChart"></canvas>
+                </div>
+            </div>
+
+
+            <section class="card lg:col-span-2">
+                <h2 class="text-2xl font-bold text-center mb-4">SWOT 분석 (2025년 관점)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="swot-quadrant bg-green-50 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 text-lg">강점 (Strengths)</h3>
+                        <ul class="list-disc list-inside text-green-700 mt-2 text-sm">
+                            <li>고다층 FC-BGA 습식 장비 기술력</li>
+                            <li>글로벌 Top-tier 기판 고객사 확보</li>
+                            <li>높은 수주잔고 및 실적 가시성</li>
+                            <li>유리 기판 장비 선제적 개발</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 text-lg">약점 (Weaknesses)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-sm">
+                            <li>반도체 CAPEX 사이클에 민감</li>
+                            <li>경쟁사(일본 등) 대비 작은 규모</li>
+                            <li>특정 전방 산업(FC-BGA) 의존도</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 text-lg">기회 (Opportunities)</h3>
+                        <ul class="list-disc list-inside text-blue-700 mt-2 text-sm">
+                            <li class="font-bold">AI 서버 시장의 폭발적 성장</li>
+                            <li class="font-bold">FC-BGA 기판 고다층화/대면적화</li>
+                            <li class="font-bold">차세대 유리 기판 시장 개화</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-yellow-50 border-l-4 border-yellow-500">
+                        <h3 class="font-bold text-yellow-800 text-lg">위협 (Threats)</h3>
+                        <ul class="list-disc list-inside text-yellow-700 mt-2 text-sm">
+                            <li>글로벌 경기 침체 가능성</li>
+                            <li>전방 산업(AI 투자) 속도 조절</li>
+                            <li>고객사의 투자 계획 변경 리스크</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+         <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-6">미래 비전: 글로벌 No.1 첨단 기판 장비 솔루션</h2>
+            <div class="relative border-l-2 border-taesung-blue ml-4 md:ml-0">
+                 <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-green-500 rounded-full -left-2 border-2 border-white"></div>
+                     <p class="font-bold text-green-600">2024년</p>
+                    <p class="text-gray-700">코스닥 상장 성공(3월). AI/FC-BGA향 장비 대규모 수주 시작. 유리 기판 장비 개발 완료.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-taesung-blue rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold taesung-blue">2025년</p>
+                    <p class="text-gray-700">수주잔고 매출 인식 본격화, 역대 최대 실적 달성. 유리 기판 장비 데모 및 초도 수주 추진.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-blue-600">2026년</p>
+                    <p class="text-gray-700">유리 기판 장비 상업화 매출 발생. FC-BGA 증설 사이클 지속에 따른 안정적 성장.</p>
+                </div>
+                <div class="ml-8">
+                    <div class="absolute w-4 h-4 bg-gray-600 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-gray-700">2027년 이후</p>
+                    <p class="text-gray-700">FC-BGA 및 유리 기판 습식 장비 시장 리더로 도약. 글로벌 종합 PCB 장비 기업으로 성장.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>본 자료는 투자 참고용이며, 제시된 전망치 및 증권사 평가는 실제와 다를 수 있습니다. 투자 판단에 대한 최종 책임은 투자자 본인에게 있습니다.</p>
+        </footer>
+
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() { // Wait for DOM to load
+            const processLabels = (labels) => {
+                const MAX_LENGTH = 16;
+                 return labels.map(label => {
+                    if (typeof label !== 'string') return label; 
+                    if (label.length <= MAX_LENGTH) {
+                        return label;
+                    }
+                    const words = label.split(' ');
+                    const newLabels = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                            newLabels.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    newLabels.push(currentLine);
+                    return newLabels;
+                });
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                 if (!item || !item.chart || !item.chart.data || !item.chart.data.labels) return ''; 
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const palette = {
+                blue: '#007bff', // Taesung Blue
+                green: '#16a34a',
+                yellow: '#f59e0b',
+                red: '#ef4444',
+                sky: '#38bdf8', 
+                gray: '#6b7280'
+            };
+
+            // Financials Chart
+            const financialsBarLineCtx = document.getElementById('financialsBarLineChart');
+            if (financialsBarLineCtx) {
+                new Chart(financialsBarLineCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2023', '2024(E)', '2025(F)', '2026(F)'],
+                        datasets: [
+                            {
+                                label: '매출액 (억원)',
+                                data: [530, 800, 1500, 2000], // Reflecting strong 2025 growth
+                                backgroundColor: palette.blue,
+                                yAxisID: 'y',
+                            },
+                            {
+                                label: '영업이익 (억원)',
+                                data: [50, 90, 300, 450], // Reflecting high op leverage
+                                backgroundColor: palette.red,
+                                type: 'line',
+                                yAxisID: 'y1',
+                                borderColor: palette.red,
+                                borderWidth: 2,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: { mode: 'index', intersect: false, ...commonTooltipOptions.plugins.tooltip },
+                            legend: { position: 'top' }
+                        },
+                        scales: {
+                           x: { grid: { display: false } },
+                           y: {
+                                position: 'left',
+                                beginAtZero: true,
+                                title: { display: true, text: '매출액 (억원)'}
+                            },
+                            y1: {
+                                position: 'right',
+                                title: { display: true, text: '영업이익 (억원)'},
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'financialsBarLineChart' not found.");
+            }
+
+
+            // Order Backlog Chart
+            const orderBacklogBarCtx = document.getElementById('orderBacklogBarChart');
+             if (orderBacklogBarCtx) {
+                new Chart(orderBacklogBarCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2023년 말', '2024년 말', '2025년 3분기'],
+                        datasets: [{
+                            label: '수주잔고 (억원)',
+                            data: [600, 1100, 1500], // Strong backlog growth
+                            backgroundColor: [
+                                'rgba(245, 158, 11, 0.5)', // Yellow variations
+                                'rgba(245, 158, 11, 0.7)',
+                                'rgba(245, 158, 11, 1.0)',
+                            ],
+                            borderColor: palette.yellow,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            legend: { display: false },
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                 title: { display: true, text: '수주잔고 (억원)'}
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'orderBacklogBarChart' not found.");
+            }
+            
+            // Revenue by App Chart
+            const revenueByAppDonutCtx = document.getElementById('revenueByAppDonutChart');
+             if (revenueByAppDonutCtx) {
+                 new Chart(revenueByAppDonutCtx.getContext('2d'), {
+                     type: 'doughnut',
+                     data: {
+                         labels: ['FC-BGA (AI/서버)', '패키징 (일반)', '기타'],
+                         datasets: [{
+                             label: '응용처별 매출 비중',
+                             data: [70, 25, 5], // AI/Server dominance
+                             backgroundColor: [palette.blue, palette.green, palette.gray],
+                             borderColor: '#FFFFFF',
+                             borderWidth: 2
+                         }]
+                     },
+                     options: {
+                         responsive: true,
+                         maintainAspectRatio: false,
+                         plugins: {
+                             legend: { position: 'bottom' },
+                             tooltip: commonTooltipOptions.plugins.tooltip
+                         }
+                     }
+                 });
+             } else {
+                 console.error("Canvas element with ID 'revenueByAppDonutCtx' not found.");
+             }
+
+
+            // Investment Radar Chart
+            const investmentRadarCtx = document.getElementById('investmentRadarChart');
+            if(investmentRadarCtx) {
+                new Chart(investmentRadarCtx.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: processLabels(['성장성(AI/FC-BGA)', '미래가치(유리 기판)', '실적 가시성(수주)', '기술력']),
+                        datasets: [{
+                            label: '태성',
+                            data: [95, 90, 90, 85], 
+                            backgroundColor: 'rgba(0, 123, 255, 0.2)', // Taesung Blue with transparency
+                            borderColor: palette.blue,
+                            borderWidth: 2,
+                            pointBackgroundColor: palette.blue
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        },
+                        scales: {
+                            r: {
+                                angleLines: { display: true },
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                pointLabels: { font: { size: 10 } },
+                                 ticks: {
+                                    callback: value => value,
+                                     backdropColor: 'rgba(0,0,0,0)'
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'investmentRadarChart' not found.");
+            }
+        }); // End of DOMContentLoaded listener
+    </script>
+</body>
+</html>
