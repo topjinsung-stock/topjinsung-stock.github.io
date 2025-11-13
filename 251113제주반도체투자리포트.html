@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주반도체 (080220) 기업분석 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .chart-container-doughnut {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#004B87] text-white p-6 shadow-xl">
+        <div class="container mx-auto max-w-6xl">
+            <h1 class="text-3xl md:text-4xl font-bold text-center">제주반도체 (080220) 기업분석</h1>
+            <p class="text-center text-lg text-gray-300 mt-2">2025년 11월 13일 기준 | 온디바이스 AI & 레거시 메모리 동시 수혜</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl p-4 md:p-8">
+
+        <section id="snapshot" class="mb-8">
+            <h2 class="text-3xl font-bold text-[#004B87] mb-6 text-center">주요 투자 지표</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="bg-white p-5 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
+                    <p class="text-sm font-medium text-gray-500">시가총액</p>
+                    <p class="text-4xl font-bold text-[#004B87] mt-2">~7,130<span class="text-lg font-medium">억</span></p>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
+                    <p class="text-sm font-medium text-gray-500">1년 수익률</p>
+                    <p class="text-4xl font-bold text-[#1D7A8C] mt-2">+106.8<span class="text-lg font-medium">%</span></p>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
+                    <p class="text-sm font-medium text-gray-500">PBR (2024년)</p>
+                    <p class="text-4xl font-bold text-[#1D7A8C] mt-2">~2.8<span class="text-lg font-medium">배</span></p>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
+                    <p class="text-sm font-medium text-gray-500">부채비율 (2024년)</p>
+                    <p class="text-4xl font-bold text-[#004B87] mt-2">22.4<span class="text-lg font-medium">%</span></p>
+                    <p class="text-xs text-gray-400 mt-1">우수한 재무 안정성</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="investment-thesis" class="mb-8 bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-[#004B87] mb-6 text-center">핵심 투자 아이디어</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                글로벌 AI 경쟁 심화로 대형사들은 HBM/DDR5에 집중하고 있습니다. 동시에, 온디바이스 AI 기기는 저전력 메모리(LPDDR)를 필요로 합니다. 이 두 가지 흐름이 맞물리며 LPDDR4 등 구형 메모리의 공급 부족과 가격 상승이 나타나고 있으며, 이 분야의 강자인 제주반도체가 수혜를 받고 있습니다.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center md:items-stretch space-y-6 md:space-y-0 md:space-x-6">
+                
+                <div class="flex-1 w-full p-6 bg-blue-50 rounded-lg shadow-inner border border-blue-200 text-center flex flex-col justify-center">
+                    <h3 class="text-2xl font-semibold text-[#004B87] mb-2">수요 측면 (Demand ⬆️)</h3>
+                    <p class="text-lg font-medium text-gray-800">온디바이스 AI & IoT 확산</p>
+                    <p class="text-gray-600 mt-2">AI 스마트폰, AI 가전, 차량용 전장 등 엣지 디바이스의 저전력 LPDDR 메모리 수요가 폭발적으로 증가하고 있습니다.</p>
+                </div>
+                
+                <div class="flex items-center justify-center text-4xl font-bold text-[#004B87] transform md:rotate-0 rotate-90">
+                    &
+                </div>
+
+                <div class="flex-1 w-full p-6 bg-teal-50 rounded-lg shadow-inner border border-teal-200 text-center flex flex-col justify-center">
+                    <h3 class="text-2xl font-semibold text-[#1D7A8C] mb-2">공급 측면 (Supply ⬇️)</h3>
+                    <p class="text-lg font-medium text-gray-800">대형사들의 HBM/DDR5 집중</p>
+                    <p class="text-gray-600 mt-2">삼성, 하이닉스 등이 신규 고대역폭 메모리에 집중하며 구형 LPDDR4 생산을 줄여, 공급 부족 및 가격 상승이 발생하고 있습니다.</p>
+                </div>
+            </div>
+            <div class="flex justify-center mt-6">
+                <span class="text-4xl text-gray-600 transform rotate-90 md:rotate-0">⬇️</span>
+            </div>
+            <div class="mt-4 p-6 bg-[#004B87] text-white rounded-xl shadow-lg text-center">
+                <h3 class="text-2xl font-bold">제주반도체: 니치 마켓(틈새 시장) 지배자</h3>
+                <p class="text-gray-200 mt-2">저전력·커스텀 메모리 팹리스로서, 가격(P)과 물량(Q) 동시 상승의 최대 수혜를 받고 있습니다.</p>
+            </div>
+        </section>
+
+        <section id="performance" class="mb-8 bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-[#004B87] mb-4 text-center">2025년 실적 턴어라운드</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto">
+                2023-2024년의 조정기를 거쳐, 2025년 상반기 뚜렷한 이익 회복세를 보였습니다. 특히 3분기에는 IoT 및 차량용 메모리 수요 증가와 D램 가격 상승에 힘입어 분기 최초 매출 1,000억 및 영업이익 140억 수준의 '어닝 서프라이즈'가 기대됩니다.
+            </p>
+            <div class="chart-container">
+                <canvas id="financialsChart"></canvas>
+            </div>
+        </section>
+
+        <section id="business-health" class="mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-[#004B87] mb-4 text-center">제품 포트폴리오</h2>
+                <p class="text-center text-gray-600 mb-6">
+                    LPDDR 등 저전력 DRAM과 MCP(복합칩)가 핵심이며, 틈새 시장인 IoT, 차량용 전장 등에 특화되어 있습니다.
+                </p>
+                <div class="chart-container-doughnut">
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-[#004B87] mb-4 text-center">재무 안정성 (2024년 기준)</h2>
+                <p class="text-center text-gray-600 mb-6">
+                    부채비율이 22.4%에 불과하며, 2024년 이익 감소에도 ROE 11.4%를 유지하는 등 재무 구조가 매우 우수합니다.
+                </p>
+                <div class="chart-container-doughnut">
+                    <canvas id="debtChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="swot" class="mb-8">
+            <h2 class="text-3xl font-bold text-[#004B87] mb-6 text-center">투자 포인트 vs 리스크 요인</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-600 mb-4">📈 투자 포인트 (Bull)</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 text-2xl">✔</span>
+                            <div>
+                                <strong class="text-gray-800">온디바이스 AI 모멘텀</strong>
+                                <p class="text-gray-600 text-sm">AI 스마트폰, 가전 등 엣지 AI 기기 확산의 직접적 수혜.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 text-2xl">✔</span>
+                            <div>
+                                <strong class="text-gray-800">레거시 메모리 가격 상승</strong>
+                                <p class="text-gray-600 text-sm">대형사들의 HBM 집중으로 인한 구형 LPDDR 공급 부족 및 판가 상승.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 text-2xl">✔</span>
+                            <div>
+                                <strong class="text-gray-800">실적 턴어라운드</strong>
+                                <p class="text-gray-600 text-sm">2025년 상반기 이익 80% 성장, 3분기 어닝 서프라이즈 기대.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 text-2xl">✔</span>
+                            <div>
+                                <strong class="text-gray-800">우수한 재무 안정성</strong>
+                                <p class="text-gray-600 text-sm">부채비율 22.4%로 다운사이클에도 리스크 제한적.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4">📉 리스크 요인 (Bear)</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-3 text-2xl">✖</span>
+                            <div>
+                                <strong class="text-gray-800">높은 밸류에이션 부담</strong>
+                                <p class="text-gray-600 text-sm">1년간 주가 100% 이상 상승. PBR 2.8배로 기대감이 선반영.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-3 text-2xl">✖</span>
+                            <div>
+                                <strong class="text-gray-800">메모리 사이클 변동성</strong>
+                                <p class="text-gray-600 text-sm">D램 가격이 하락 사이클로 전환 시 실적 변동성이 커질 수 있음.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-3 text-2xl">✖</span>
+                            <div>
+                                <strong class="text-gray-800">소형주 수급 변동성</strong>
+                                <p class="text-gray-600 text-sm">단기 과열, 공매도 등 수급 이슈에 따른 높은 주가 변동성.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-3 text-2xl">✖</span>
+                            <div>
+                                <strong class="text-gray-800">AI 보급 속도 불확실성</strong>
+                                <p class="text-gray-600 text-sm">기대 대비 온디바이스 AI 보급이 늦어질 경우 성장 프리미엄 축소 가능.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 bg-[#004B87] text-gray-300 mt-8">
+        <p class="text-sm">본 자료는 제공된 데이터를 기반으로 생성된 인포그래픽이며, 투자 참고용입니다.</p>
+        <p class="text-xs mt-1">© 2025 Jeju Semiconductor Infographic SPA. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapLabel = (label, maxChars = 16) => {
+                if (typeof label !== 'string' || label.length <= maxChars) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxChars && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += (currentLine.length === 0 ? '' : ' ') + word;
+                }
+                if (currentLine.length > 0) lines.push(currentLine.trim());
+                return lines.filter(line => line.length > 0);
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        backgroundColor: '#004B87',
+                        titleFont: { size: 14, weight: 'bold', family: "'Noto Sans KR', sans-serif" },
+                        bodyFont: { size: 12, family: "'Noto Sans KR', sans-serif" },
+                        padding: 12,
+                        cornerRadius: 6,
+                        boxPadding: 4
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: "'Noto Sans KR', sans-serif"
+                            }
+                        }
+                    }
+                }
+            };
+
+            const financialsCtx = document.getElementById('financialsChart').getContext('2d');
+            new Chart(financialsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2022년', '2023년', '2024년', wrapLabel('2025년 상반기(H1)', 16), wrapLabel('2025년 3분기(Preview)', 16)],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: '매출액 (억원)',
+                            data: [1583, 1459, 1624, 510.7, 1000],
+                            backgroundColor: '#004B87',
+                            yAxisID: 'ySales',
+                            order: 2
+                        },
+                        {
+                            type: 'line',
+                            label: '영업이익 (억원)',
+                            data: [263, 178, 96, 43.4, 140],
+                            backgroundColor: '#1D7A8C',
+                            borderColor: '#1D7A8C',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#1D7A8C',
+                            yAxisID: 'yProfit',
+                            order: 1,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    ...commonTooltipOptions,
+                    scales: {
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 12,
+                                    family: "'Noto Sans KR', sans-serif"
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        ySales: {
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '매출액 (억원)',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                    family: "'Noto Sans KR', sans-serif"
+                                },
+                                color: '#004B87'
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif"
+                                }
+                            }
+                        },
+                        yProfit: {
+                            type: 'linear',
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '영업이익 (억원)',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                    family: "'Noto Sans KR', sans-serif"
+                                },
+                                color: '#1D7A8C'
+                            },
+                            grid: {
+                                drawOnChartArea: false 
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif"
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
+            new Chart(portfolioCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [wrapLabel('Low Power DRAM (LPDDR)', 16), 'MCP', 'Flash / eMMC', 'SRAM / Other'],
+                    datasets: [{
+                        label: '제품 포트폴리오 (추정)',
+                        data: [40, 30, 20, 10],
+                        backgroundColor: [
+                            '#004B87',
+                            '#1D7A8C',
+                            '#FFD166',
+                            '#B03A5B'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        ...commonTooltipOptions.plugins,
+                    }
+                }
+            });
+
+            const debtCtx = document.getElementById('debtChart').getContext('2d');
+            new Chart(debtCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['부채 (22.4%)', '자본 (77.6%)'],
+                    datasets: [{
+                        label: '재무 구조 (2024년)',
+                        data: [22.4, 77.6],
+                        backgroundColor: [
+                            '#B03A5B',
+                            '#004B87'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        ...commonTooltipOptions.plugins,
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
