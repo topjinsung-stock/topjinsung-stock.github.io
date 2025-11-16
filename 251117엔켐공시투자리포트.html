@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엔켐(Enchem) 핵심 전략 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark-blue: #004AAD;
+            --color-medium-blue: #0065D4;
+            --color-bright-blue: #00BFFF;
+            --color-powder-blue: #B0E0E6;
+            --color-bg: #F0F8FF;
+            --color-text: #1f2937;
+            --color-text-muted: #4b5563;
+        }
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+        .material-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 101, 212, 0.08);
+            padding: 24px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-box {
+            border: 2px solid var(--color-powder-blue);
+            background-color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--color-medium-blue);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color: var(--color-dark-blue);">엔켐(Enchem) 핵심 전략 분석</h1>
+            <p class="text-xl md:text-2xl" style="color: var(--color-medium-blue);">단기 회계 충격과 중장기 글로벌 비전</p>
+        </header>
+
+        <section class="material-card text-center mb-8">
+            <h2 class="text-2xl font-bold mb-3" style="color: var(--color-dark-blue);">Executive Summary: 이슈의 핵심</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--color-text-muted);">
+                최근 엔켐 공시는 <span class="font-bold" style="color: var(--color-medium-blue);">"사업 축소"가 아닌, 회계·거래 구조 재정비 과정에서 발생한 "단기 충격"</span>입니다.
+                핵심은 중국향 매출 구조를 정리하고 북미·유럽 중심의 글로벌 CAPA 확장을 본격화하는 과정에서 발생한 일시적 변동입니다.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <section class="material-card">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--color-dark-blue);">1. 중국 DFD 이슈의 본질</h2>
+                <p class="mb-6" style="color: var(--color-text-muted);">
+                    이번 이슈는 '거래 중단'이 아닌 '거래 방식 변경'이 핵심입니다. 중국 당국 규제로 인해 거래 흐름이 변경되면서 회계상 숫자의 일그러짐이 발생했습니다.
+                </p>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--color-medium-blue);">기존 거래 구조</h3>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <div class="flow-box">엔켐 본사</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-box">중국 판매법인</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-box">DFD</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--color-medium-blue);">변경된 거래 구조 (내수거래)</h3>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <div class="flow-box">DFD</div>
+                            <span class="flow-arrow text-2xl">↔</span>
+                            <div class="flow-box">중국 판매법인</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="material-card">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--color-dark-blue);">회계상 숫자 일그러짐 (단위: 억 원)</h2>
+                <p class="mb-4" style="color: var(--color-text-muted);">
+                    거래 구조 변경으로 기존 반기 매출 189억이 일시적으로 '0' 처리되면서, 장부상 -65억처럼 보이는 착시가 발생했습니다. 실질 순매출 123억이 실제 비즈니스 현황입니다.
+                </p>
+                <div class="chart-container">
+                    <canvas id="dfdChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <section class="material-card flex flex-col">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--color-dark-blue);">2. 중장기 전략: '탈중국' 및 '북미·유럽' 중심 재편</h2>
+                <p class="mb-4" style="color: var(--color-text-muted);">
+                    엔켐의 핵심 전략은 이미 '탈중국' 및 '북미·유럽' 중심으로 확정되었습니다. DFD 이슈는 오히려 중국 비중 축소를 가속화하는 신호로 해석할 수 있습니다.
+                </p>
+                <div class="chart-container" style="max-width: 350px; height: 250px;">
+                    <canvas id="focusChart"></canvas>
+                </div>
+                <p class="mt-4 text-center" style="color: var(--color-text-muted);">
+                    미국 IRA 및 유럽 CRMA 수혜로 인해 북미·유럽 고객사 비중이 압도적으로 증가할 것입니다.
+                </p>
+            </section>
+            
+            <section class="material-card">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--color-dark-blue);">핵심 성장 동력</h2>
+                <p class="mb-6" style="color: var(--color-text-muted);">
+                    글로벌 Top Tier 고객사 및 정책적 수혜가 엔켐의 중장기 성장을 견인합니다.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start p-4 rounded-lg" style="background-color: var(--color-bg);">
+                        <span class="text-2xl mr-4">🤝</span>
+                        <div>
+                            <h3 class="font-bold text-lg" style="color: var(--color-dark-blue);">북미 배터리 생태계</h3>
+                            <p style="color: var(--color-text-muted);">SK온, Ford, GM, LGES 등 핵심 OEM 및 배터리 셀 메이커와 직접 연계</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start p-4 rounded-lg" style="background-color: var(--color-bg);">
+                        <span class="text-2xl mr-4">🇺🇸</span>
+                        <div>
+                            <h3 class="font-bold text-lg" style="color: var(--color-dark-blue);">IRA (미국 인플레이션 감축법)</h3>
+                            <p style="color: var(--color-text-muted);">북미 내 전해액 생산으로 중국산 규제에 대한 직접적 수혜</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start p-4 rounded-lg" style="background-color: var(--color-bg);">
+                        <span class="text-2xl mr-4">🇪🇺</span>
+                        <div>
+                            <h3 class="font-bold text-lg" style="color: var(--color-dark-blue);">유럽 수요 증가</h3>
+                            <p style="color: var(--color-text-muted);">ESS 및 전기차용 전해액 수요 급증에 대응 (헝가리, 폴란드 CAPA)</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <section class="material-card">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--color-dark-blue);">3. 성장 로드맵: 투자와 수확</h2>
+                <p class="mb-6" style="color: var(--color-text-muted);">
+                    2024년까지는 글로벌 거점 확보를 위한 '투자(증설)기'이며, 2025년부터는 본격적인 '수확(가동)기'로 진입합니다.
+                </p>
+                <div class="space-y-4">
+                    <div class="w-full p-4 rounded-lg" style="border: 2px solid var(--color-medium-blue); background-color: #fff;">
+                        <h3 class="font-bold text-xl" style="color: var(--color-medium-blue);">2023 - 2024년: 투자(증설) 시기</h3>
+                        <p class="text-lg" style="color: var(--color-text-muted);">글로벌 핵심 거점 CAPA 확보 및 자본 투입</p>
+                    </div>
+                    <div class="flex justify-center my-2">
+                        <span class="text-4xl font-bold" style="color: var(--color-dark-blue);">⬇</span>
+                    </div>
+                    <div class="w-full p-4 rounded-lg" style="border: 2px solid var(--color-dark-blue); background-color: var(--color-dark-blue);">
+                        <h3 class="font-bold text-xl text-white">2025 - 2027년: 수확(가동) 시기</h3>
+                        <p class="text-lg" style="color: var(--color-powder-blue);">가동률 상승 및 본격적인 이익 회수 시작</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="material-card">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--color-dark-blue);">글로벌 핵심 CAPA 확장 (Kilo-Tons)</h2>
+                <p class="mb-4" style="color: var(--color-text-muted);">
+                    미국, 유럽의 핵심 거점에 대규모 증설을 진행하며 글로벌 Top 3 진입을 준비하고 있습니다. (수치는 예시입니다.)
+                </p>
+                <div class="chart-container">
+                    <canvas id="capaChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <section class="material-card text-center">
+            <h2 class="text-2xl font-bold mb-3" style="color: var(--color-dark-blue);">Conclusion: 펀더멘털은 견고하다</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--color-text-muted);">
+                DFD 관련 공시는 펀더멘털 훼손이 아닌, 전략적 재편 과정의 일시적 회계 이슈입니다.
+                <span class="font-bold" style="color: var(--color-dark-blue);">단기적 숫자 변동보다 2025년 이후 본격화될 북미·유럽 시장의 구조적 성장에 주목</span>해야 합니다.
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            function wrapLabels(label) {
+                if (typeof label === 'string' && label.length > 16) {
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    for (const word of words) {
+                        if ((currentLine + ' ' + word).trim().length > 16) {
+                            if (currentLine.length > 0) {
+                                lines.push(currentLine.trim());
+                            }
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    }
+                    if (currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                    }
+                    return lines.length > 0 ? lines : [label];
+                }
+                return label;
+            }
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                if (!item) return '';
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonTooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        backgroundColor: '#ffffff',
+                        titleColor: '#1f2937',
+                        bodyColor: '#4b5563',
+                        borderColor: '#e5e7eb',
+                        borderWidth: 1,
+                        padding: 10,
+                        cornerRadius: 8,
+                        boxPadding: 4
+                    },
+                    legend: {
+                        labels: {
+                            color: '#1f2937'
+                        }
+                    }
+                }
+            };
+            
+            const commonOptions = (tooltipConfig) => ({
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: tooltipConfig.plugins
+            });
+
+            const dfdCtx = document.getElementById('dfdChart');
+            if (dfdCtx) {
+                new Chart(dfdCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['기존 인식 (반기 매출)', '실질 순매출', '회계상 변동 (공시)'].map(wrapLabels),
+                        datasets: [{
+                            label: '금액 (억 원)',
+                            data: [189, 123, -65],
+                            backgroundColor: [
+                                'rgba(0, 101, 212, 0.7)',
+                                'rgba(0, 191, 255, 0.7)',
+                                'rgba(0, 74, 173, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgb(0, 101, 212)',
+                                'rgb(0, 191, 255)',
+                                'rgb(0, 74, 173)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        ...commonOptions(commonTooltipConfig),
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#e5e7eb'
+                                },
+                                ticks: {
+                                    color: '#4b5563'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#4b5563',
+                                    font: {
+                                        size: 10
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const focusCtx = document.getElementById('focusChart');
+            if (focusCtx) {
+                new Chart(focusCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['북미/유럽 (핵심)', '중국 (비중 축소)'].map(wrapLabels),
+                        datasets: [{
+                            data: [85, 15],
+                            backgroundColor: [
+                                'rgb(0, 74, 173)',
+                                'rgb(176, 224, 230)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        ...commonOptions(commonTooltipConfig),
+                        cutout: '70%'
+                    }
+                });
+            }
+
+            const capaCtx = document.getElementById('capaChart');
+            if (capaCtx) {
+                new Chart(capaCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['미국 (조지아)', '헝가리 (2공장)', '폴란드'].map(wrapLabels),
+                        datasets: [{
+                            label: '예상 CAPA (Kilo-Tons)',
+                            data: [60, 50, 40],
+                            backgroundColor: [
+                                'rgba(0, 74, 173, 0.7)',
+                                'rgba(0, 101, 212, 0.7)',
+                                'rgba(0, 191, 255, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgb(0, 74, 173)',
+                                'rgb(0, 101, 212)',
+                                'rgb(0, 191, 255)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        ...commonOptions(commonTooltipConfig),
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#e5e7eb'
+                                },
+                                ticks: {
+                                    color: '#4b5563'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#4b5563'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
