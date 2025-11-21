@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Narrative Plan: Introduce KLS's dual structure (Stable API + High Growth Bio), focus on TG-C's Asian rights/manufacturing value linked to TissueGene's US success, show financials supported by API, present analyst views on undervaluation, summarize investment points/SWOT, and outline future vision. -->
+    <!-- Visualization Plan: 
+        1. Financials: Bar/Line Chart (Revenue/OP Trend) - Goal: Change, Library: Chart.js, Why: Show stable cash flow from API. NO SVG.
+        2. Revenue Mix: Donut Chart (API/CDMO vs Bio) - Goal: Compare, Library: Chart.js, Why: Show current revenue structure vs future potential. NO SVG.
+        3. Pipeline Value (Proxy for Backlog): Bar Chart (Potential L/O Value) - Goal: Change, Library: Chart.js, Why: Visualize the Singlife deal and remaining Asian markets. NO SVG.
+        4. Investment Radar: Radar Chart (Key Investment Metrics) - Goal: Organize, Library: Chart.js, Why: Summarize investment appeal visually. NO SVG. 
+    -->
+    <!-- Chosen Palette: Kolon Blue (#0057a4) and Bio Green (#28a745) -->
+    <!-- Mermaid JS and SVG graphics were NOT used in this file. -->
+    <title>코오롱생명과학 기업 분석 리포트 (증권사 평가 & 파이프라인 포함, 2025년 전망)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #0057a4; /* Kolon Blue */
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        .kolon-blue { color: #0057a4; } 
+        .border-kolon-blue { border-color: #0057a4; }
+         .highlight-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: .8; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">코오롱생명과학 기업 분석 리포트</h1>
+            <p class="text-lg text-gray-600">안정적 API 기반 위, TG-C와 신경병증 치료제로 비상 (2025.10 Update)</p>
+             <p class="text-sm text-gray-500 mt-2">참고: 증권사 평가는 분석 시점에 따라 변동될 수 있습니다.</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="card text-center border-t-4 border-kolon-blue">
+                <h3 class="text-lg font-semibold kolon-blue mb-2">핵심 모멘텀</h3>
+                <p class="kpi-value kolon-blue">TG-C (인보사)</p>
+                <p class="text-gray-500">아시아 판권 & 생산 기지</p>
+            </div>
+            <div class="card text-center border-t-4 border-green-500">
+                <h3 class="text-lg font-semibold text-green-600 mb-2">캐시카우</h3>
+                <p class="kpi-value text-green-600">원료의약품 (API)</p>
+                <p class="text-gray-500">일본 등 글로벌 수출 호조</p>
+            </div>
+            <div class="card text-center border-t-4 border-yellow-500 highlight-pulse">
+                <h3 class="text-lg font-semibold text-yellow-600 mb-2">2025년 전망</h3>
+                <p class="kpi-value text-yellow-600">가치 재평가</p>
+                <p class="text-gray-500 font-bold">美 임상 3상 종료 가시화</p>
+            </div>
+        </section>
+
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center">코오롱생명과학의 사업 구조: 안정과 성장의 조화</h2>
+             
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">코오롱생명과학은 일본 등 글로벌 제약사에 고품질 원료의약품(API)을 공급하며 안정적인 수익을 창출하고 있습니다. 이를 기반으로 세계 최초 골관절염 세포유전자치료제 TG-C(구 인보사)의 아시아 권역 라이선스 및 생산을 담당하며, 신경병증성 통증 치료제(KLS-2031) 등 혁신 신약을 개발하는 하이브리드 바이오 기업입니다.</p>
+             <div class="flex flex-col md:flex-row justify-around items-center">
+                 <div class="flow-step text-center mb-6 md:mb-0 bg-gray-100 p-4 rounded-lg">
+                     <div class="text-4xl mb-2">💊</div>
+                     <h4 class="font-bold">원료의약품 (API)</h4>
+                     <p class="text-sm text-gray-500">(안정적 현금원)</p>
+                 </div>
+                 <div class="mx-4 text-2xl font-bold text-gray-400">+</div>
+                 <div class="flow-step text-center bg-blue-50 p-4 rounded-lg">
+                    <div class="text-4xl mb-2">🧬</div>
+                     <h4 class="font-bold kolon-blue">TG-C (인보사)</h4>
+                     <p class="text-sm text-gray-500">(아시아 판권/생산)</p>
+                </div>
+                 <div class="mx-4 text-2xl font-bold text-gray-400">+</div>
+                 <div class="flow-step text-center bg-green-50 p-4 rounded-lg">
+                     <div class="text-4xl mb-2">🔬</div>
+                     <h4 class="font-bold text-green-600">신약 파이프라인</h4>
+                     <p class="text-sm text-gray-500">(KLS-2031 등)</p>
+                </div>
+             </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">연간 재무 실적 및 전망 (2025년)</h2>
+                <p class="text-center text-gray-600 mb-6">엔화 약세 등 대외 악재에도 불구하고 고마진 API 제품 판매 확대와 비용 효율화를 통해 흑자 기조를 유지하고 있습니다. 2025년은 TG-C 관련 마일스톤 유입 가능성 등으로 이익 성장이 기대됩니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="financialsBarLineChart"></canvas>
+                </div>
+            </div>
+             <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">TG-C 기술수출(L/O) 잠재 규모</h2>
+                <p class="text-center text-gray-600 mb-6">2024년 싱가포르(주니퍼) 기술수출(약 7,000억원 규모)을 시작으로, 미국 임상 3상 데이터가 가시화되는 2025년 이후 일본, 중국 등 아시아 주요 국가향 추가 L/O가 유력합니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="pipelineValueChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+         <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-4">증권가 시각 및 평가 핵심 논거 (2025년 10월 기준)</h2>
+             <p class="text-center text-gray-600 mb-6">증권사들은 코오롱생명과학을 '저평가된 바이오텍'으로 보고 있으며, 특히 관계사 코오롱티슈진의 미국 임상 성공 가능성에 연동된 재평가를 기대하고 있습니다. 핵심 논거는 다음과 같습니다:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li><strong class="text-green-600">본업(API)의 든든한 버팀목:</strong> 신약 개발 기업임에도 불구하고 연간 1,500억원 이상의 매출과 영업이익을 창출하는 API 사업부가 있어 R&D 투자 지속성을 담보하고 재무적 안정성이 높다는 평가입니다.</li>
+                <li><strong class="text-kolon-blue">TG-C의 아시아 허브 가치:</strong> 코오롱티슈진(미국/유럽 판권)과 달리 코오롱생명과학은 아시아 지역 판권을 보유하고 있으며, 글로벌 생산 거점(충주 공장) 역할을 수행합니다. 미국 임상 3상 성공 시 아시아 지역 L/O 가치가 급등할 것입니다.</li>
+                <li><strong class="text-yellow-600">KLS-2031의 잠재력:</strong> 비마약성 신경병증성 통증 치료제 'KLS-2031'의 미국 임상 2a상 결과가 긍정적으로 도출될 경우, TG-C에 이은 제2의 성장 동력으로 부상할 것입니다.</li>
+                 <li><strong class="text-gray-700">과도한 저평가:</strong> 현재 시가총액은 보유 중인 코오롱티슈진 지분 가치와 자체 사업 가치를 고려할 때 과매도 구간이라는 분석이 지배적입니다.</li>
+            </ul>
+             <p class="text-sm text-gray-500 mt-4">※ 증권사 평가는 코오롱티슈진 임상 경과, 환율(엔화) 변동, L/O 계약 여부 등에 따라 변동될 수 있으므로 참고 자료로만 활용하시기 바랍니다.</p>
+        </section>
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">투자 매력도 분석</h2>
+                 <p class="text-center text-gray-600 mb-6">안정적인 API 사업이 하방을 지지하고, TG-C의 임상 성공 및 L/O 확대가 상방을 열어주는 구조입니다. 2025년은 미국 임상 데이터 확보라는 대형 이벤트를 앞둔 시점입니다.</p>
+                 <div class="chart-container" style="height: 350px;">
+                    <canvas id="investmentRadarChart"></canvas>
+                </div>
+            </section>
+            
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">매출 비중 (2025년 전망)</h2>
+                <p class="text-center text-gray-600 mb-6">API 및 기능성 소재 사업이 매출의 대부분을 차지하지만, 향후 TG-C 기술료 및 바이오의약품 매출 비중이 점진적으로 확대될 것으로 예상됩니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="revenueBySegmentDonutChart"></canvas>
+                </div>
+            </div>
+
+
+            <section class="card lg:col-span-2">
+                <h2 class="text-2xl font-bold text-center mb-4">SWOT 분석 (2025년 관점)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="swot-quadrant bg-green-50 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 text-lg">강점 (Strengths)</h3>
+                        <ul class="list-disc list-inside text-green-700 mt-2 text-sm">
+                            <li>안정적인 API 캐시카우 및 흑자 구조</li>
+                            <li>TG-C 아시아 판권 및 제조 시설 보유</li>
+                            <li>코오롱티슈진 지분 보유 (지분법 이익/가치)</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 text-lg">약점 (Weaknesses)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-sm">
+                            <li>코오롱티슈진 임상 결과에 대한 높은 의존도</li>
+                            <li>과거 인보사 사태로 인한 신뢰 회복 과정</li>
+                            <li>API 사업의 환율(엔화) 민감도</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 text-lg">기회 (Opportunities)</h3>
+                        <ul class="list-disc list-inside text-blue-700 mt-2 text-sm">
+                            <li class="font-bold">TG-C 미국 임상 3상 성공 시 가치 급등</li>
+                            <li>일본, 중국 등 아시아 지역 추가 L/O</li>
+                            <li>세포유전자치료제(CGT) 시장 확대</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-yellow-50 border-l-4 border-yellow-500">
+                        <h3 class="font-bold text-yellow-800 text-lg">위협 (Threats)</h3>
+                        <ul class="list-disc list-inside text-yellow-700 mt-2 text-sm">
+                            <li>미국 임상 지연 또는 예상 밖 결과</li>
+                            <li>글로벌 경쟁 약물 등장</li>
+                            <li>원료 의약품 시장 경쟁 심화</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+         <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-6">미래 비전: 글로벌 세포유전자치료제 생산 허브</h2>
+            <div class="relative border-l-2 border-kolon-blue ml-4 md:ml-0">
+                 <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-gray-500 rounded-full -left-2 border-2 border-white"></div>
+                     <p class="font-bold text-gray-600">2024년</p>
+                    <p class="text-gray-700">싱가포르 등 아시아 지역 TG-C 기술 수출 성사. API 사업 수익성 방어.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-kolon-blue rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold kolon-blue">2025년</p>
+                    <p class="text-gray-700">코오롱티슈진 미국 임상 3상 투약 완료 및 데이터 정리. 일본 등 추가 L/O 추진. KLS-2031 임상 2상 진입.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute w-4 h-4 bg-green-500 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-green-600">2026년</p>
+                    <p class="text-gray-700">TG-C 미국 FDA BLA(신약 허가) 신청 (티슈진). 아시아 지역 상업화 준비 및 생산 본격화.</p>
+                </div>
+                <div class="ml-8">
+                    <div class="absolute w-4 h-4 bg-gray-600 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-gray-700">2027년 이후</p>
+                    <p class="text-gray-700">TG-C 글로벌 판매 개시. 충주 공장을 거점으로 한 글로벌 세포치료제 생산 허브 도약.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>본 자료는 투자 참고용이며, 제시된 전망치 및 증권사 평가는 실제와 다를 수 있습니다. 특히 바이오 기업의 임상 결과는 예측이 불가능한 영역입니다. 투자 판단에 대한 최종 책임은 투자자 본인에게 있습니다.</p>
+        </footer>
+
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() { // Wait for DOM to load
+            const processLabels = (labels) => {
+                const MAX_LENGTH = 16;
+                 return labels.map(label => {
+                    if (typeof label !== 'string') return label; 
+                    if (label.length <= MAX_LENGTH) {
+                        return label;
+                    }
+                    const words = label.split(' ');
+                    const newLabels = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                            newLabels.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    newLabels.push(currentLine);
+                    return newLabels;
+                });
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                 if (!item || !item.chart || !item.chart.data || !item.chart.data.labels) return ''; 
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const palette = {
+                blue: '#0057a4', // Kolon Blue
+                green: '#28a745', // Bio Green
+                yellow: '#f59e0b',
+                red: '#ef4444',
+                gray: '#6b7280'
+            };
+
+            // Financials Chart
+            const financialsBarLineCtx = document.getElementById('financialsBarLineChart');
+            if (financialsBarLineCtx) {
+                new Chart(financialsBarLineCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2023', '2024(E)', '2025(F)', '2026(F)'],
+                        datasets: [
+                            {
+                                label: '매출액 (억원)',
+                                data: [1800, 2000, 2200, 2600], // Steady growth
+                                backgroundColor: palette.blue,
+                                yAxisID: 'y',
+                            },
+                            {
+                                label: '영업이익 (억원)',
+                                data: [-150, 30, 100, 250], // Reflecting turnaround
+                                backgroundColor: palette.green,
+                                type: 'line',
+                                yAxisID: 'y1',
+                                borderColor: palette.green,
+                                borderWidth: 2,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: { mode: 'index', intersect: false, ...commonTooltipOptions.plugins.tooltip },
+                            legend: { position: 'top' }
+                        },
+                        scales: {
+                           x: { grid: { display: false } },
+                           y: {
+                                position: 'left',
+                                beginAtZero: true,
+                                title: { display: true, text: '매출액 (억원)'}
+                            },
+                            y1: {
+                                position: 'right',
+                                title: { display: true, text: '영업이익 (억원)'},
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'financialsBarLineChart' not found.");
+            }
+
+
+            // Pipeline Value Chart (L/O Potential)
+            const pipelineValueCtx = document.getElementById('pipelineValueChart');
+             if (pipelineValueCtx) {
+                new Chart(pipelineValueCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['싱가포르 등 (기체결)', '일본/중국 등 (협상중)', '기타 지역 (잠재)'],
+                        datasets: [{
+                            label: 'TG-C 기술수출 규모 (추정, 억원)',
+                            data: [7200, 5000, 3000], // Illustrative L/O value
+                            backgroundColor: [
+                                'rgba(40, 167, 69, 0.8)', // Green
+                                'rgba(40, 167, 69, 0.5)',
+                                'rgba(40, 167, 69, 0.3)',
+                            ],
+                            borderColor: palette.green,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            legend: { display: false },
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                 title: { display: true, text: '계약 규모 (억원)'}
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'pipelineValueChart' not found.");
+            }
+            
+            // Revenue by Segment Chart
+            const revenueBySegmentDonutCtx = document.getElementById('revenueBySegmentDonutChart');
+             if (revenueBySegmentDonutCtx) {
+                 new Chart(revenueBySegmentDonutCtx.getContext('2d'), {
+                     type: 'doughnut',
+                     data: {
+                         labels: ['원료의약품 (API)', '기능성소재', '바이오/기타'],
+                         datasets: [{
+                             label: '사업 부문별 매출 비중',
+                             data: [45, 35, 20], // API dominance
+                             backgroundColor: [palette.blue, palette.gray, palette.green],
+                             borderColor: '#FFFFFF',
+                             borderWidth: 2
+                         }]
+                     },
+                     options: {
+                         responsive: true,
+                         maintainAspectRatio: false,
+                         plugins: {
+                             legend: { position: 'bottom' },
+                             tooltip: commonTooltipOptions.plugins.tooltip
+                         }
+                     }
+                 });
+             } else {
+                 console.error("Canvas element with ID 'revenueBySegmentDonutChart' not found.");
+             }
+
+
+            // Investment Radar Chart
+            const investmentRadarCtx = document.getElementById('investmentRadarChart');
+            if(investmentRadarCtx) {
+                new Chart(investmentRadarCtx.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: processLabels(['재무 안정성(API)', '성장성(TG-C)', '자회사 가치', '임상 리스크']),
+                        datasets: [{
+                            label: '코오롱생명과학',
+                            data: [85, 90, 95, 60], // High value/growth, Moderate risk
+                            backgroundColor: 'rgba(0, 87, 164, 0.2)', // Kolon Blue with transparency
+                            borderColor: palette.blue,
+                            borderWidth: 2,
+                            pointBackgroundColor: palette.blue
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        },
+                        scales: {
+                            r: {
+                                angleLines: { display: true },
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                pointLabels: { font: { size: 10 } },
+                                 ticks: {
+                                    callback: value => value,
+                                     backdropColor: 'rgba(0,0,0,0)'
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                 console.error("Canvas element with ID 'investmentRadarChart' not found.");
+            }
+        }); // End of DOMContentLoaded listener
+    </script>
+</body>
+</html>
