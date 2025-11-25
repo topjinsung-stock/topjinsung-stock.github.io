@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 일동제약 기업 분석 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0fdfa; /* Teal-50 */
+        }
+        
+        :root {
+            --id-dark: #0f766e;   /* Teal-700 */
+            --id-main: #14b8a6;   /* Teal-500 */
+            --id-bright: #2dd4bf; /* Teal-400 */
+            --id-accent: #0ea5e9; /* Sky-500 */
+            --id-bg: #ccfbf1;     /* Teal-100 */
+            --id-text: #134e4a;   /* Teal-900 */
+        }
+
+        .text-id-dark { color: var(--id-dark); }
+        .text-id-main { color: var(--id-main); }
+        .text-id-accent { color: var(--id-accent); }
+        .bg-id-dark { background-color: var(--id-dark); }
+        .bg-id-main { background-color: var(--id-main); }
+        .bg-id-accent { background-color: var(--id-accent); }
+        .border-id-main { border-color: var(--id-main); }
+        .border-id-accent { border-color: var(--id-accent); }
+        
+        .shadow-soft { box-shadow: 0 10px 15px -3px rgba(15, 118, 110, 0.1), 0 4px 6px -2px rgba(15, 118, 110, 0.05); }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <!-- Header Section -->
+        <header class="text-center my-10 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black text-id-dark mb-4">일동제약 2025</h1>
+            <p class="text-xl md:text-3xl font-bold text-id-main mb-2">수익성 혁명 & R&D의 결실</p>
+            <p class="text-md md:text-lg text-slate-500 max-w-2xl mx-auto">
+                구조적 흑자 전환 달성과 유노비아(Yunovia) 비만치료제의 압도적 임상 데이터 확보
+            </p>
+        </header>
+
+        <!-- KPI Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 md:mb-16">
+            <div class="bg-white rounded-xl shadow-soft p-6 text-center border-t-4 border-id-main transform hover:-translate-y-1 transition duration-300">
+                <p class="text-sm font-bold text-slate-400 uppercase mb-2">2025 재무 전망</p>
+                <span class="text-4xl font-black text-id-dark">흑자 기조</span>
+                <p class="text-lg font-bold text-id-main mt-2">안착 (Turnaround)</p>
+                <p class="text-xs text-slate-400 mt-2">고효율 사업 구조 완성</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-soft p-6 text-center border-t-4 border-id-accent transform hover:-translate-y-1 transition duration-300">
+                <p class="text-sm font-bold text-slate-400 uppercase mb-2">비만 신약 (ID110521156)</p>
+                <span class="text-5xl font-black text-id-accent">-13.8</span>
+                <span class="text-2xl font-bold text-id-accent ml-1">%</span>
+                <p class="text-xs text-slate-400 mt-2">임상 1상 체중 감소율 (4주)</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-soft p-6 text-center border-t-4 border-id-main transform hover:-translate-y-1 transition duration-300">
+                <p class="text-sm font-bold text-slate-400 uppercase mb-2">증권사 목표가</p>
+                <span class="text-3xl font-black text-id-dark">46,000</span>
+                <span class="text-lg font-bold text-id-dark ml-1">원</span>
+                <p class="text-xs text-slate-400 mt-2">상상인증권 (25.11.21)</p>
+            </div>
+        </section>
+
+        <!-- Section 1: Financial Turnaround -->
+        <section class="bg-white rounded-2xl shadow-soft p-6 md:p-10 mb-12 md:mb-16">
+            <div class="md:flex md:items-center md:justify-between mb-8">
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold text-id-dark mb-4">재무 구조의 완벽한 반전</h2>
+                    <p class="text-lg text-slate-600 mb-4">
+                        2024년부터 이어진 고강도 사업 재편과 R&D 자회사(유노비아) 분사 효과로, 일동제약은 과거의 대규모 적자 고리를 끊고 2025년 완벽한 이익 중심 기업으로 변모했습니다.
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="chart-container">
+                    <canvas id="profitChart"></canvas>
+                </div>
+                <div class="bg-teal-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-id-dark mb-4">💡 Profit Checkpoint</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-2">📈</span>
+                            <div>
+                                <strong class="text-id-main">영업이익 V자 반등:</strong>
+                                <span class="text-slate-600 block text-sm">과거 연 500억 원대 R&D 비용이 분사된 유노비아로 이전되며 본업의 수익성이 즉각 반영되었습니다.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-2">💊</span>
+                            <div>
+                                <strong class="text-id-main">주력 품목 성장:</strong>
+                                <span class="text-slate-600 block text-sm">아로나민 등 OTC(일반의약품)와 ETC(전문의약품)의 견조한 매출이 든든한 캐시카우 역할을 수행 중입니다.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Analyst Consensus (NEW) -->
+        <section class="bg-white rounded-2xl shadow-soft p-6 md:p-10 mb-12 md:mb-16 border-l-8 border-id-accent">
+            <h2 class="text-3xl font-bold text-id-dark mb-6">증권사 컨센서스: "강력 매수 (Strong Buy)"</h2>
+            <p class="text-lg text-slate-600 mb-8">
+                주요 증권사들은 2025년 11월 리포트를 통해 일동제약의 <strong>비만치료제 잠재력</strong>과 <strong>흑자 전환</strong>에 주목하며 목표 주가를 상향 조정했습니다.
+            </p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Left: Target Price Chart -->
+                <div class="bg-slate-50 rounded-xl p-6 relative">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 text-center">주가 상승 여력 (Upside Potential)</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="targetPriceChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-400 mt-2">* 2025년 11월 기준 (현재가 약 30,650원)</p>
+                </div>
+
+                <!-- Right: Analyst Comments -->
+                <div class="space-y-4">
+                    <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-id-accent">상상인증권 (25.11.21)</span>
+                            <span class="bg-id-accent text-white text-xs px-2 py-1 rounded">TP: 46,000원</span>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            "비만치료제로 기업가치 재평가(Re-rating) 진행 중. 2026년 영업이익 434억 원 전망."
+                        </p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-id-main">SK증권 (25.11.03)</span>
+                            <span class="bg-id-main text-white text-xs px-2 py-1 rounded">TP: 45,000원</span>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            "임상에서 증명한 글로벌 기술 경쟁력. 시장의 오해를 넘어 이제는 재평가되어야 할 시점."
+                        </p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-slate-600">한양증권 (25.10.24)</span>
+                            <span class="bg-slate-500 text-white text-xs px-2 py-1 rounded">Not Rated</span>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            "기술이전(L/O)이 다가오고 있다. 놀라운 임상 1상 데이터로 다시 기회가 왔다."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: R&D & Yunovia -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12 md:mb-16">
+            <!-- Left: Obesity Drug Data -->
+            <div class="bg-white rounded-2xl shadow-soft p-6 md:p-8 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-id-dark mb-4">R&D 하이라이트: 경구용 비만치료제</h2>
+                <p class="text-slate-600 mb-6 text-sm">
+                    유노비아의 핵심 파이프라인 <strong>'ID110521156'</strong>(경구용 GLP-1)이 임상 1상에서 경쟁 약물 대비 탁월한 체중 감소 효과를 입증했습니다.
+                </p>
+                <div class="chart-container flex-grow">
+                    <canvas id="obesityChart"></canvas>
+                </div>
+                <div class="mt-6 text-center">
+                    <span class="inline-block bg-id-accent text-white px-4 py-1 rounded-full text-sm font-bold">Key Insight</span>
+                    <p class="text-slate-600 mt-2 text-sm">
+                        4주 투여만으로 13.8% 감량 달성. <br>주사제 대비 복용 편의성이 높은 <strong>'먹는 약'</strong>으로 게임 체인저 기대.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Right: R&D Pipeline Status -->
+            <div class="bg-white rounded-2xl shadow-soft p-6 md:p-8 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-id-dark mb-4">유노비아 주요 파이프라인 현황</h2>
+                <p class="text-slate-600 mb-6 text-sm">
+                    비만치료제 외에도 P-CAB(위식도역류질환), 당뇨 등 대사 질환 중심의 탄탄한 파이프라인을 보유하고 있으며, 2025년 글로벌 라이선스 아웃(L/O)을 목표로 하고 있습니다.
+                </p>
+                
+                <div class="space-y-6 mt-4">
+                    <!-- Pipeline Item 1 -->
+                    <div class="relative pl-8 border-l-4 border-id-accent">
+                        <div class="absolute -left-2.5 top-0 w-5 h-5 bg-id-accent rounded-full border-4 border-white"></div>
+                        <h3 class="text-lg font-bold text-slate-800">ID110521156 (비만/당뇨)</h3>
+                        <p class="text-sm text-slate-500 mb-2">Class: Oral GLP-1 Agonist</p>
+                        <div class="w-full bg-slate-100 rounded-full h-2.5 mb-1">
+                            <div class="bg-id-accent h-2.5 rounded-full" style="width: 45%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-400 font-bold">
+                            <span>Phase 1 완료</span>
+                            <span class="text-id-accent">Phase 2 준비 (2025)</span>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Item 2 -->
+                    <div class="relative pl-8 border-l-4 border-id-main">
+                        <div class="absolute -left-2.5 top-0 w-5 h-5 bg-id-main rounded-full border-4 border-white"></div>
+                        <h3 class="text-lg font-bold text-slate-800">ID120040002 (위식도역류)</h3>
+                        <p class="text-sm text-slate-500 mb-2">Class: P-CAB</p>
+                        <div class="w-full bg-slate-100 rounded-full h-2.5 mb-1">
+                            <div class="bg-id-main h-2.5 rounded-full" style="width: 60%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-400 font-bold">
+                            <span>Phase 2 진행</span>
+                            <span class="text-id-main">L/O 추진</span>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Item 3 -->
+                    <div class="relative pl-8 border-l-4 border-slate-300">
+                        <div class="absolute -left-2.5 top-0 w-5 h-5 bg-slate-300 rounded-full border-4 border-white"></div>
+                        <h3 class="text-lg font-bold text-slate-800">ID119031166 (NASH/간섬유화)</h3>
+                        <p class="text-sm text-slate-500 mb-2">Class: FXR Agonist</p>
+                        <div class="w-full bg-slate-100 rounded-full h-2.5 mb-1">
+                            <div class="bg-slate-300 h-2.5 rounded-full" style="width: 30%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-400 font-bold">
+                            <span>Phase 1 진입</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: Future Outlook Chart -->
+        <section class="bg-white rounded-2xl shadow-soft p-6 md:p-10 mb-12 md:mb-16">
+            <h2 class="text-3xl font-bold text-id-dark mb-8 text-center">2026 중장기 실적 전망</h2>
+            <div class="chart-container" style="max-width: 800px;">
+                <canvas id="forecastChart"></canvas>
+            </div>
+            <p class="text-center text-sm text-slate-400 mt-4">* 증권사 컨센서스 추정치 기반 (단위: 억 원)</p>
+        </section>
+
+        <footer class="bg-id-dark text-white rounded-2xl shadow-soft p-10 text-center">
+            <h2 class="text-3xl font-bold mb-4">새로운 일동(New Il Dong)의 시작</h2>
+            <p class="text-lg text-teal-100 max-w-2xl mx-auto">
+                2025년, 일동제약은 효율적인 사업 구조 위에 혁신 신약이라는 성장 엔진을 장착했습니다. 
+                <br>이제는 <strong>'이익을 내는 R&D 제약사'</strong>로 재평가받을 시간입니다.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
+            Chart.defaults.font.weight = 'bold';
+            
+            // Tooltip Configuration for Multi-line Labels
+            const globalTooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Chart 1: Operating Profit Turnaround (Bar Chart)
+            const profitCtx = document.getElementById('profitChart').getContext('2d');
+            new Chart(profitCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2023 (적자)', '2024 (흑자전환)', '2025 (이익확대)'],
+                    datasets: [{
+                        label: '영업이익 추이 (억 원)',
+                        data: [-500, 480, 550],
+                        backgroundColor: [
+                            'rgba(203, 213, 225, 0.5)',
+                            'rgba(20, 184, 166, 0.7)',
+                            'rgba(15, 118, 110, 0.9)'
+                        ],
+                        borderColor: [
+                            'rgba(203, 213, 225, 1)',
+                            'rgba(20, 184, 166, 1)',
+                            'rgba(15, 118, 110, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        ...globalTooltipConfig.plugins
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: '#f0fdfa' },
+                            ticks: { callback: function(value) { return value + '억'; } }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // NEW Chart: Target Price Upside
+            const targetPriceCtx = document.getElementById('targetPriceChart').getContext('2d');
+            new Chart(targetPriceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['현재 주가 (Nov 2025)', '상상인증권 목표가', 'SK증권 목표가'],
+                    datasets: [{
+                        label: '주가 (원)',
+                        data: [30650, 46000, 45000],
+                        backgroundColor: [
+                            'rgba(100, 116, 139, 0.5)', // Slate for current
+                            'rgba(14, 165, 233, 0.8)', // Accent Blue for Target 1
+                            'rgba(20, 184, 166, 0.8)'  // Teal for Target 2
+                        ],
+                        borderColor: [
+                            'rgba(100, 116, 139, 1)',
+                            'rgba(14, 165, 233, 1)',
+                            'rgba(20, 184, 166, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: '목표 주가 괴리율 (Upside)' },
+                        ...globalTooltipConfig.plugins
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 20000,
+                            ticks: { callback: function(value) { return value.toLocaleString() + '원'; } }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Obesity Drug Efficacy
+            const obesityCtx = document.getElementById('obesityChart').getContext('2d');
+            new Chart(obesityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['위약군 (Placebo)', 'ID110521156 (일동)'],
+                    datasets: [{
+                        label: '4주 후 체중 감소율 (%)',
+                        data: [0.5, 13.8],
+                        backgroundColor: [
+                            'rgba(203, 213, 225, 0.5)',
+                            'rgba(14, 165, 233, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(148, 163, 184, 1)',
+                            'rgba(14, 165, 233, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        ...globalTooltipConfig.plugins
+                    },
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 15,
+                            ticks: { stepSize: 5 }
+                        }
+                    }
+                }
+            });
+
+            // Chart 3: Forecast
+            const forecastCtx = document.getElementById('forecastChart').getContext('2d');
+            new Chart(forecastCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2024 (E)', '2025 (E)', '2026 (E)'],
+                    datasets: [{
+                        type: 'line',
+                        label: '영업이익률 (%)',
+                        data: [7.2, 8.5, 10.2],
+                        borderColor: '#0ea5e9',
+                        borderWidth: 3,
+                        yAxisID: 'y1',
+                        tension: 0.3
+                    }, {
+                        type: 'bar',
+                        label: '매출액 (억 원)',
+                        data: [5900, 6050, 6204],
+                        backgroundColor: 'rgba(20, 184, 166, 0.2)',
+                        borderColor: 'rgba(20, 184, 166, 1)',
+                        borderWidth: 2,
+                        borderRadius: 6,
+                        yAxisID: 'y'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: '매출액 (억 원)' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            title: { display: true, text: '이익률 (%)' },
+                            ticks: { callback: function(value) { return value + '%'; } }
+                        }
+                    },
+                    ...globalTooltipConfig
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
