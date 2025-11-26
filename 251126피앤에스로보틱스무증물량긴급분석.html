@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피앤에스미캐닉스 무상증자 대응 긴급 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #fff7ed; /* Orange-50 */
+        }
+        
+        :root {
+            --alert-red: #dc2626;    /* Red-600 */
+            --alert-bg: #fef2f2;     /* Red-50 */
+            --safe-green: #059669;   /* Emerald-600 */
+            --info-blue: #2563eb;    /* Blue-600 */
+            --neutral-gray: #4b5563; /* Gray-600 */
+        }
+
+        .text-alert { color: var(--alert-red); }
+        .bg-alert { background-color: var(--alert-red); }
+        .border-alert { border-color: var(--alert-red); }
+        
+        .shadow-card { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- Header: Emergency Alert Style -->
+        <header class="bg-white border-l-8 border-alert rounded-r-xl shadow-card p-6 mb-8 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold mb-2 inline-block">긴급 진단</span>
+                <h1 class="text-2xl md:text-4xl font-black text-slate-900">무상증자 오버행 이슈 대응</h1>
+                <p class="text-slate-500 mt-2 font-bold">시간외 급락(-6%) 원인 분석 및 실전 매매 전략</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-center bg-red-50 p-4 rounded-lg">
+                <p class="text-xs text-slate-500 font-bold">신주 상장 예정일</p>
+                <p class="text-2xl font-black text-alert">12월 1일 (월)</p>
+                <p class="text-xs text-slate-500 font-bold mt-1">D-Day 카운트다운</p>
+            </div>
+        </header>
+
+        <!-- Issue Analysis Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Cause Analysis -->
+            <div class="bg-white rounded-xl shadow-card p-6">
+                <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center">
+                    <span class="text-2xl mr-2">📉</span> 왜 떨어지는가? (The Cause)
+                </h2>
+                <div class="space-y-4">
+                    <div class="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                        <strong class="text-orange-800 block mb-1">핵심 원인: 권리공매도 (Rights Short Selling)</strong>
+                        <p class="text-sm text-slate-700">
+                            신주 상장일(12/1)의 <strong>2거래일 전</strong>부터 입고 예정인 주식을 미리 매도할 수 있는 제도입니다.
+                        </p>
+                    </div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5">
+                        <li><strong>11/26 (수):</strong> 내일부터 매도 물량이 나올 것이라는 <span class="text-alert font-bold">공포감(Fear)</span>에 시간외 투매 발생.</li>
+                        <li><strong>11/27 (목):</strong> 권리공매도 가능 첫 날. 실제 매도 물량 출회로 장중 변동성 최고조 예상.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Price Impact Chart -->
+            <div class="bg-white rounded-xl shadow-card p-6">
+                <h2 class="text-xl font-bold text-slate-800 mb-4">주가 흐름 시나리오</h2>
+                <div class="chart-container">
+                    <canvas id="scenarioChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-slate-400 mt-2">* 과거 무상증자 기업들의 통계적 주가 패턴 예시</p>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 text-center">투자자별 행동 강령 (Action Plan)</h2>
+        
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <!-- Strategy A: Existing Holder -->
+            <div class="bg-white rounded-xl shadow-card p-1 border-t-4 border-gray-400 overflow-hidden">
+                <div class="bg-gray-100 p-4 text-center">
+                    <h3 class="text-lg font-black text-slate-700">Type A: 기존 보유 주주</h3>
+                    <p class="text-xs text-slate-500">손실 구간이거나 비중이 높은 경우</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex items-start">
+                        <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0">X</span>
+                        <div>
+                            <strong class="block text-slate-800">뇌동매매 금지 (패닉셀 자제)</strong>
+                            <p class="text-sm text-slate-600 mt-1">
+                                11/27(목) 시초가 갭하락 출발 가능성이 높습니다. 공포에 질려 던지기보다는 <strong>장중 변동성이 줄어드는 오후</strong>까지 관망하세요.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0">O</span>
+                        <div>
+                            <strong class="block text-slate-800">존버 (Endure) & 물타기 고려</strong>
+                            <p class="text-sm text-slate-600 mt-1">
+                                악재가 아닌 <strong>수급 이슈</strong>입니다. 물량 소화(약 1~2주) 후엔 기업 가치(실적, 수출)로 회귀합니다. 12월 초 반등 시점을 노리세요.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy B: New Buyer -->
+            <div class="bg-white rounded-xl shadow-card p-1 border-t-4 border-info-blue overflow-hidden">
+                <div class="bg-blue-50 p-4 text-center">
+                    <h3 class="text-lg font-black text-info-blue">Type B: 신규 진입 대기자</h3>
+                    <p class="text-xs text-slate-500">현금 보유자</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex items-start">
+                        <span class="bg-info-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0">!</span>
+                        <div>
+                            <strong class="block text-slate-800">최적의 매수 기회 (Sniper Entry)</strong>
+                            <p class="text-sm text-slate-600 mt-1">
+                                무상증자 물량 출회로 인한 급락은 <strong>펀더멘털 훼손 없는 가격 조정</strong>입니다. 바겐세일 구간으로 활용하세요.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-info-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0">T</span>
+                        <div>
+                            <strong class="block text-slate-800">진입 타이밍: 11/28(금) ~ 12/1(월)</strong>
+                            <p class="text-sm text-slate-600 mt-1">
+                                내일(목) 시초가보다는 권리공매도 물량이 어느 정도 소화된 <strong>금요일 오후나 상장 당일(월요일)</strong> 흐름을 보고 분할 매수하는 것이 안전합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Note -->
+        <div class="bg-slate-800 text-white p-6 rounded-xl text-center">
+            <h3 class="text-lg font-bold mb-2">💡 결론: 공포를 이기는 팩트 체크</h3>
+            <p class="text-sm text-slate-300 max-w-2xl mx-auto">
+                현재의 하락은 <span class="text-yellow-400 font-bold">"주식 수가 늘어나니 가격이 내릴 것"</span>이라는 심리적 요인과 단기 수급 불균형 때문입니다. <br>
+                피앤에스미캐닉스는 <strong>흑자 기업</strong>이며 <strong>2025년 수출 모멘텀</strong>이 살아있습니다. <br>단기 파도에 휩쓸리지 말고 기업의 본질 가치를 믿으시길 바랍니다.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
+            
+            // Scenario Chart
+            const ctx = document.getElementById('scenarioChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['D-3(화)', 'D-2(수)', 'D-1(목/권리공매)', 'D-Day(금)', '상장일(월)', '상장+1주'],
+                    datasets: [{
+                        label: '주가 흐름 예시',
+                        data: [100, 94, 88, 90, 92, 105], // Simulated pattern: Drop -> Bottom -> Recovery
+                        borderColor: '#dc2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: ['#fff', '#fff', '#dc2626', '#fff', '#fff', '#059669'], // Highlight D-1 and Recovery
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { display: false },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        annotation: {
+                            annotations: {
+                                label1: {
+                                    type: 'label',
+                                    xValue: 2,
+                                    yValue: 88,
+                                    backgroundColor: 'rgba(0,0,0,0.7)',
+                                    content: ['단기 바닥', '(권리공매도 시작)'],
+                                    font: { size: 10 },
+                                    color: '#fff',
+                                    borderRadius: 4,
+                                    padding: 4
+                                },
+                                label2: {
+                                    type: 'label',
+                                    xValue: 5,
+                                    yValue: 105,
+                                    backgroundColor: 'rgba(5, 150, 105, 0.8)',
+                                    content: ['물량 소화 후', '본질가치 회귀'],
+                                    font: { size: 10 },
+                                    color: '#fff',
+                                    borderRadius: 4,
+                                    padding: 4
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
