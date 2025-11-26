@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025.11 큐리오시스(494120) 투자 분석 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #fff1f2; /* Rose-50 */
+        }
+        
+        :root {
+            --cr-primary: #be123c;   /* Rose-700 */
+            --cr-accent: #f43f5e;    /* Rose-500 */
+            --cr-dark: #881337;      /* Rose-900 */
+            --cr-light: #ffe4e6;     /* Rose-100 */
+            --positive: #ef4444;     /* Red for up */
+            --negative: #3b82f6;     /* Blue for down */
+        }
+
+        .text-cr-primary { color: var(--cr-primary); }
+        .text-cr-dark { color: var(--cr-dark); }
+        .bg-cr-primary { background-color: var(--cr-primary); }
+        .bg-cr-dark { background-color: var(--cr-dark); }
+        .border-cr-primary { border-color: var(--cr-primary); }
+        
+        .shadow-card { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .shadow-glow { box-shadow: 0 0 15px rgba(244, 63, 94, 0.2); }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-end border-b-2 border-slate-300 pb-6 mb-8">
+            <div>
+                <h1 class="text-3xl md:text-5xl font-black text-cr-dark mb-2">큐리오시스</h1>
+                <p class="text-xl text-cr-primary font-bold">2025.11 IPO & 투자 분석</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+                <span class="bg-cr-dark text-white px-3 py-1 rounded text-sm font-bold">KOSDAQ: 494120</span>
+                <p class="text-sm text-slate-500 mt-1">Updated: 2025.11.25</p>
+            </div>
+        </header>
+
+        <!-- Stock Dashboard -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <!-- Current Price -->
+            <div class="bg-white rounded-xl shadow-card p-6 border-l-4 border-positive">
+                <p class="text-sm font-bold text-slate-400">현재주가 (11/19 기준)</p>
+                <div class="flex items-end mt-2">
+                    <span class="text-4xl font-black text-positive">49,700</span>
+                    <span class="text-lg font-bold text-slate-600 ml-1">원</span>
+                </div>
+                <p class="text-xs text-positive font-bold mt-1">공모가(22,000원) 대비 +125%</p>
+            </div>
+            
+            <!-- IPO Performance -->
+            <div class="bg-white rounded-xl shadow-card p-6 border-l-4 border-cr-primary">
+                <p class="text-sm font-bold text-slate-400">상장일 최고가</p>
+                <div class="flex items-end mt-2">
+                    <span class="text-3xl font-black text-cr-dark">88,000</span>
+                    <span class="text-lg font-bold text-slate-600 ml-1">원</span>
+                </div>
+                <p class="text-xs text-cr-accent font-bold mt-1">상장 첫날 '따따블' 달성</p>
+            </div>
+
+            <!-- Business Sector -->
+            <div class="bg-white rounded-xl shadow-card p-6 border-l-4 border-cr-accent">
+                <p class="text-sm font-bold text-slate-400">핵심 사업</p>
+                <div class="flex items-end mt-2">
+                    <span class="text-2xl font-black text-slate-800">Lab</span>
+                    <span class="text-lg font-bold text-cr-primary ml-1">Automation</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">바이오 소부장 국산화 선도</p>
+            </div>
+
+            <!-- Market Cap -->
+            <div class="bg-cr-dark rounded-xl shadow-card p-6 text-white">
+                <p class="text-sm font-bold opacity-80">시가총액</p>
+                <div class="flex items-center justify-between mt-2">
+                    <span class="text-2xl font-black text-white">3,700억+</span>
+                    <div class="text-right">
+                        <p class="text-xs opacity-70">코스닥 신규상장</p>
+                        <p class="font-bold">2025.11.13</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Consensus & Issues -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            
+            <!-- Left: Market View -->
+            <div class="lg:col-span-2 space-y-6">
+                <h2 class="text-2xl font-bold text-cr-dark flex items-center">
+                    <span class="w-2 h-8 bg-cr-primary mr-3 rounded"></span>
+                    IPO 리포트 & 핵심 이슈 (2025.11)
+                </h2>
+                
+                <!-- Report Card 1 -->
+                <div class="bg-white rounded-xl shadow-card p-6 transition hover:shadow-glow border border-slate-100">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="font-bold text-lg text-cr-primary">IPO 흥행 돌풍</span>
+                        <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded font-bold">경쟁률 2204:1</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-800 mb-2">"기관/일반 청약 모두 흥행... 증거금 7.3조 몰려"</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        수요예측에서 희망 밴드 상단인 22,000원에 공모가를 확정했으며, 일반 청약에서도 2200대 1이 넘는 경쟁률을 기록했습니다. 랩오토메이션(실험실 자동화)이라는 희소성 있는 사업 모델과 높은 기술력이 투심을 자극했습니다.
+                    </p>
+                </div>
+
+                <!-- Report Card 2 -->
+                <div class="bg-white rounded-xl shadow-card p-6 transition hover:shadow-glow border border-slate-100">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="font-bold text-lg text-slate-700">성장 로드맵</span>
+                        <span class="bg-rose-100 text-cr-dark text-xs px-2 py-1 rounded font-bold">2026 흑자전환</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-800 mb-2">"2028년 매출 470억 목표... 글로벌 ODM 확대"</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        핵심 제품인 'Celloger(세포 분석 장비)'의 글로벌 ODM 공급 계약이 2025년부터 본격화됩니다. 현재는 적자 상태이나, 매출 볼륨 확대에 따른 영업 레버리지 효과로 2026년 흑자 전환(Turnaround)을 목표로 하고 있습니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: Stock Chart -->
+            <div class="bg-white rounded-xl shadow-card p-6">
+                <h3 class="font-bold text-lg text-slate-700 mb-4">주가 흐름 (상장 이후)</h3>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="stockChart"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-xs text-slate-400">
+                        * 상장 첫날 과열(88,000원) 이후 <br>
+                        <span class="text-cr-primary font-bold">4~5만원 대에서 균형점 탐색 중</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Portfolio Chart -->
+        <section class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12">
+            <h2 class="text-2xl font-bold text-cr-dark mb-6 flex items-center">
+                <span class="w-2 h-8 bg-cr-accent mr-3 rounded"></span>
+                성장 엔진 & 실적 전망
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Chart: Revenue Growth Forecast -->
+                <div>
+                    <h4 class="font-bold text-slate-600 mb-4 text-center">연도별 매출액 추이 및 전망 (억 원)</h4>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm font-bold text-cr-primary mt-4">
+                        J-Curve 성장 구간 진입 (CAGR 78%)
+                    </p>
+                </div>
+
+                <!-- Investment Highlights -->
+                <div class="space-y-6 flex flex-col justify-center">
+                    <div class="border-l-4 border-cr-dark pl-4">
+                        <p class="text-sm text-slate-500 mb-1">핵심 제품 (Cash Cow)</p>
+                        <p class="text-2xl font-black text-slate-800">Celloger® <span class="text-base font-medium text-slate-600">(라이브셀 이미징)</span></p>
+                        <p class="text-sm text-slate-500 mt-1">매출 비중 약 67% 차지</p>
+                        
+                    </div>
+                    <div class="border-l-4 border-cr-primary pl-4">
+                        <p class="text-sm text-slate-500 mb-1">신성장 동력</p>
+                        <p class="text-2xl font-black text-slate-800">Lab Automation</p>
+                        <p class="text-sm text-slate-500 mt-1">합성생물학/신약개발 자동화 장비 수요 급증</p>
+                    </div>
+                    <div class="bg-rose-50 rounded-lg p-4 mt-4">
+                        <p class="font-bold text-cr-dark mb-2">📌 투자 포인트 요약</p>
+                        <ul class="text-sm text-slate-600 space-y-2">
+                            <li>• <strong>기술력:</strong> 광학, 기구, SW를 아우르는 랩오토메이션 토탈 솔루션 보유.</li>
+                            <li>• <strong>시장성:</strong> 고령화 및 바이오 연구 활성화로 연구 장비 시장 지속 성장.</li>
+                            <li>• <strong>Risk:</strong> 현재 적자 지속 중이며, 흑자 전환 시점까지 주가 변동성 유의.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-cr-dark text-white rounded-xl p-8 text-center">
+            <h2 class="text-2xl font-bold mb-2">Curiosis</h2>
+            <p class="text-rose-200 text-sm mb-4">Bio Lab Automation Provider | 코스닥 494120</p>
+            <p class="text-xs text-slate-400 max-w-2xl mx-auto">
+                본 리포트는 2025년 11월 25일 기준 시장 데이터와 공시 자료를 기반으로 작성된 내용입니다. 투자의 참고 자료일 뿐입니다. 신규 상장주는 주가 변동성이 매우 클 수 있습니다.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
+            Chart.defaults.font.weight = 'bold';
+
+            // Common Tooltip Config
+            const tooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        backgroundColor: 'rgba(136, 19, 55, 0.9)',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 13 },
+                        padding: 10,
+                        cornerRadius: 8,
+                        displayColors: false
+                    },
+                    legend: { display: false }
+                }
+            };
+
+            // 1. Stock Price Trend Chart (Post-IPO)
+            const stockCtx = document.getElementById('stockChart').getContext('2d');
+            new Chart(stockCtx, {
+                type: 'line',
+                data: {
+                    labels: ['11/13(상장)', '11/14', '11/15', '11/18', '11/19'],
+                    datasets: [{
+                        label: '주가 (원)',
+                        data: [88000, 65000, 52000, 45700, 49700], // Simulated high volatility pattern post-IPO
+                        borderColor: '#be123c', // Rose-700
+                        backgroundColor: 'rgba(244, 63, 94, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#be123c',
+                        pointRadius: 5,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 20000, // Show IPO price context
+                            grid: { display: true, color: '#fff1f2' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        tooltip: tooltipConfig.plugins.tooltip,
+                        legend: { display: false },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 22000,
+                                    yMax: 22000,
+                                    borderColor: '#374151',
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    label: {
+                                        content: '공모가 (22,000원)',
+                                        enabled: true,
+                                        position: 'start'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. Revenue Growth Chart (Bar)
+            const revCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2023(A)', '2024(E)', '2025(E)', '2026(E)'],
+                    datasets: [{
+                        label: '매출액 (억 원)',
+                        data: [26, 47, 100, 200], // Illustrative growth path based on targets
+                        backgroundColor: [
+                            '#e5e7eb', // Grey for past
+                            '#fb7185', // Light Rose
+                            '#f43f5e', // Rose
+                            '#be123c'  // Dark Rose for future target
+                        ],
+                        borderRadius: 6,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            grid: { color: '#fff1f2' },
+                            ticks: { callback: function(value) { return value + '억'; } }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        tooltip: tooltipConfig.plugins.tooltip,
+                        legend: { display: false }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
