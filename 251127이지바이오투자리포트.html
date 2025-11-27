@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이지바이오 (353810) 2025 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f0fdf4; color: #1f2937; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .chart-container { position: relative; height: 300px; width: 100%; }
+        .gradient-text { background: linear-gradient(to right, #059669, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Header Section -->
+    <header class="max-w-5xl mx-auto mb-10 text-center">
+        <div class="inline-block bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-semibold mb-2">KOSDAQ: 353810</div>
+        <h1 class="text-4xl md:text-5xl font-black mb-2">이지바이오 (Easy Bio)</h1>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-600">2025년 전망: <span class="gradient-text">곡물가 안정 & 고마진 첨가제의 조화</span></h2>
+        <p class="text-gray-500 mt-4 max-w-2xl mx-auto">"원가는 빠지고, 고마진 제품은 더 많이 팔리는 이상적인 사이클 진입. 단순 사료 기업을 넘어 글로벌 애그리-바이오 테크 기업으로의 재평가 기대"</p>
+    </header>
+
+    <main class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Section 1: Core Identity -->
+        <section class="card p-6 col-span-1 md:col-span-2">
+            <h3 class="text-xl font-bold text-emerald-700 mb-4 border-b pb-2">🏢 기업 정체성 (Identity)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div class="p-4 bg-emerald-50 rounded-lg">
+                    <div class="text-3xl mb-2">🧬</div>
+                    <div class="font-bold text-gray-800">Agri-Tech</div>
+                    <div class="text-sm text-gray-600">단순 배합사료가 아닌<br>바이오 기술 기반</div>
+                </div>
+                <div class="p-4 bg-amber-50 rounded-lg">
+                    <div class="text-3xl mb-2">🌍</div>
+                    <div class="font-bold text-gray-800">Global Player</div>
+                    <div class="text-sm text-gray-600">자회사 Pathway Intermediates<br>전 세계 50여 개국 수출</div>
+                </div>
+                <div class="p-4 bg-blue-50 rounded-lg">
+                    <div class="text-3xl mb-2">💰</div>
+                    <div class="font-bold text-gray-800">Profitability</div>
+                    <div class="text-sm text-gray-600">첨가제 OPM 15~20%<br>고수익 구조</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 2025 Profit Scenario (Chart) -->
+        <section class="card p-6">
+            <h3 class="text-xl font-bold text-emerald-700 mb-2">📉 2025 실적 시나리오: 스프레드 확대</h3>
+            <p class="text-sm text-gray-500 mb-4">판가는 유지되나 원가(곡물가) 급락으로 이익폭(Spread) 대폭 확대 예상</p>
+            <div class="chart-container">
+                <canvas id="spreadChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Section 3: Business Portfolio (Chart) -->
+        <section class="card p-6">
+            <h3 class="text-xl font-bold text-emerald-700 mb-2">📊 사업 포트폴리오 구조</h3>
+            <p class="text-sm text-gray-500 mb-4">Cash Cow(자돈 사료)와 Growth Engine(첨가제)의 조화</p>
+            <div class="chart-container">
+                <canvas id="portfolioChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Section 4: Investment Points -->
+        <section class="card p-6 col-span-1 md:col-span-2">
+            <h3 class="text-xl font-bold text-emerald-700 mb-4 border-b pb-2">🚀 핵심 투자 포인트 (Investment Points)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="space-y-2">
+                    <h4 class="font-bold text-gray-800 flex items-center"><span class="text-emerald-500 mr-2">01</span> 원가 안정화 수혜</h4>
+                    <p class="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                        2022~23년 급등했던 곡물가(소맥, 옥수수)가 2024년 하반기부터 하향 안정화. 투입 원가 하락으로 <strong>마진 스프레드 극대화</strong> 구간 진입.
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-gray-800 flex items-center"><span class="text-emerald-500 mr-2">02</span> 첨가제 시장 성장</h4>
+                    <p class="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                        항생제 사용 규제 강화로 <strong>천연물 유래 기능성 첨가제</strong> 수요 구조적 성장. 엔도톡신 분해제 등 고부가가치 제품 라인업 보유.
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-gray-800 flex items-center"><span class="text-emerald-500 mr-2">03</span> 밸류에이션 매력</h4>
+                    <p class="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                        전통적 사료주 PER(5~7배) 대비 바이오 비중 확대로 <strong>멀티플 확장 가능성</strong>. 2025년 실적 대비 강력한 저평가 구간.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Risks -->
+        <section class="card p-6 bg-red-50 border border-red-100 col-span-1 md:col-span-2">
+            <h3 class="text-xl font-bold text-red-700 mb-2">⚠️ 리스크 요인 (Check Points)</h3>
+            <div class="flex flex-col md:flex-row gap-4 justify-around">
+                <div class="flex items-start">
+                    <span class="text-2xl mr-2">🦠</span>
+                    <div>
+                        <strong class="block text-gray-800">질병 이슈</strong>
+                        <span class="text-sm text-gray-600">ASF/AI 발생 시 사육 두수 감소로 사료 수요 위축 가능성</span>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-2xl mr-2">💱</span>
+                    <div>
+                        <strong class="block text-gray-800">환율 변동성</strong>
+                        <span class="text-sm text-gray-600">원재료 수입과 제품 수출 공존으로 환율 급등락 시 변동성 노출</span>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-2xl mr-2">🌽</span>
+                    <div>
+                        <strong class="block text-gray-800">곡물가 반등</strong>
+                        <span class="text-sm text-gray-600">기상 이변(라니냐) 등으로 국제 곡물가 재급등 시 마진 축소</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="col-span-1 md:col-span-2 text-center mt-4">
+            <div class="bg-gray-800 text-white p-6 rounded-xl">
+                <h3 class="text-lg font-bold mb-2">종합 의견: "이익 체력 증명의 해"</h3>
+                <p class="text-gray-300 text-sm">2025년은 단순 사료주가 아닌 글로벌 애그리-바이오 기업으로의 밸류에이션 재평가가 기대되는 시점입니다.</p>
+                <p class="text-xs text-gray-500 mt-4">본 인포그래픽은 2025년 11월 27일 기준 데이터를 바탕으로 작성되었습니다.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Data Preparation Logic
+        // Wrap label logic for Chart.js
+        const wrapLabel = (str, maxChars) => {
+            if (str.length <= maxChars) return str;
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxChars) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        // Common Chart Options
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    padding: 10,
+                    cornerRadius: 8,
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { family: "'Noto Sans KR', sans-serif", size: 12 },
+                        padding: 20
+                    }
+                }
+            }
+        };
+
+        // Chart 1: Spread Thesis (Line Chart)
+        const spreadCtx = document.getElementById('spreadChart').getContext('2d');
+        new Chart(spreadCtx, {
+            type: 'line',
+            data: {
+                labels: ['2023', '2024(E)', '2025(E)'],
+                datasets: [
+                    {
+                        label: '제품 판가 (Selling Price)',
+                        data: [100, 98, 97], // Conceptual Index
+                        borderColor: '#059669', // Emerald
+                        backgroundColor: '#059669',
+                        borderWidth: 3,
+                        tension: 0.3
+                    },
+                    {
+                        label: '투입 원가 (Cost)',
+                        data: [100, 85, 75], // Conceptual Index (Dropping faster)
+                        borderColor: '#d97706', // Amber
+                        backgroundColor: '#d97706',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        tension: 0.3
+                    },
+                    {
+                        label: '영업이익 (Profit Margin)',
+                        data: [10, 25, 45], // Conceptual Index (Widening)
+                        borderColor: '#2563eb', // Blue
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        borderWidth: 0,
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    y: {
+                        display: false, // Conceptual chart
+                        grid: { display: false }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: "'Noto Sans KR', sans-serif" } }
+                    }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                return tooltipItems[0].label + "년 추세";
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.dataset.label === '영업이익 (Profit Margin)') {
+                                    return "이익 스프레드 확대 구간";
+                                }
+                                return label + " (지수화)";
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Portfolio Structure (Doughnut)
+        const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
+        new Chart(portfolioCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    wrapLabel('사료 첨가제 (고마진/성장)', 15), 
+                    wrapLabel('자돈 사료 (안정적 매출)', 15)
+                ],
+                datasets: [{
+                    data: [45, 55], // Conceptual Revenue Mix based on text implication
+                    backgroundColor: [
+                        '#10b981', // Emerald 500
+                        '#f59e0b'  // Amber 500
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                ...commonOptions,
+                cutout: '60%',
+                plugins: {
+                    ...commonOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: function(context) {
+                                var label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.dataIndex === 0) {
+                                    return "OPM 15~20% (이익 기여도 높음)";
+                                } else {
+                                    return "안정적 Cash Cow 역할";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
