@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에프엔에스테크 (083500) 기업분석 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .chart-container-doughnut {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-[#1E293B] to-[#475569] text-white p-8 shadow-xl">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <span class="bg-[#F59E0B] text-black text-xs font-bold px-2 py-1 rounded mb-2 inline-block">KOSDAQ: 083500</span>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2">에프엔에스테크 (FNS Tech)</h1>
+                    <p class="text-lg text-gray-300">OLED 장비로 벌고, 유리기판·소재로 멀티플 UP</p>
+                </div>
+                <div class="mt-4 md:mt-0 text-right">
+                    <p class="text-sm opacity-80">기준일: 2025년 11월 27일</p>
+                    <p class="text-xl font-bold text-[#F59E0B]">턴어라운드 & 리레이팅 구간</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl p-4 md:p-8">
+
+        <!-- Intro -->
+        <section class="mb-10 text-center">
+            <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                에프엔에스테크는 2025년, **삼성디스플레이 8.6세대 투자**의 결실과 **유리기판/CMP 패드 국산화**라는 신성장 동력이 맞물리며 확실한 실적 턴어라운드를 보여주고 있습니다. 단순 장비주에서 소재/부품 기업으로의 재평가가 기대됩니다.
+            </p>
+        </section>
+
+        <!-- Key Metrics Grid -->
+        <section id="metrics" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#1E293B] mb-6 border-l-4 border-[#F59E0B] pl-4">핵심 투자 포인트</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Metric 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover border-t-4 border-[#3B82F6]">
+                    <h3 class="text-gray-500 text-sm font-medium uppercase">Cash Cow</h3>
+                    <p class="text-2xl font-bold text-[#3B82F6] mt-2">OLED 8.6세대</p>
+                    <p class="text-sm text-gray-600 mt-1">삼성디스플레이 Wet 장비<br>수주 본격화 & 매출 인식</p>
+                </div>
+                <!-- Metric 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover border-t-4 border-[#F59E0B]">
+                    <h3 class="text-gray-500 text-sm font-medium uppercase">Next Big Thing</h3>
+                    <p class="text-2xl font-bold text-[#F59E0B] mt-2">유리기판</p>
+                    <p class="text-sm text-gray-600 mt-1">AI 반도체 패키징 핵심<br>습식 장비 진입 가시화</p>
+                </div>
+                <!-- Metric 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover border-t-4 border-[#10B981]">
+                    <h3 class="text-gray-500 text-sm font-medium uppercase">Localization</h3>
+                    <p class="text-2xl font-bold text-[#10B981] mt-2">CMP Pad</p>
+                    <p class="text-sm text-gray-600 mt-1">반도체 소모품 국산화<br>재생(Re-use) 기술 경쟁력</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Business Portfolio -->
+        <section class="mb-12 bg-white p-8 rounded-xl shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-[#1E293B] mb-4">사업 포트폴리오: 장비 + 부품</h2>
+                    <p class="text-gray-600 mb-6">
+                        안정적인 현금을 창출하는 디스플레이 장비 사업(Cash Cow)을 기반으로, 고성장·고수익의 반도체 소재/부품 사업(Growth Engine)을 육성하여 밸류에이션 리레이팅을 꾀하고 있습니다.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-[#3B82F6]">
+                            <h4 class="font-bold text-[#3B82F6] mb-1">Display Equipment (장비)</h4>
+                            <p class="text-sm text-gray-600">Wet System (식각/세정/박리). SDC 8.6세대 투자 수혜 집중.</p>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg border-l-4 border-[#10B981]">
+                            <h4 class="font-bold text-[#10B981] mb-1">Semiconductor Parts (부품/소재)</h4>
+                            <p class="text-sm text-gray-600">CMP Pad (국산화), UV Lamp (교체 수요), 유리기판 장비 (신규).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container-doughnut">
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Turnaround Performance -->
+        <section class="mb-12 bg-white p-8 rounded-xl shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1 chart-container">
+                    <canvas id="turnaroundChart"></canvas>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-2xl font-bold text-[#1E293B] mb-4">실적 턴어라운드 (2025년)</h2>
+                    <p class="text-gray-600 mb-6">
+                        2023~2024년 디스플레이 투자 공백기로 인한 실적 부진을 딛고, 2025년은 삼성디스플레이의 대규모 투자 집행과 반도체 소재 매출 확대로 **매출과 영업이익의 급격한 반등(V자 반등)**이 예상되는 시기입니다.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li>✅ <strong>2023-24:</strong> 전방 투자 감소, 실적 바닥 통과</li>
+                        <li>✅ <strong>2025 (E):</strong> 8.6세대 장비 입고 본격화 + 부품 매출 성장</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Risks & Conclusion -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Risks -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#1E293B] mb-4">⚠️ 리스크 요인 (Check Points)</h2>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-red-100 text-red-500 rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">고객사 의존도</h4>
+                            <p class="text-sm text-gray-600">삼성디스플레이/삼성전자 의존도가 높아 투자 스케줄 변화에 민감</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-red-100 text-red-500 rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">CMP 패드 경쟁 심화</h4>
+                            <p class="text-sm text-gray-600">글로벌 독점 업체 및 국내 경쟁사 존재로 인한 단가 인하 압박 가능성</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-red-100 text-red-500 rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">유리기판 개화 시기</h4>
+                            <p class="text-sm text-gray-600">시장 개화 지연 시 신사업 기대감 소멸 및 주가 변동성 확대 우려</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] text-white p-8 rounded-xl shadow-lg flex flex-col justify-center">
+                <h2 class="text-2xl font-bold mb-4 text-[#F59E0B]">종합 투자의견</h2>
+                <p class="text-lg leading-relaxed mb-6 opacity-90">
+                    "에프엔에스테크는 **'본업(OLED)의 확실한 실적 개선'** 위에 **'신사업(유리기판/CMP)의 성장성'**이 더해진 매력적인 턴어라운드 종목입니다. 장비 수주 모멘텀과 국산화 성과가 가시화되는 2025년은 주가 재평가의 적기입니다."
+                </p>
+                <div class="bg-white/10 p-4 rounded text-center">
+                    <p class="text-xs text-gray-400 mb-1">투자 전략</p>
+                    <p class="font-bold text-white">수주 공시 확인 및<br>조정 시 매수 관점</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-8 text-center">
+        <p class="mb-2">© 2025 FNS Tech Analysis Report Infographic.</p>
+        <p class="text-xs">본 자료는 정보 제공을 목적으로 하며, 투자의 책임은 투자자 본인에게 있습니다.</p>
+    </footer>
+
+    <script>
+        // Chart 1: Business Portfolio (Doughnut Chart - Conceptual)
+        const ctxPortfolio = document.getElementById('portfolioChart').getContext('2d');
+        const portfolioChart = new Chart(ctxPortfolio, {
+            type: 'doughnut',
+            data: {
+                labels: ['디스플레이 장비 (OLED)', '반도체 부품/소재 (CMP/UV)', '기타'],
+                datasets: [{
+                    data: [65, 25, 10], // Conceptual Ratio for 2025 Projection
+                    backgroundColor: ['#3B82F6', '#10B981', '#E5E7EB'],
+                    hoverBackgroundColor: ['#2563EB', '#059669', '#D1D5DB'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { family: "'Noto Sans KR', sans-serif" },
+                            padding: 20
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '2025 예상 매출 비중 (Mix 개선)',
+                        font: { size: 16, family: "'Noto Sans KR', sans-serif" },
+                        color: '#334151',
+                        padding: { bottom: 10 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.raw + '% (추정)';
+                            }
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Chart 2: Earnings Turnaround (Bar Chart - Conceptual Trend)
+        const ctxTurnaround = document.getElementById('turnaroundChart').getContext('2d');
+        const turnaroundChart = new Chart(ctxTurnaround, {
+            type: 'bar',
+            data: {
+                labels: ['2023', '2024', '2025 (E)'],
+                datasets: [
+                    {
+                        label: '매출액 (억원)',
+                        data: [250, 300, 600], // Conceptual V-shape Trend
+                        backgroundColor: '#93C5FD',
+                        borderRadius: 4,
+                        order: 2
+                    },
+                    {
+                        label: '영업이익 (억원)',
+                        data: [-10, 5, 40], // Conceptual V-shape Trend
+                        backgroundColor: '#F59E0B',
+                        borderRadius: 4,
+                        type: 'line',
+                        borderColor: '#F59E0B',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#F59E0B',
+                        pointRadius: 5,
+                        order: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: { display: false }
+                    },
+                    y: {
+                        grid: { display: true, borderDash: [5, 5] },
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: '실적 턴어라운드 추이 (예상)',
+                        font: { size: 16, family: "'Noto Sans KR', sans-serif" },
+                        color: '#334151'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                return tooltipItems[0].label + "년 실적 흐름";
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Add label wrapping logic for tooltips if needed (standard practice)
+        function wrapLabel(label, maxChars) {
+            if (label.length <= maxChars) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxChars) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+    </script>
+</body>
+</html>

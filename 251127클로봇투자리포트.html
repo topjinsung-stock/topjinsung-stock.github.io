@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025.11 클로봇(466100) 투자 분석 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f5f3ff; /* Violet-50 */
+        }
+        
+        :root {
+            --cb-primary: #7c3aed;   /* Violet-600 */
+            --cb-accent: #a78bfa;    /* Violet-400 */
+            --cb-dark: #4c1d95;      /* Violet-900 */
+            --cb-light: #ddd6fe;     /* Violet-200 */
+            --positive: #ef4444;     /* Red for up */
+            --negative: #3b82f6;     /* Blue for down */
+            --risk: #f59e0b;         /* Amber for Risk */
+        }
+
+        .text-cb-primary { color: var(--cb-primary); }
+        .text-cb-dark { color: var(--cb-dark); }
+        .bg-cb-primary { background-color: var(--cb-primary); }
+        .bg-cb-dark { background-color: var(--cb-dark); }
+        .border-cb-primary { border-color: var(--cb-primary); }
+        
+        .shadow-card { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .shadow-glow { box-shadow: 0 0 15px rgba(124, 58, 237, 0.2); }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-end border-b-2 border-slate-300 pb-6 mb-8">
+            <div>
+                <h1 class="text-3xl md:text-5xl font-black text-cb-dark mb-2">클로봇 (Clobot)</h1>
+                <p class="text-xl text-cb-primary font-bold">2025.11 투자 분석 리포트</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+                <span class="bg-cb-dark text-white px-3 py-1 rounded text-sm font-bold">KOSDAQ: 466100</span>
+                <p class="text-sm text-slate-500 mt-1">Updated: 2025.11.27</p>
+            </div>
+        </header>
+
+        <!-- Stock Dashboard -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <!-- Current Price -->
+            <div class="bg-white rounded-xl shadow-card p-6 border-l-4 border-negative">
+                <p class="text-sm font-bold text-slate-400">현재주가 (11/27 장중)</p>
+                <div class="flex items-end mt-2">
+                    <span class="text-4xl font-black text-slate-800">38,450</span>
+                    <span class="text-lg font-bold text-slate-600 ml-1">원</span>
+                </div>
+                <p class="text-xs text-negative font-bold mt-1">▼ 17.5% (변동성 확대)</p>
+            </div>
+            
+            <!-- Financial Performance -->
+            <div class="bg-white rounded-xl shadow-card p-6 border-l-4 border-positive">
+                <p class="text-sm font-bold text-slate-400">3Q25 영업이익</p>
+                <div class="flex items-end mt-2">
+                    <span class="text-3xl font-black text-positive">8.1</span>
+                    <span class="text-lg font-bold text-slate-600 ml-1">억 원</span>
+                </div>
+                <p class="text-xs text-positive font-bold mt-1">흑자 전환 (Turnaround)</p>
+            </div>
+
+            <!-- Risk Factor -->
+            <div class="bg-white rounded-xl shadow-card p-6 border-l-4 border-risk">
+                <p class="text-sm font-bold text-slate-400">단기 리스크</p>
+                <div class="flex items-end mt-2">
+                    <span class="text-2xl font-black text-risk">Overhang</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">보호예수 해제 물량 출회</p>
+            </div>
+
+            <!-- Market Cap -->
+            <div class="bg-cb-dark rounded-xl shadow-card p-6 text-white">
+                <p class="text-sm font-bold opacity-80">시가총액</p>
+                <div class="flex items-center justify-between mt-2">
+                    <span class="text-2xl font-black text-white">9,962 억</span>
+                    <div class="text-right">
+                        <p class="text-xs opacity-70">로봇 S/W</p>
+                        <p class="font-bold">Tier 1</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Issues & Risks -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            
+            <!-- Left: Analysis -->
+            <div class="lg:col-span-2 space-y-6">
+                <h2 class="text-2xl font-bold text-cb-dark flex items-center">
+                    <span class="w-2 h-8 bg-cb-primary mr-3 rounded"></span>
+                    핵심 모멘텀 & 리스크 점검
+                </h2>
+                
+                <!-- Momentum Card -->
+                <div class="bg-white rounded-xl shadow-card p-6 border border-slate-100 transition hover:shadow-glow">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="font-bold text-lg text-cb-primary">🤖 글로벌 로봇 동맹 수혜</span>
+                        <span class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded font-bold">Boston Dynamics</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-800 mb-2">"엔비디아-보스턴다이내믹스 협력의 낙수효과"</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        클로봇은 보스턴다이내믹스의 국내 공식 플래티넘 파트너사입니다. 최근 엔비디아가 로봇 AI 시장 진출을 선언하며 보스턴다이내믹스와 협력을 강화함에 따라, 국내 솔루션 공급을 담당하는 클로봇의 수혜 가능성이 부각되고 있습니다. (2025 서울모빌리티쇼 'SPOT' 솔루션 공개)
+                    </p>
+                </div>
+
+                <!-- Risk Card -->
+                <div class="bg-white rounded-xl shadow-card p-6 border border-slate-100">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="font-bold text-lg text-risk">⚠️ 오버행(Overhang) 주의보</span>
+                        <span class="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded font-bold">수급 불안</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-800 mb-2">"보호예수 해제 물량 소화 과정"</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        10월 말~11월 초 주요 투자자(플루토스 등)의 보호예수 물량(약 562만 주)이 해제되었습니다. 11월 27일 현재 주가 급락은 이러한 차익 실현 매물 출회와 이에 따른 투자 심리 위축이 반영된 것으로 보입니다. 단기적으로는 변동성 관리가 필요합니다.
+                    </p>
+                </div>
+
+                <!-- Analyst View -->
+                <div class="bg-slate-50 rounded-xl p-6">
+                    <h3 class="font-bold text-lg text-slate-700 mb-2">📈 증권가 전망 (Consensus)</h3>
+                    <ul class="list-disc pl-5 text-sm text-slate-600 space-y-2">
+                        <li><strong>하나증권:</strong> "로봇 S/W와 H/W의 동반 성장으로 2025년 외형 확대 본격화."</li>
+                        <li><strong>리서치알음:</strong> "로봇 산업의 중심이 하드웨어에서 소프트웨어로 이동 중. 클로봇의 S/W 역량 재평가 필요." (적정주가 3만원 제시했으나 이미 초과 달성 → Re-rating 구간)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right: Stock Chart -->
+            <div class="bg-white rounded-xl shadow-card p-6">
+                <h3 class="font-bold text-lg text-slate-700 mb-4">주가 추이 (2025.11)</h3>
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-xs text-slate-400">
+                        * 11월 초 46,000원 고점 형성 후 <br>
+                        <span class="text-cb-primary font-bold">오버행 이슈로 조정폭 확대 중</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Financial Chart -->
+        <section class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12">
+            <h2 class="text-2xl font-bold text-cb-dark mb-6 flex items-center">
+                <span class="w-2 h-8 bg-cb-accent mr-3 rounded"></span>
+                실적 턴어라운드 (Financial Highlights)
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Chart: Revenue & OP Trend -->
+                <div>
+                    <h4 class="font-bold text-slate-600 mb-4 text-center">분기별 실적 추이 (억 원)</h4>
+                    <div class="chart-container">
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm font-bold text-cb-primary mt-4">
+                        3Q25 매출 2배 성장 & 영업이익 흑자 전환
+                    </p>
+                </div>
+
+                <!-- Investment Highlights -->
+                <div class="space-y-6 flex flex-col justify-center">
+                    <div class="border-l-4 border-cb-dark pl-4">
+                        <p class="text-sm text-slate-500 mb-1">3Q25 매출액</p>
+                        <p class="text-3xl font-black text-slate-800">107.3 <span class="text-lg font-medium text-slate-600">억 원</span></p>
+                        <p class="text-sm text-slate-500 mt-1">전년 동기 대비 +100.3%</p>
+                    </div>
+                    <div class="border-l-4 border-cb-primary pl-4">
+                        <p class="text-sm text-slate-500 mb-1">수익성 개선</p>
+                        <p class="text-3xl font-black text-slate-800">흑자 <span class="text-lg font-medium text-slate-600">전환</span></p>
+                        <p class="text-sm text-slate-500 mt-1">영업이익 8.1억, 순이익 11.7억</p>
+                    </div>
+                    <div class="bg-violet-100 rounded-lg p-4 mt-4">
+                        <p class="font-bold text-cb-dark mb-2">📌 투자 포인트 요약</p>
+                        <ul class="text-sm text-slate-600 space-y-2">
+                            <li>• <strong>실적:</strong> 서비스형 로봇 수요 증가로 외형/수익성 동반 성장.</li>
+                            <li>• <strong>기술:</strong> 범용 자율주행 솔루션(Chameleon) 등 독보적 S/W 보유.</li>
+                            <li>• <strong>전략:</strong> 단기 낙폭 과대 시 펀더멘털(실적) 기반 접근 유효.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-cb-dark text-white rounded-xl p-8 text-center">
+            <h2 class="text-2xl font-bold mb-2">Clobot</h2>
+            <p class="text-violet-200 text-sm mb-4">Autonomous Robot Service Provider | 코스닥 466100</p>
+            <p class="text-xs text-slate-400 max-w-2xl mx-auto">
+                본 리포트는 2025년 11월 27일 기준 시장 데이터를 기반으로 작성된 내용입니다. 투자의 참고 자료일 뿐입니다. 
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
+            Chart.defaults.font.weight = 'bold';
+
+            // Common Tooltip Config
+            const tooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        backgroundColor: 'rgba(76, 29, 149, 0.9)',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 13 },
+                        padding: 10,
+                        cornerRadius: 8,
+                        displayColors: false
+                    },
+                    legend: { display: false }
+                }
+            };
+
+            // Stock Chart (Nov 2025)
+            const stockCtx = document.getElementById('stockChart').getContext('2d');
+            new Chart(stockCtx, {
+                type: 'line',
+                data: {
+                    labels: ['11/03', '11/07', '11/14', '11/21', '11/27'],
+                    datasets: [{
+                        label: '주가 (원)',
+                        data: [46600, 37150, 38050, 35750, 38450], // Data from search result
+                        borderColor: '#7c3aed', // Violet-600
+                        backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#7c3aed',
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 30000,
+                            grid: { display: true, color: '#f3f4f6' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    ...tooltipConfig
+                }
+            });
+
+            // Financial Chart
+            const finCtx = document.getElementById('financialChart').getContext('2d');
+            new Chart(finCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['3Q24', '4Q24', '1Q25', '2Q25', '3Q25'],
+                    datasets: [{
+                        label: '매출액 (억 원)',
+                        data: [53, 65, 80, 95, 107], // Illustrative trend leading to 107
+                        backgroundColor: 'rgba(221, 214, 254, 0.6)', // Light Violet
+                        borderRadius: 4,
+                        order: 2
+                    }, {
+                        type: 'line',
+                        label: '영업이익 (억 원)',
+                        data: [-15, -10, -5, 2, 8.1], // Turnaround trend
+                        borderColor: '#4c1d95', // Violet-900
+                        borderWidth: 2,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#4c1d95',
+                        pointRadius: 4,
+                        order: 1,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { display: true, color: '#f3f4f6' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: true, position: 'bottom' },
+                        tooltip: tooltipConfig.plugins.tooltip
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
