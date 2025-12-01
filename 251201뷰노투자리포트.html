@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025.12 뷰노(338220) 투자 분석 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #1e293b;
+        }
+        
+        :root {
+            --vn-blue: #2563eb;      /* Blue */
+            --vn-teal: #0d9488;      /* Teal */
+            --vn-navy: #1e3a8a;      /* Navy */
+            --profit-green: #16a34a; /* Green */
+            --card-bg: #ffffff;      /* White */
+        }
+
+        .text-accent { color: var(--vn-blue); }
+        .bg-card { background-color: var(--card-bg); }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-end border-b-2 border-slate-200 pb-6 mb-10">
+            <div>
+                <span class="text-xs font-bold text-vn-blue tracking-widest uppercase mb-2 block">Medical AI Leader</span>
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900">뷰노 <span class="text-slate-400 text-2xl font-normal">338220</span></h1>
+                <p class="text-slate-500 mt-2">창사 첫 흑자 전환 달성 & 미국 진출 초읽기</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+                <div class="text-2xl font-bold text-vn-navy">27,600 KRW</div>
+                <div class="text-sm text-slate-500">2025.11월 말 기준</div>
+                <div class="mt-2 inline-block px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
+                    Turnaround Success
+                </div>
+            </div>
+        </header>
+
+        <!-- Section 1: 3Q25 Financial Highlights -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+                <span class="w-1 h-8 bg-vn-blue mr-3"></span>
+                실적 분석: 흑자 전환 (Turnaround)
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Chart -->
+                <div class="lg:col-span-2 bg-card rounded-xl p-6 shadow-sm border border-slate-200">
+                    <h4 class="text-lg font-bold text-slate-700 mb-4">분기별 매출 및 영업이익 추이 (단위: 억 원)</h4>
+                    <div class="chart-container">
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Analysis Text -->
+                <div class="bg-card rounded-xl p-6 shadow-sm border border-slate-200 flex flex-col justify-center">
+                    <h4 class="text-lg font-bold text-slate-700 mb-4 border-b border-slate-100 pb-2">3Q25 실적 리뷰</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-slate-500">매출액</span>
+                                <span class="text-vn-blue font-bold">108 억 원</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">전년 동기 대비 +58% (분기 사상 최대)</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-slate-500">영업이익</span>
+                                <span class="text-profit-green font-bold">10 억 원</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">창사 이래 첫 분기 흑자 달성</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                            <strong class="text-slate-700 text-sm block mb-1">💡 Key Driver</strong>
+                            <p class="text-xs text-slate-500">
+                                주력 제품 <strong>'뷰노메드 딥카스'</strong> 매출이 70억 원을 기록하며 실적 견인. 국내 도입 병원 확대(약 140개) 및 누적 청구 병상 수 증가 효과.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: US Expansion Strategy -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+                <span class="w-1 h-8 bg-vn-teal mr-3"></span>
+                핵심 모멘텀: 미국 시장 진출 (DeepCARS)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- FDA & NTAP -->
+                <div class="bg-white rounded-xl p-6 shadow-sm border-l-4 border-vn-blue">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">🇺🇸 FDA 승인 및 수가 확보</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        2025년 10월, 미국 CMS(보건복지부 산하 센터)에 <strong>신기술 추가지불보상(NTAP)</strong> 신청을 완료했습니다. 이는 FDA 승인이 임박했음을 시사합니다.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-start"><span class="text-vn-blue mr-2">▶</span> <strong>FDA 510(k):</strong> 심사 막바지 단계, 2025년 말~2026년 초 승인 유력.</li>
+                        <li class="flex items-start"><span class="text-vn-blue mr-2">▶</span> <strong>NTAP:</strong> 승인 시 미국 병원에서 딥카스 사용 시 정부 보조금 수령 가능 (매출 폭발의 트리거).</li>
+                    </ul>
+                </div>
+
+                <!-- Global Partnership -->
+                <div class="bg-white rounded-xl p-6 shadow-sm border-l-4 border-vn-teal">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">🌍 글로벌 영토 확장</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        미국 외에도 중동 및 일본 시장 공략을 가속화하고 있습니다.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-start"><span class="text-vn-teal mr-2">▶</span> <strong>중동:</strong> 헬스아레나(Health Arena)와 파트너십 체결, 사우디/UAE 등 4개국 진출.</li>
+                        <li class="flex items-start"><span class="text-vn-teal mr-2">▶</span> <strong>일본:</strong> M3와의 협업을 통해 흉부 CT 솔루션 등 판매망 확대 지속.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Analyst Consensus & Risk -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Analyst View -->
+            <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                <h3 class="font-bold text-lg text-slate-800 mb-4">📈 증권가 전망 (Consensus)</h3>
+                <div class="space-y-4 text-sm text-slate-600">
+                    <p>
+                        <strong>하나증권/키움증권:</strong> "2025년은 국내 흑자 안착과 미국 진출 준비의 해. 딥카스의 미국 FDA 승인 및 보험 수가(CPT/NTAP) 확보 여부가 2026년 밸류에이션 리레이팅의 핵심."
+                    </p>
+                    <div class="flex justify-between items-center bg-white p-3 rounded shadow-sm">
+                        <span>목표주가 (평균)</span>
+                        <span class="text-vn-blue font-bold">28,000원 ~ 37,000원</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2">* 실적 턴어라운드 확인 후 목표가 상향 조정 가능성 높음.</p>
+                </div>
+            </div>
+
+            <!-- Risks -->
+            <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                <h3 class="font-bold text-lg text-slate-800 mb-4">⚠️ 리스크 요인 (Risk Check)</h3>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start">
+                        <span class="text-red-500 font-bold mr-2">!</span>
+                        <div>
+                            <strong>FDA 승인 지연:</strong> 예상보다 심사 기간이 길어질 경우 미국 매출 발생 시점이 2026년 하반기로 밀릴 수 있음.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 font-bold mr-2">!</span>
+                        <div>
+                            <strong>경쟁 심화:</strong> 의료 AI 시장 내 루닛, 코어라인소프트 등 경쟁사와의 기술 격차 유지 필요.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-slate-500 text-xs pt-8 border-t border-slate-200">
+            <p>본 리포트는 2025년 12월 1일 기준 시장 데이터와 공시 자료를 바탕으로 작성되었습니다.</p>
+            <p class="mt-1">투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = "'Pretendard', sans-serif";
+            
+            const ctx = document.getElementById('financialChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['3Q24', '4Q24', '1Q25', '2Q25', '3Q25'],
+                    datasets: [
+                        {
+                            label: '매출액 (억 원)',
+                            data: [69, 75, 75, 93, 108],
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)', // Blue
+                            borderColor: '#2563eb',
+                            borderWidth: 1,
+                            yAxisID: 'y',
+                            order: 2
+                        },
+                        {
+                            type: 'line',
+                            label: '영업이익 (억 원)',
+                            data: [-20, -15, -12, -2, 10], // Turnaround
+                            borderColor: '#16a34a', // Green
+                            backgroundColor: '#16a34a',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#fff',
+                            yAxisID: 'y1',
+                            order: 1,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            grid: { color: '#e2e8f0' },
+                            title: { display: true, text: '매출액' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: { display: false },
+                            title: { display: true, text: '영업이익' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
