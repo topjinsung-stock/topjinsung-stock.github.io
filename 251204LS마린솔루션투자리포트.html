@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS마린솔루션 2025 기업 분석 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; 
+            color: #1f2937;
+        }
+        /* Chart Container Guidelines */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Card Style */
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* LS Brand Theme Colors */
+        .ls-blue { color: #00458c; } /* LS Official Blue */
+        .border-ls-blue { border-color: #00458c; }
+        .ls-orange { color: #f05a28; } /* LS Official Orange */
+        .border-ls-orange { border-color: #f05a28; }
+        .marine-teal { color: #008080; } /* Submarine Cable */
+        
+        .highlight-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: .8; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-2">LS마린솔루션 2025 분석 리포트</h1>
+            <p class="text-lg text-gray-600">창사 이래 최대 실적, 해상풍력 토탈 솔루션(Total Solution) 완성</p>
+            <p class="text-sm text-gray-500 mt-2">Update: 2025.12.04 (3분기 확정 실적 및 신규 투자 공시 반영)</p>
+        </header>
+
+        <!-- KPI Cards Section (3 Cols) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="card text-center border-t-4 border-ls-blue">
+                <h3 class="text-lg font-semibold ls-blue mb-2">2025 매출 성장 (3분기 누적)</h3>
+                <p class="kpi-value ls-blue">1,884억 원</p>
+                <p class="text-gray-500">전년 연간 매출의 145% 달성<br><span class="text-xs text-gray-400">(연간 2,000억 돌파 확실시)</span></p>
+            </div>
+            <div class="card text-center border-t-4 border-ls-orange highlight-pulse">
+                <h3 class="text-lg font-semibold ls-orange mb-2">역대급 수주잔고</h3>
+                <p class="kpi-value ls-orange">7,000억 원</p>
+                <p class="text-gray-500 font-bold">작년 매출의 5배 확보<br><span class="text-xs text-orange-400">(전남해상풍력/대만 프로젝트)</span></p>
+            </div>
+            <div class="card text-center border-t-4 border-teal-600">
+                <h3 class="text-lg font-semibold text-teal-700 mb-2">신규 투자</h3>
+                <p class="kpi-value text-teal-700">720억 원</p>
+                <p class="text-gray-500">해상풍력 설치 항만 확보<br><span class="text-xs text-teal-500">(서해안 에너지 고속도로 대비)</span></p>
+            </div>
+        </section>
+
+        <!-- Concept Flow Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center">비즈니스 확장: '시공(EPC)'을 넘어 '운영(O&M)'까지</h2>
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                 LS마린솔루션은 단순 해저 케이블 시공사를 넘어, 육상 케이블(LS빌드윈)과 항만/유지보수(SOV)까지 아우르는 <strong>'해상풍력 턴키(Turn-key) 파트너'</strong>로 진화했습니다. 2025년은 이러한 수직 계열화가 숫자로 증명된 원년입니다.
+             </p>
+             <div class="flex flex-col md:flex-row justify-around items-center">
+                 <div class="flow-step text-center mb-6 md:mb-0">
+                     <div class="text-4xl mb-2">🌊</div>
+                     <h4 class="font-bold ls-blue">해저 시공</h4>
+                     <p class="text-xs text-gray-500">GL2030 (포설선)<br>해저케이블 매설</p>
+                 </div>
+                 <div class="mx-4 text-2xl font-bold text-gray-400">＋</div>
+                 <div class="flow-step text-center bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="text-4xl mb-2">🏗️</div>
+                     <h4 class="font-bold text-gray-700">육상 시공</h4>
+                     <p class="text-sm text-gray-600">LS빌드윈 자회사 편입<br>육상-해저 통합 솔루션</p>
+                </div>
+                 <div class="mx-4 text-2xl font-bold text-gray-400">➔</div>
+                 <div class="flow-step text-center">
+                     <div class="text-4xl mb-2">⚓</div>
+                     <h4 class="font-bold ls-orange">인프라/운영</h4>
+                     <p class="text-xs text-gray-500">설치 항만 투자<br>SOV(서비스선) 사업 진출</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section 1: Financials & Backlog -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">매출액 추이 (단위: 억 원)</h2>
+                <p class="text-center text-gray-600 mb-6">2023년 708억 원에 불과했던 매출이 2025년에는 2,000억 원을 가볍게 상회할 전망입니다. 전남해상풍력 등 대형 프로젝트의 기성 반영이 본격화되었습니다.</p>
+                <div class="chart-container">
+                    <canvas id="financialsChart"></canvas>
+                </div>
+            </div>
+             <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">수주잔고 급증 추이</h2>
+                <p class="text-center text-gray-600 mb-6">수주잔고는 미래 실적의 선행지표입니다. 2024년 말부터 수주가 폭발하며 현재 7,000억 원에 육박, 향후 3~4년치 일감을 확보했습니다.</p>
+                <div class="chart-container">
+                    <canvas id="backlogChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Text Analysis Section -->
+        <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-4">2025 증권가 핵심 이슈 및 평가</h2>
+             <p class="text-center text-gray-600 mb-6">시장은 LS마린솔루션의 <strong>'폭발적인 외형 성장'</strong>에 환호하면서도, <strong>'높은 밸류에이션'</strong>에 대한 경계감을 동시에 가지고 있습니다.</p>
+            <ul class="list-disc list-inside space-y-3 text-gray-700 max-w-4xl mx-auto">
+                <li><strong class="ls-blue">LS전선과의 시너지 본격화:</strong> 모회사 LS전선이 수주한 대규모 해저케이블 공급 계약(대만, 유럽 등)이 LS마린솔루션의 시공 매출로 직결되는 선순환 구조가 정착되었습니다. 대만 해상풍력 2단지 프로젝트가 대표적인 사례입니다.</li>
+                <li><strong class="ls-orange">신규 투자와 자금 조달:</strong> 11월 28일 발표한 720억 원 규모의 해상풍력 설치 항만 투자는 '서해안 에너지 고속도로' 선점을 위한 승부수입니다. 재원은 교환사채(EB) 발행과 내부 자금으로 충당하여 주주가치 희석을 최소화했습니다.</li>
+                <li><strong class="text-teal-700">이익률의 일시적 변동성:</strong> 3분기 등 일부 기간에는 포설선(GL2030) 설비 증설 비용 등으로 영업이익률이 일시적으로 하락했습니다. 하지만 증설 완료 후 가동률이 상승하는 2026년부터는 구조적인 이익 개선이 전망됩니다.</li>
+                 <li><strong class="text-red-500">밸류에이션 부담:</strong> 주가 급등으로 PER(주가수익비율)이 100배를 상회하는 등 고평가 논란이 있습니다. 증권가는 이를 '성장 프리미엄'으로 해석하나, 확실한 이익 규모 확대가 필요한 시점입니다.</li>
+            </ul>
+        </section>
+
+        <!-- Charts Section 2: Radar & Project Portfolio -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">기업 경쟁력 진단 (Radar)</h2>
+                 <p class="text-center text-gray-600 mb-6">계열사 시너지와 성장 잠재력은 만점 수준이나, 현재의 수익성과 주가 매력도(Valuation)는 관리가 필요합니다.</p>
+                 <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+            
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">사업 포트폴리오 비중 (2025E)</h2>
+                <p class="text-center text-gray-600 mb-6">과거 통신 케이블 위주에서 해상풍력(전력) 비중이 압도적으로 커졌으며, 육상 시공(빌드윈) 매출이 더해져 포트폴리오가 다변화되었습니다.</p>
+                <div class="chart-container">
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+            </div>
+
+            <!-- SWOT Analysis Section -->
+            <section class="card lg:col-span-2">
+                <h2 class="text-2xl font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-ls-blue">
+                        <h3 class="font-bold ls-blue text-lg">강점 (Strengths)</h3>
+                        <ul class="list-disc list-inside ls-blue mt-2 text-sm">
+                            <li>국내 유일의 해저 전력 케이블 시공 전문성</li>
+                            <li>LS전선(모회사)과의 확실한 수주 락인(Lock-in) 효과</li>
+                            <li>GL2030 등 전용 포설선 보유 및 운영 노하우</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 text-lg">약점 (Weaknesses)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-sm">
+                            <li>높은 밸류에이션(고PER)에 따른 주가 변동성</li>
+                            <li>특정 대형 프로젝트 일정에 따른 실적 변동성</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-orange-50 border-l-4 border-ls-orange">
+                        <h3 class="font-bold ls-orange text-lg">기회 (Opportunities)</h3>
+                        <ul class="list-disc list-inside text-orange-800 mt-2 text-sm">
+                            <li class="font-bold">국내 해상풍력 시장(신안우이, 태안 등) 본격 개화</li>
+                            <li>'서해안 에너지 고속도로' 등 국가 전력망 확충 수혜</li>
+                            <li>아시아-태평양 지역 해저 인프라 수요 증가 (대만, 베트남)</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-gray-100 border-l-4 border-gray-500">
+                        <h3 class="font-bold text-gray-800 text-lg">위협 (Threats)</h3>
+                        <ul class="list-disc list-inside text-gray-700 mt-2 text-sm">
+                            <li>해상풍력 프로젝트 인허가 지연 리스크</li>
+                            <li>글로벌 시공 업체들의 아시아 시장 진출 경쟁</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Timeline Section -->
+         <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-6">2024-2026 주요 마일스톤</h2>
+            <div class="relative border-l-2 border-ls-blue ml-4 md:ml-0 pl-8 space-y-8">
+                 <div class="relative">
+                     <div class="absolute w-4 h-4 bg-gray-400 rounded-full -left-[39px] border-2 border-white"></div>
+                     <p class="font-bold text-gray-600">2024년</p>
+                    <p class="text-gray-700">LS빌드윈 자회사 편입. 전남해상풍력 1단지 시공 완료. 수주잔고 급증 시작.</p>
+                </div>
+                <div class="relative">
+                     <div class="absolute w-4 h-4 bg-ls-blue rounded-full -left-[39px] border-2 border-white"></div>
+                    <p class="font-bold ls-blue text-lg">2025년 (현재)</p>
+                    <p class="text-gray-700">3분기 누적 매출 1,884억 달성(역대 최대). <span class="font-bold">해상풍력 설치 항만 720억 투자 결정.</span></p>
+                </div>
+                <div class="relative">
+                    <div class="absolute w-4 h-4 bg-ls-orange rounded-full -left-[39px] border-2 border-white"></div>
+                    <p class="font-bold ls-orange text-lg">2026년 전망</p>
+                    <p class="text-gray-700">GL2030 증설 효과 본격화. 서해안 에너지 고속도로 및 신안우이 프로젝트 착공.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute w-4 h-4 bg-gray-500 rounded-full -left-[39px] border-2 border-white"></div>
+                    <p class="font-bold text-gray-600">2027년 이후</p>
+                    <p class="text-gray-700">HVDC 전용선(1.3만톤급) 도입. 아시아 No.1 해상풍력 시공사 도약.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>본 자료는 2025년 공시 및 증권사 리포트(11~12월)를 바탕으로 재구성되었습니다. 투자의 책임은 본인에게 있습니다.<br>Generated by Canvas Infographics.</p>
+        </footer>
+
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            // Utility: Label Wrapping
+            const processLabels = (labels) => {
+                const MAX_LENGTH = 16;
+                 return labels.map(label => {
+                    if (typeof label !== 'string') return label; 
+                    if (label.length <= MAX_LENGTH) return label;
+                    const words = label.split(' ');
+                    const newLabels = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                            newLabels.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    newLabels.push(currentLine);
+                    return newLabels;
+                });
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const palette = {
+                lsBlue: '#00458c', 
+                lsOrange: '#f05a28',
+                teal: '#008080',
+                gray: '#9ca3af',
+                lightGray: '#e5e7eb'
+            };
+
+            // 1. Financials Chart (Revenue Explosion)
+            const financialsCtx = document.getElementById('financialsChart');
+            new Chart(financialsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2023(확정)', '2024(확정)', '2025(전망)'],
+                    datasets: [
+                        {
+                            label: '매출액 (억 원)',
+                            data: [708, 1303, 2300], // 2023: ~70B, 2024: 130B, 2025: Estimate >200B
+                            backgroundColor: palette.lsBlue,
+                            borderRadius: 4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '영업이익 (억 원)',
+                            data: [131, 100, 150], // Estimate: Profit growth but margin pressure in 2025 due to investment
+                            type: 'line',
+                            borderColor: palette.lsOrange,
+                            backgroundColor: palette.lsOrange,
+                            borderWidth: 3,
+                            yAxisID: 'y1',
+                            tension: 0.1,
+                            pointRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: commonTooltipOptions.plugins.tooltip
+                    },
+                    scales: {
+                        y: { position: 'left', title: {display: true, text: '매출액 (억)'}, grid: {display: false} },
+                        y1: { position: 'right', title: {display: true, text: '영업이익 (억)'}, grid: {drawOnChartArea: true, color: '#f3f4f6'} }
+                    }
+                }
+            });
+
+            // 2. Backlog Chart
+            const backlogCtx = document.getElementById('backlogChart');
+            new Chart(backlogCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2023 말', '2024 말', '2025 3Q'],
+                    datasets: [{
+                        label: '수주잔고 (억 원)',
+                        data: [600, 2500, 7000], // Dramatic increase
+                        backgroundColor: 'rgba(240, 90, 40, 0.1)',
+                        borderColor: palette.lsOrange,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: {display: false}, tooltip: commonTooltipOptions.plugins.tooltip },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            // 3. Radar Chart (Company Strength)
+            const radarCtx = document.getElementById('radarChart');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: processLabels(['성장 잠재력', '그룹 시너지', '수주 경쟁력', '수익성(현재)', '밸류에이션 매력']),
+                    datasets: [{
+                        label: 'LS마린솔루션',
+                        data: [95, 100, 90, 60, 40], // High Growth/Synergy, Low Profit/Value (due to high PER)
+                        backgroundColor: 'rgba(0, 69, 140, 0.2)', // Blue tint
+                        borderColor: palette.lsBlue,
+                        borderWidth: 2,
+                        pointBackgroundColor: palette.lsBlue
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { tooltip: commonTooltipOptions.plugins.tooltip },
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { backdropColor: 'rgba(0,0,0,0)', stepSize: 20 }
+                        }
+                    }
+                }
+            });
+
+            // 4. Portfolio Mix Chart (Donut)
+            const portfolioCtx = document.getElementById('portfolioChart');
+            new Chart(portfolioCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['해저 시공(풍력)', '육상 시공(빌드윈)', '통신/유지보수', '기타'],
+                    datasets: [{
+                        data: [60, 25, 10, 5], 
+                        backgroundColor: [palette.lsBlue, palette.teal, palette.lsOrange, palette.lightGray],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: {position: 'bottom'}, tooltip: commonTooltipOptions.plugins.tooltip }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
