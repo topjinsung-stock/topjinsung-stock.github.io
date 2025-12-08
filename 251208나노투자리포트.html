@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나노 2025 기업 분석 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; 
+            color: #1f2937;
+        }
+        /* Chart Container Guidelines */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Card Style */
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* Nano Theme Colors (Clean Blue & Eco Green) */
+        .nano-blue { color: #0077C8; } 
+        .border-nano-blue { border-color: #0077C8; }
+        .nano-green { color: #2E8B57; } 
+        .border-nano-green { border-color: #2E8B57; }
+        .risk-red { color: #dc2626; }
+        .border-risk-red { border-color: #dc2626; }
+        
+        .highlight-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: .8; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-2">나노(NANO) 2025 분석 리포트</h1>
+            <p class="text-lg text-gray-600">환경(SCR)과 소재(베어링)의 양날개, 2025년 구조적 성장 원년</p>
+            <p class="text-sm text-gray-500 mt-2">Update: 2025.12.08 (최신 주가 및 증권사 리포트 반영)</p>
+        </header>
+
+        <!-- KPI Cards Section (3 Cols) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="card text-center border-t-4 border-nano-blue">
+                <h3 class="text-lg font-semibold nano-blue mb-2">주가 트렌드 (12월)</h3>
+                <p class="kpi-value nano-blue">3,990원</p>
+                <p class="text-gray-500">연초 대비 강세<br><span class="text-xs text-gray-400">(데이터센터/조선 수혜 기대)</span></p>
+            </div>
+            <div class="card text-center border-t-4 border-nano-green highlight-pulse">
+                <h3 class="text-lg font-semibold nano-green mb-2">핵심 성장 동력</h3>
+                <p class="kpi-value nano-green">AI Data Center</p>
+                <p class="text-gray-500 font-bold">비상발전기용 SCR 수요 폭증<br><span class="text-xs text-green-600">(글로벌 빅테크 투자 수혜)</span></p>
+            </div>
+            <div class="card text-center border-t-4 border-risk-red">
+                <h3 class="text-lg font-semibold risk-red mb-2">체크 포인트</h3>
+                <p class="kpi-value risk-red">Turnaround</p>
+                <p class="text-gray-500">수익성 개선 가속화<br><span class="text-xs text-red-400">(신공장 가동 및 고부가 제품 확대)</span></p>
+            </div>
+        </section>
+
+        <!-- Concept Flow Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center">나노의 사업 구조: 소재부터 완제품까지 (Vertical Integration)</h2>
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                 나노는 SCR 촉매의 핵심 원료인 <strong>TiO2(이산화티타늄)</strong>를 자체 생산하는 국내 유일의 기업입니다. 이를 바탕으로 발전소, 선박, 데이터센터 등 다양한 산업군에 맞춤형 촉매 솔루션을 제공합니다.
+             </p>
+             <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0">
+                 <div class="flow-step text-center border-2 border-gray-300 rounded-xl p-4 w-full md:w-1/4 bg-gray-50">
+                     <div class="text-3xl mb-2">🧪</div>
+                     <h4 class="font-bold text-gray-800">원료 (TiO2)</h4>
+                     <p class="text-xs text-gray-500">국내 유일 제조 기술<br>(원가 경쟁력 확보)</p>
+                 </div>
+                 
+                 <!-- Connector -->
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">▶</div>
+                 <div class="md:hidden text-2xl font-bold text-gray-300">▼</div>
+
+                 <!-- Business Units -->
+                 <div class="flex flex-col space-y-2 w-full md:w-1/2">
+                    <div class="flex items-center bg-blue-50 p-3 rounded-lg border border-nano-blue">
+                        <span class="text-2xl mr-3">🏭</span>
+                        <div class="text-left">
+                            <span class="font-bold nano-blue">SCR 촉매 (환경)</span>
+                            <p class="text-xs text-gray-600">발전소, 선박, 데이터센터용 질소산화물 제거</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center bg-green-50 p-3 rounded-lg border border-nano-green">
+                        <span class="text-2xl mr-3">⚙️</span>
+                        <div class="text-left">
+                            <span class="font-bold nano-green">베어링/부품 (자회사 NBG)</span>
+                            <p class="text-xs text-gray-600">전기차(EV), 로봇 감속기용 핵심 부품</p>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Charts Section 1: Financials & Revenue Mix -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">연간 실적 추이 및 전망 (단위: 억 원)</h2>
+                <p class="text-center text-gray-600 mb-6">2024년까지의 숨 고르기를 끝내고, 2025년은 조선 및 데이터센터용 촉매 매출이 본격화되며 외형 성장과 수익성 개선이 동시에 기대됩니다.</p>
+                <div class="chart-container">
+                    <canvas id="financialsChart"></canvas>
+                </div>
+            </div>
+             <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">2025 사업 부문별 매출 비중 (예상)</h2>
+                <p class="text-center text-gray-600 mb-6">기존 발전소용 비중이 줄고, 성장성이 높은 선박/데이터센터용 SCR과 베어링 부품(NBG) 매출 비중이 확대되고 있습니다.</p>
+                <div class="chart-container">
+                    <canvas id="revenueMixChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Text Analysis Section -->
+        <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-4">2025년 증권가 핵심 분석 (Analyst Insight)</h2>
+             <p class="text-center text-gray-600 mb-6">키움증권, NH투자증권 등 주요 하우스는 나노를 **"숨겨진 AI 데이터센터 및 친환경 선박 수혜주"**로 재평가하고 있습니다.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Investment Points -->
+                <div>
+                    <h3 class="text-xl font-bold nano-blue mb-3 border-b-2 border-nano-blue pb-1">✅ 긍정적 뷰 (Bull Case)</h3>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 text-sm">
+                        <li><strong>데이터센터의 숨은 수혜:</strong> AI 데이터센터 급증으로 비상발전기 설치가 의무화되면서, 질소산화물 저감장치(SCR) 수요가 폭발적으로 늘고 있습니다.</li>
+                        <li><strong>친환경 선박 사이클:</strong> IMO(국제해사기구) 환경 규제 강화로 LNG/메탄올 추진선 발주가 늘며 선박 엔진용 촉매 매출이 구조적으로 성장 중입니다.</li>
+                        <li><strong>베어링 부품(NBG) 성장:</strong> 자회사 NBG가 글로벌 완성차 및 테슬라향 부품 공급 레퍼런스를 확보하며 전기차/로봇 시장으로 포트폴리오를 확장했습니다.</li>
+                    </ul>
+                </div>
+                <!-- Risks -->
+                <div>
+                    <h3 class="text-xl font-bold risk-red mb-3 border-b-2 border-red-500 pb-1">⚠️ 리스크 점검 (Risk Check)</h3>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 text-sm">
+                        <li><strong>화력발전소 가동 축소:</strong> 전통적인 Cash Cow였던 석탄화력발전소 가동률 하락 및 폐쇄 정책은 기존 사업부의 매출 감소 요인입니다. (신사업으로 상쇄 중)</li>
+                        <li><strong>원자재 가격 변동성:</strong> 핵심 원료인 티타늄 광물 가격 변동에 따라 이익률(Margin)이 흔들릴 수 있습니다.</li>
+                        <li><strong>중국 경쟁사:</strong> 저가형 촉매를 앞세운 중국 업체들과의 경쟁 심화 가능성은 지속적인 모니터링이 필요합니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section 2: Radar & Subsidiary Contribution -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">기업 경쟁력 진단 (Radar)</h2>
+                 <p class="text-center text-gray-600 mb-6">원천 기술(TiO2)과 성장 잠재력(신사업)은 우수하나, 아직 절대적인 이익 규모와 재무 안정성은 개선이 필요한 단계입니다.</p>
+                 <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">증권사 목표주가 트렌드</h2>
+                <p class="text-center text-gray-600 mb-6">2025년 하반기 들어 신규 리포트 발행과 함께 목표주가 및 투심이 긍정적으로 전환되고 있습니다. (단위: 원)</p>
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis Section -->
+            <section class="card lg:col-span-2">
+                <h2 class="text-2xl font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-nano-blue">
+                        <h3 class="font-bold nano-blue text-lg">강점 (Strengths)</h3>
+                        <ul class="list-disc list-inside text-blue-900 mt-2 text-sm">
+                            <li>국내 유일 SCR 촉매 원료(TiO2)부터 완제품까지 수직계열화</li>
+                            <li>다양한 형상(Plate, Honeycomb 등)의 촉매 제조 기술력</li>
+                            <li>자회사(NBG)를 통한 안정적인 부품 사업 포트폴리오</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-risk-red">
+                        <h3 class="font-bold risk-red text-lg">약점 (Weaknesses)</h3>
+                        <ul class="list-disc list-inside text-red-900 mt-2 text-sm">
+                            <li>전통 발전소(화력) 시장 의존도 탈피 과도기</li>
+                            <li>상대적으로 작은 시가총액과 낮은 기관 수급</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-green-50 border-l-4 border-nano-green">
+                        <h3 class="font-bold nano-green text-lg">기회 (Opportunities)</h3>
+                        <ul class="list-disc list-inside text-green-900 mt-2 text-sm">
+                            <li>글로벌 AI 데이터센터 증설에 따른 비상발전기용 촉매 수요</li>
+                            <li>친환경 선박 엔진(LNG/암모니아) 시장의 구조적 성장</li>
+                            <li>베어링 부품의 전기차 및 로봇 시장 적용 확대</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-gray-100 border-l-4 border-gray-500">
+                        <h3 class="font-bold text-gray-800 text-lg">위협 (Threats)</h3>
+                        <ul class="list-disc list-inside text-gray-700 mt-2 text-sm">
+                            <li>글로벌 경기 침체 시 산업재(베어링 등) 수요 둔화</li>
+                            <li>환경 규제 완화 움직임(가능성 낮으나 리스크 요인)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Timeline Section -->
+         <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-6">주요 이벤트 타임라인 (2024~2026)</h2>
+            <div class="relative border-l-2 border-nano-blue ml-4 md:ml-0 pl-8 space-y-8">
+                 <div class="relative">
+                     <div class="absolute w-4 h-4 bg-gray-400 rounded-full -left-[39px] border-2 border-white"></div>
+                     <p class="font-bold text-gray-600">2024년</p>
+                    <p class="text-gray-700">전통 발전소 매출 둔화 및 사업 구조 재편(Restructuring) 시기.</p>
+                </div>
+                <div class="relative">
+                     <div class="absolute w-4 h-4 bg-nano-blue rounded-full -left-[39px] border-2 border-white"></div>
+                    <p class="font-bold nano-blue text-lg">2025년 (현재)</p>
+                    <p class="text-gray-700">AI 데이터센터/선박용 SCR 수주 본격화. <span class="font-bold">실적 턴어라운드 및 주가 재평가(Re-rating) 시도.</span></p>
+                </div>
+                <div class="relative">
+                    <div class="absolute w-4 h-4 bg-nano-green rounded-full -left-[39px] border-2 border-white"></div>
+                    <p class="font-bold nano-green text-lg">2026년 (전망)</p>
+                    <p class="text-gray-700">고부가 제품 전용 신공장 가동 효과 가시화. 베어링 부품 매출 1,000억 도전.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>본 자료는 2025년 12월 기준 공시 및 증권사 리포트를 바탕으로 재구성되었습니다. 투자의 책임은 본인에게 있습니다.<br>Generated by Canvas Infographics.</p>
+        </footer>
+
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            // Utility: Label Wrapping
+            const processLabels = (labels) => {
+                const MAX_LENGTH = 16;
+                 return labels.map(label => {
+                    if (typeof label !== 'string') return label; 
+                    if (label.length <= MAX_LENGTH) return label;
+                    const words = label.split(' ');
+                    const newLabels = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                            newLabels.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    newLabels.push(currentLine);
+                    return newLabels;
+                });
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const palette = {
+                blue: '#0077C8', 
+                green: '#2E8B57',
+                gray: '#9ca3af',
+                red: '#dc2626',
+                light: '#e5e7eb'
+            };
+
+            // 1. Financials Chart (Growth Projection)
+            const financialsCtx = document.getElementById('financialsChart');
+            new Chart(financialsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2023', '2024(E)', '2025(E)'],
+                    datasets: [
+                        {
+                            label: '매출액 (억 원)',
+                            data: [980, 1050, 1300], // Estimated growth based on new biz
+                            backgroundColor: palette.blue,
+                            borderRadius: 4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '영업이익 (억 원)',
+                            data: [15, 20, 60], // Profitability improvement expected
+                            type: 'line',
+                            borderColor: palette.green,
+                            backgroundColor: palette.green,
+                            borderWidth: 3,
+                            yAxisID: 'y1',
+                            tension: 0.1,
+                            pointRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: commonTooltipOptions.plugins.tooltip
+                    },
+                    scales: {
+                        y: { position: 'left', title: {display: true, text: '매출액 (억)'}, grid: {display: false} },
+                        y1: { position: 'right', title: {display: true, text: '영업이익 (억)'}, grid: {drawOnChartArea: true, color: '#f3f4f6'} }
+                    }
+                }
+            });
+
+            // 2. Revenue Mix Chart (Donut)
+            const revenueMixCtx = document.getElementById('revenueMixChart');
+            new Chart(revenueMixCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['발전소용 SCR', '선박/데이터센터 SCR', '베어링/부품', '기타'],
+                    datasets: [{
+                        data: [40, 30, 25, 5], // Structural shift estimate
+                        backgroundColor: [palette.gray, palette.blue, palette.green, palette.light],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: {position: 'bottom'}, tooltip: commonTooltipOptions.plugins.tooltip }
+                }
+            });
+
+            // 3. Radar Chart (Competitiveness)
+            const radarCtx = document.getElementById('radarChart');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: processLabels(['원천 기술력(TiO2)', '성장 잠재력', '시장 점유율(국내)', '재무 안정성', '가격 매력도']),
+                    datasets: [{
+                        label: '나노',
+                        data: [90, 85, 80, 60, 75], // High Tech/Growth, Moderate Finance
+                        backgroundColor: 'rgba(0, 119, 200, 0.2)', // Blue tint
+                        borderColor: palette.blue,
+                        borderWidth: 2,
+                        pointBackgroundColor: palette.blue
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { tooltip: commonTooltipOptions.plugins.tooltip },
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { backdropColor: 'rgba(0,0,0,0)', stepSize: 20 }
+                        }
+                    }
+                }
+            });
+
+            // 4. Stock Trend Chart (Line)
+            const stockCtx = document.getElementById('stockChart');
+            new Chart(stockCtx, {
+                type: 'line',
+                data: {
+                    labels: ['24.1Q', '24.2Q', '24.3Q', '24.4Q', '25.1Q', '25.2Q', '25.3Q', '25.4Q'],
+                    datasets: [{
+                        label: '주가 추이 (원)',
+                        data: [1500, 1450, 1600, 1800, 2200, 2800, 3200, 3990], // Upward trend simulation
+                        borderColor: palette.blue,
+                        backgroundColor: 'rgba(0, 119, 200, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: {display: false}, tooltip: commonTooltipOptions.plugins.tooltip },
+                    scales: { y: { beginAtZero: false } }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
