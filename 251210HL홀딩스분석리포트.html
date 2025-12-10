@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HL홀딩스 기업 분석 리포트 (2025년 전망)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #1e3a8a; /* HL Blue */
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        /* HL Brand Colors */
+        .hl-blue { color: #1e3a8a; }
+        .hl-sky { color: #0ea5e9; }
+        .hl-amber { color: #d97706; }
+        .border-hl-blue { border-color: #1e3a8a; }
+        .border-hl-sky { border-color: #0ea5e9; }
+        .border-hl-amber { border-color: #d97706; }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">HL홀딩스 기업 분석 리포트</h1>
+            <p class="text-lg text-gray-600">'저평가 매력'과 '미래 모빌리티 성장'의 조화 (2025년 전망)</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="card text-center border-t-4 border-hl-blue">
+                <h3 class="text-lg font-semibold hl-blue mb-2">극저평가 매력</h3>
+                <p class="kpi-value hl-blue">PBR 0.27배</p>
+                <p class="text-gray-500">절대적 저평가 구간</p>
+            </div>
+            <div class="card text-center border-t-4 border-hl-amber">
+                <h3 class="text-lg font-semibold hl-amber mb-2">주주 환원</h3>
+                <p class="kpi-value hl-amber">배당률 5.8%</p>
+                <p class="text-gray-500">고배당 & 자사주 소각 기대</p>
+            </div>
+            <div class="card text-center border-t-4 border-hl-sky">
+                <h3 class="text-lg font-semibold hl-sky mb-2">핵심 성장 동력</h3>
+                <p class="kpi-value hl-sky">HL만도</p>
+                <p class="text-gray-500">EV/자율주행 글로벌 확장</p>
+            </div>
+        </section>
+
+        <!-- Competitiveness Flow Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center">HL홀딩스의 경쟁력: 안정성과 성장의 하이브리드</h2>
+             
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">HL홀딩스는 자체 사업(물류/부품 유통)을 통해 안정적인 현금 흐름을 창출하는 동시에, 자회사 HL만도를 통해 전기차 및 자율주행 시장의 고성장 수혜를 누리는 이상적인 사업 구조를 보유하고 있습니다.</p>
+             <div class="flex flex-col md:flex-row justify-center items-center">
+                 <div class="flow-step text-center mb-6 md:mb-0">
+                     <div class="text-4xl mb-2">🏭</div>
+                     <h4 class="font-bold">자체 사업 안정성</h4>
+                     <p class="text-sm text-gray-500">(AS부품/물류)</p>
+                 </div>
+                 <div class="mx-4 text-2xl font-bold text-gray-400">→</div>
+                 <div class="flow-step text-center bg-blue-50 p-4 rounded-lg">
+                    <div class="text-4xl mb-2">🚗</div>
+                     <h4 class="font-bold hl-blue">HL만도 지분 가치</h4>
+                     <p class="text-sm text-gray-500">(EV/자율주행)</p>
+                </div>
+                 <div class="mx-4 text-2xl font-bold text-gray-400">→</div>
+                 <div class="flow-step text-center">
+                     <div class="text-4xl mb-2">📈💰</div>
+                     <h4 class="font-bold">밸류업 & 배당</h4>
+                     <p class="text-sm text-gray-500">(주주가치 제고)</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section: Financials & Subsidiary Sales -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">연간 연결 실적 추이 및 전망</h2>
+                <p class="text-center text-gray-600 mb-6">자체 사업의 효율화와 자회사(HL만도)의 매출 성장이 결합되어, 2024년 이후 외형 성장과 이익 개선이 동시에 기대됩니다. 건설 부문의 리스크는 제한적일 전망입니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="financialsBarLineChart"></canvas>
+                </div>
+            </div>
+             <div class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">핵심 자회사(HL만도) 매출 전망</h2>
+                <p class="text-center text-gray-600 mb-6">HL홀딩스 기업가치의 핵심인 HL만도는 북미 및 중국 시장에서의 EV 부품 수주 확대로 2025년 매출 10조 원 시대를 열 것으로 예상됩니다.</p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="subsidiarySalesBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">투자 매력도 분석</h2>
+                 <p class="text-center text-gray-600 mb-6">극단적인 저평가(PBR)와 높은 배당 수익률이 가장 큰 매력이며, 자회사를 통한 미래 성장성(Growth) 또한 확보하고 있습니다.</p>
+                 <div class="chart-container" style="height: 350px;">
+                    <canvas id="investmentRadarChart"></canvas>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">SWOT 분석 (2025년 관점)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-hl-blue">
+                        <h3 class="font-bold hl-blue text-lg">강점 (Strengths)</h3>
+                        <ul class="list-disc list-inside text-blue-900 mt-2 text-sm">
+                            <li>안정적인 자체 사업(Cash Cow)</li>
+                            <li>HL만도의 기술력 및 글로벌 입지</li>
+                            <li>우량한 재무구조 및 배당 여력</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 text-lg">약점 (Weaknesses)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-sm">
+                            <li>건설 부문(HL D&I) 경기 민감도</li>
+                            <li>지주사 디스카운트 지속</li>
+                            <li>보수적인 IR 커뮤니케이션</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-sky-50 border-l-4 border-hl-sky">
+                        <h3 class="font-bold hl-sky text-lg">기회 (Opportunities)</h3>
+                        <ul class="list-disc list-inside text-sky-800 mt-2 text-sm">
+                            <li class="font-bold">정부 '밸류업 프로그램' 수혜</li>
+                            <li class="font-bold">자율주행/로봇 등 신사업 확장</li>
+                            <li>글로벌 물류 네트워크 확대</li>
+                        </ul>
+                    </div>
+                    <div class="swot-quadrant bg-yellow-50 border-l-4 border-yellow-500">
+                        <h3 class="font-bold text-yellow-800 text-lg">위협 (Threats)</h3>
+                        <ul class="list-disc list-inside text-yellow-700 mt-2 text-sm">
+                            <li>고금리 장기화 (건설/PF 리스크)</li>
+                            <li>전기차(EV) 수요 일시적 둔화</li>
+                            <li>원자재 가격 변동성</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Roadmap Section -->
+         <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-6">미래 성장 로드맵: Smart Mobility & Logistics</h2>
+            <div class="relative border-l-2 border-hl-sky ml-4 md:ml-0">
+                <div class="mb-8 ml-8">
+                     <div class="absolute w-4 h-4 bg-hl-blue rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold hl-blue">2024년 하반기</p>
+                    <p class="text-gray-700">기업 밸류업 프로그램 대응 및 주주환원 정책 구체화. 건설 부문 리스크 관리 및 자체 물류 사업 효율성 제고.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute w-4 h-4 bg-sky-500 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-sky-600">2025년</p>
+                    <p class="text-gray-700">HL만도 북미 공장 가동 확대 및 매출 성장 가속화. 자체 부품/물류 사업의 글로벌(멕시코, 인도 등) 거점 확장 본격화.</p>
+                </div>
+                <div class="ml-8">
+                    <div class="absolute w-4 h-4 bg-gray-600 rounded-full -left-2 border-2 border-white"></div>
+                    <p class="font-bold text-gray-700">2026년 이후</p>
+                    <p class="text-gray-700">미래 모빌리티(로봇, 주차 솔루션) 신사업 가시적 성과 창출. 지주사 디스카운트 해소 및 '글로벌 모빌리티 투자사' 도약.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>본 자료는 투자 참고용이며, 제시된 전망치는 실제와 다를 수 있습니다. 투자 판단에 대한 최종 책임은 투자자 본인에게 있습니다.</p>
+            <p class="mt-2 text-xs">Generated based on HL Holdings financial analysis & market consensus.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Label Wrapping Logic
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 16;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: 'rgba(30, 58, 138, 0.9)', // HL Blue bg
+                    padding: 12,
+                    cornerRadius: 8
+                }
+            }
+        };
+        
+        // Palette adapted for HL Holdings
+        const palette = {
+            navy: '#1e3a8a',    // HL Main
+            sky: '#0ea5e9',     // HL Growth/Tech
+            amber: '#d97706',   // Dividend/Money
+            gray: '#94a3b8'     // Neutral
+        };
+
+        // 1. Financials Chart (Mixed)
+        const financialsBarLineCtx = document.getElementById('financialsBarLineChart').getContext('2d');
+        new Chart(financialsBarLineCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2022', '2023', '2024(E)', '2025(F)'],
+                datasets: [
+                    {
+                        label: '연결 매출액 (천억 원)',
+                        data: [12.8, 13.9, 14.5, 15.8], // Scaled down for readability (Unit: 100 Billion KRW approx)
+                        backgroundColor: palette.navy,
+                        borderRadius: 4,
+                        yAxisID: 'y',
+                    },
+                    {
+                        label: '영업이익률 (%)',
+                        data: [3.2, 3.5, 4.1, 4.5],
+                        backgroundColor: palette.amber,
+                        type: 'line',
+                        yAxisID: 'y1',
+                        borderColor: palette.amber,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: palette.amber,
+                        pointRadius: 5,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: { mode: 'index', intersect: false, ...commonTooltipOptions.plugins.tooltip },
+                    legend: { position: 'top' }
+                },
+                scales: {
+                   x: { grid: { display: false } },
+                   y: {
+                        position: 'left',
+                        beginAtZero: true,
+                        title: { display: true, text: '매출액 (천억 원)'},
+                        grid: { borderDash: [2, 2] }
+                    },
+                    y1: {
+                        position: 'right',
+                        title: { display: true, text: '이익률 (%)'},
+                        grid: { display: false },
+                        suggestedMax: 6
+                    }
+                }
+            }
+        });
+        
+        // 2. HL Mando Sales Chart (Bar)
+        const subsidiarySalesBarCtx = document.getElementById('subsidiarySalesBarChart').getContext('2d');
+        new Chart(subsidiarySalesBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2022', '2023', '2024(E)', '2025(F)'],
+                datasets: [{
+                    label: 'HL만도 매출 (조 원)',
+                    data: [7.5, 8.4, 9.2, 10.5], // HL Mando revenue estimates
+                    backgroundColor: [
+                        'rgba(14, 165, 233, 0.4)',
+                        'rgba(14, 165, 233, 0.6)',
+                        'rgba(14, 165, 233, 0.8)',
+                        'rgba(14, 165, 233, 1.0)',
+                    ],
+                    borderColor: palette.sky,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltipOptions.plugins.tooltip
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 5,
+                        title: { display: true, text: '매출액 (조 원)'}
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+
+        // 3. Investment Charm Radar Chart
+        const investmentRadarCtx = document.getElementById('investmentRadarChart').getContext('2d');
+        new Chart(investmentRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['저평가 매력(PBR)', '배당 수익률', '자회사 성장성', '재무 안정성', '신사업 모멘텀']),
+                datasets: [{
+                    label: 'HL홀딩스',
+                    data: [95, 90, 85, 80, 70], 
+                    backgroundColor: 'rgba(30, 58, 138, 0.2)', // HL Navy transparent
+                    borderColor: palette.navy,
+                    borderWidth: 2,
+                    pointBackgroundColor: palette.navy
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    tooltip: commonTooltipOptions.plugins.tooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { display: true, color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        pointLabels: { 
+                            font: { size: 11, family: "'Noto Sans KR', sans-serif", weight: '600' },
+                            color: '#475569'
+                        },
+                        ticks: {
+                            display: false,
+                            stepSize: 20
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
