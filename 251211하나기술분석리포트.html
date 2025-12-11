@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하나기술 2025년 결산 및 전망 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f1f5f9; /* Slate 100 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* Hana Technology Identity Colors (Blue/Green/Teal) */
+        .ht-blue { color: #0056b3; }
+        .ht-green { color: #10b981; }
+        .ht-teal { color: #0d9488; }
+        .ht-dark { color: #1e293b; }
+        
+        .border-ht-blue { border-color: #0056b3; }
+        .border-ht-green { border-color: #10b981; }
+        .border-ht-teal { border-color: #0d9488; }
+        
+        .bg-ht-blue-light { background-color: #eff6ff; }
+        .bg-ht-green-light { background-color: #ecfdf5; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">하나기술 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">'실적 턴어라운드' 성공, 2026년 신사업(UTG·폐배터리) 본격화</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 11일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Turnaround -->
+            <div class="card text-center border-t-4 border-ht-green">
+                <h3 class="text-lg font-bold ht-green mb-2">3Q 흑자전환 성공</h3>
+                <p class="kpi-value ht-dark">43억 원</p>
+                <p class="text-gray-500 text-sm">2025년 3분기 영업이익<br>(2년 3개월 만의 쾌거)</p>
+            </div>
+            <!-- KPI 2: Order Backlog -->
+            <div class="card text-center border-t-4 border-ht-blue">
+                <h3 class="text-lg font-bold ht-blue mb-2">수주 잔고 안정화</h3>
+                <p class="kpi-value ht-dark">2,500억+</p>
+                <p class="text-gray-500 text-sm">해외 Turn-Key 프로젝트 중심<br>(유럽/북미 비중 확대)</p>
+            </div>
+            <!-- KPI 3: New Business -->
+            <div class="card text-center border-t-4 border-ht-teal">
+                <h3 class="text-lg font-bold ht-teal mb-2">미래 성장 동력</h3>
+                <p class="kpi-value ht-dark">UTG & 폐배터리</p>
+                <p class="text-gray-500 text-sm">열면취 기술 상용화<br>리튬 추출 설비 본격화</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "신뢰 회복의 원년"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2024년 전기차 캐즘(Chasm)과 고객사 투자 지연으로 겪었던 실적 부진을 딛고, <strong>2025년 하반기 완벽한 턴어라운드</strong>에 성공했습니다. 
+                 특히 3분기 연결 기준 매출 525억 원, 영업이익 43억 원을 기록하며 수익성 개선을 입증했습니다. 
+                 단순 장비 납품을 넘어선 <strong>'Turn-Key 솔루션'</strong> 역량이 해외 프로젝트 수주로 이어지며 체질 개선이 완료되었습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">📉</div>
+                     <h4 class="font-bold text-slate-700">2024년: 보릿고개</h4>
+                     <p class="text-sm text-gray-500 mt-1">투자 지연 및 적자 지속<br>구조조정 & 비용 절감</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-ht-green-light border border-green-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">📈</div>
+                     <h4 class="font-bold ht-green">2025년: 흑자 전환</h4>
+                     <p class="text-sm text-gray-600 mt-1">해외 매출 본격화<br>3Q 영업이익률 8.2% 달성</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-ht-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🚀</div>
+                     <h4 class="font-bold ht-blue">2026년: 퀀텀 점프</h4>
+                     <p class="text-sm text-gray-600 mt-1">UTG/폐배터리 매출 가세<br>전고체 장비 수주 기대</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ht-blue mr-2 rounded"></span>
+                    연간 실적 추이 및 전망 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년은 3분기 누적 및 4분기 추정치 합산, 2026년은 증권사 컨센서스 평균</p>
+            </div>
+             <!-- Business Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ht-teal mr-2 rounded"></span>
+                    2026년 사업 부문별 매출 비중 전망
+                </h2>
+                <div class="chart-container">
+                    <canvas id="businessMixChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 신사업(UTG, 폐배터리) 비중 확대가 밸류에이션 리레이팅의 핵심</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     증권가(그로쓰리서치, 유진투자증권 등)는 2025년 턴어라운드를 기점으로 
+                     <strong>기술력</strong>과 <strong>신사업 모멘텀</strong>에 높은 점수를 부여하고 있습니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2026년 전망)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-ht-blue">
+                        <h3 class="font-bold ht-blue text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>배터리 전 공정(Turn-Key) 대응 능력</li>
+                            <li>세계 최초 UTG 열면취 기술 보유</li>
+                            <li>유럽/북미 등 다양한 고객 포트폴리오</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>과거 공시 번복으로 인한 신뢰도 이슈</li>
+                            <li>높은 부채비율 및 금융비용 부담</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-teal-50 border-l-4 border-ht-teal">
+                        <h3 class="font-bold ht-teal text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-teal-800 mt-2 text-xs leading-relaxed">
+                            <li class="font-bold">전고체 배터리(WIP) 장비 수주 가시화</li>
+                            <li>폐배터리 리사이클링 시장 개화</li>
+                            <li>디스플레이/반도체 유리 기판 시장 진출</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-400">
+                        <h3 class="font-bold text-red-600 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-xs leading-relaxed">
+                            <li>글로벌 전기차 수요 둔화(Chasm) 장기화</li>
+                            <li>중국 장비 업체들의 저가 공세</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">증권사 리포트 종합 및 2026년 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 코멘트 (2025.11~12 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>유진투자증권:</strong> "해외 수주 비중 확대로 수익성 개선 뚜렷. 전고체/UTG 장비가 2026년 밸류에이션 리레이팅을 이끌 것."</li>
+                        <li><strong>그로쓰리서치:</strong> "숫자로 증명된 턴어라운드. 구조조정 효과와 매출 증가가 맞물려 영업 레버리지 효과 극대화."</li>
+                        <li><strong>디일렉(보도):</strong> "3분기 흑자전환은 본업 체질 개선의 신호탄. UTG 및 유리기판 TGV 기술 개발로 확장성 확보."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ht-green w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 영업이익 흑자 달성 유력. 수주 잔고 2,500억 원 상회.<br>
+                            <span class="text-ht-green font-medium">유럽향 대형 프로젝트 검수 완료로 매출 인식 집중.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ht-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>UTG(초박막유리) 열면취 장비</strong> 양산 공급 개시 예상.<br>
+                            전고체 배터리 파일럿 라인용 WIP(온간정수압) 장비 추가 수주 기대.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ht-teal w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기 ~ 2027년</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            폐배터리 재활용 설비(Pack/Module 방전 및 파쇄) 글로벌 진출.<br>
+                            매출 3,000억 원 돌파 및 영업이익률 10%대 안착 목표.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on Hana Technology 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12; // Adjusted for better fit
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(E)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [1250, 1352, 2100, 3200], // 2025 recovered, 2026 growth
+                        backgroundColor: '#0056b3', // HT Blue
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [-150, -50, 120, 350], // 2024 Deficit -> 2025 Turnaround -> 2026 Growth
+                        type: 'line',
+                        borderColor: '#10b981', // HT Green
+                        backgroundColor: '#10b981',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#10b981',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익' },
+                        suggestedMin: -200,
+                        suggestedMax: 400
+                    }
+                }
+            }
+        });
+
+        // --- 3. Business Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('businessMixChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['이차전지 조립/화성 (Main)', 'Pack/검사 장비', '신사업 (UTG/폐배터리/기타)'],
+                datasets: [{
+                    data: [65, 20, 15], // 2026 Forecast: New Biz growing to 15%
+                    backgroundColor: [
+                        '#0056b3', // Main Blue
+                        '#64748b', // Slate
+                        '#10b981'  // Green (New Growth)
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술 경쟁력', '매출 성장성', '수익성 개선', '재무 안정성', '신사업 모멘텀']),
+                datasets: [{
+                    label: '하나기술 평가',
+                    data: [90, 85, 80, 60, 95], // High Tech/Momentum, Recovering Profit, Low Stability(Debt)
+                    backgroundColor: 'rgba(13, 148, 136, 0.2)', // Teal transparent
+                    borderColor: '#0d9488',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#0d9488'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
