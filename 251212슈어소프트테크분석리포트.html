@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슈어소프트테크 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f1f5f9; /* Slate 100 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* SureSoft Tech Brand Colors (Navy/Blue/Green) */
+        .ss-navy { color: #002b5c; }
+        .ss-blue { color: #0072ce; }
+        .ss-green { color: #28a745; }
+        .ss-dark { color: #1e293b; }
+        
+        .border-ss-navy { border-color: #002b5c; }
+        .border-ss-blue { border-color: #0072ce; }
+        .border-ss-green { border-color: #28a745; }
+        
+        .bg-ss-blue-light { background-color: #e6f0fa; }
+        .bg-ss-green-light { background-color: #e8f5e9; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">슈어소프트테크 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">'SDV 전환'의 핵심 파트너, 원전·방산으로 영역 확장</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 12일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Profit Growth -->
+            <div class="card text-center border-t-4 border-ss-blue">
+                <h3 class="text-lg font-bold ss-blue mb-2">3Q 누적 영업이익 급증</h3>
+                <p class="kpi-value ss-dark">+395%</p>
+                <p class="text-gray-500 text-sm">전년 동기 대비<br>(수익성 대폭 개선)</p>
+            </div>
+            <!-- KPI 2: Core Partner -->
+            <div class="card text-center border-t-4 border-ss-navy">
+                <h3 class="text-lg font-bold ss-navy mb-2">핵심 파트너십</h3>
+                <p class="kpi-value ss-dark">현대차그룹</p>
+                <p class="text-gray-500 text-sm">SDV 전환 가속화 수혜<br>(지분 투자 관계)</p>
+            </div>
+            <!-- KPI 3: New Sectors -->
+            <div class="card text-center border-t-4 border-ss-green">
+                <h3 class="text-lg font-bold ss-green mb-2">신규 수주 확대</h3>
+                <p class="kpi-value ss-dark">원전 & 방산</p>
+                <p class="text-gray-500 text-sm">SMR 및 K-방산 수출 연계<br>비자동차 비중 증가</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "SDV와 AI 검증의 퀀텀 점프"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 슈어소프트테크는 2025년, 현대차그룹의 <strong>SDV(Software Defined Vehicle)</strong> 전환이 본격화됨에 따라 차량용 SW 검증 매출이 구조적으로 성장했습니다. 
+                 또한, 정부의 원전 생태계 복원 정책과 K-방산 수출 호조에 힘입어 <strong>미션 크리티컬(Mission Critical)</strong> 분야에서의 수주가 급증하며 포트폴리오 다변화에 성공했습니다.
+                 특히 3분기 누적 영업이익이 전년 대비 약 4배(395%) 증가하며 본격적인 이익 회수기에 진입했습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">🚗</div>
+                     <h4 class="font-bold text-slate-700">Automotive (SDV)</h4>
+                     <p class="text-sm text-gray-500 mt-1">현대차 차세대 플랫폼<br>제어기 검증 독점적 지위</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">+</div>
+                 <div class="flow-step text-center bg-ss-green-light border border-green-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">⚛️🛡️</div>
+                     <h4 class="font-bold ss-green">Energy & Defense</h4>
+                     <p class="text-sm text-gray-600 mt-1">SMR 원전 제어 시스템<br>무기체계 SW 국산화</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-ss-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🤖</div>
+                     <h4 class="font-bold ss-blue">AI Automation</h4>
+                     <p class="text-sm text-gray-600 mt-1">AI 기반 검증 자동화<br>운영 효율성 극대화</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ss-navy mr-2 rounded"></span>
+                    연간 실적 추이 및 전망 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년은 3분기 누적 실적 기반 연간 추정치, 2026년은 증권사 컨센서스</p>
+            </div>
+             <!-- Business Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ss-blue mr-2 rounded"></span>
+                    2025년 산업별 매출 비중
+                </h2>
+                <div class="chart-container">
+                    <canvas id="businessMixChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 자동차 비중이 여전히 높으나, 원전/국방 비중이 20%대로 확대됨</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     증권가(리서치알음, 주달 등)는 <strong>기술 독점력</strong>과 <strong>SDV 시장 성장성</strong>에 높은 점수를 부여하며, 
+                     최근 주가 회복세에도 불구하고 여전히 상승 여력이 충분하다고 평가합니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-ss-navy">
+                        <h3 class="font-bold ss-navy text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>국내 유일 SW 검증 자동화 원천 기술</li>
+                            <li>현대차그룹(2대 주주)과의 강력한 파트너십</li>
+                            <li>자동차, 원전, 국방 등 고신뢰 산업 레퍼런스</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>현대차그룹에 대한 높은 매출 의존도</li>
+                            <li>인건비 등 고정비 부담 (R&D 인력 중심)</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-green-50 border-l-4 border-ss-green">
+                        <h3 class="font-bold ss-green text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-green-800 mt-2 text-xs leading-relaxed">
+                            <li class="font-bold">SDV 전환 가속화에 따른 검증 수요 폭증</li>
+                            <li>K-원전(체코 등) 및 방산 수출 확대</li>
+                            <li>AI 안전성 검증 등 신규 시장 개화</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-400">
+                        <h3 class="font-bold text-red-600 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-xs leading-relaxed">
+                            <li>전방 산업(전기차)의 일시적 수요 둔화(Chasm)</li>
+                            <li>오픈소스 기반 검증 도구와의 경쟁 가능성</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 전망 및 증권사 코멘트</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 코멘트 (2025.11~12 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>리서치알음:</strong> "현대차 SDV 전환의 최대 수혜주. 테슬라 로보택시 이슈와 맞물려 자율주행 검증 수요 지속 증가 전망."</li>
+                        <li><strong>주달 (AI 분석):</strong> "주가는 바닥을 다지고 회복세 진입. 영업이익 흑자 기조 안착으로 밸류에이션 매력 부각."</li>
+                        <li><strong>신한투자증권:</strong> "원전/방산 부문의 수주 가시화가 멀티플 확장의 트리거. 단순 車 부품주가 아닌 SW 플랫폼 기업으로 봐야."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ss-navy w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 800억 원대 달성 유력. 영업이익률 두 자릿수 회복.<br>
+                            <span class="ss-blue font-medium">현대차 차세대 인포테인먼트/제어기 검증 솔루션 공급 확대.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ss-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            SMR(소형모듈원자로) 제어 계측 시스템 검증 수주 본격화.<br>
+                            AI 기반 SW 테스팅 자동화 솔루션(Chat-bot 형태 등) 고도화.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ss-green w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기 ~ 2027년</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            매출 1,000억 원 클럽 가입 목표.<br>
+                            해외(미국/유럽) 완성차 및 전장 업체로 고객사 다변화 성과 가시화.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 2025년 12월 기준 공개된 실적 공시와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on SureSoft Tech 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [630, 680, 850, 1050], // Steady growth
+                        backgroundColor: '#002b5c', // Navy
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [70, 50, 110, 160], // Dip in 2024, Recovery in 2025
+                        type: 'line',
+                        borderColor: '#0072ce', // Blue
+                        backgroundColor: '#0072ce',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#0072ce',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: 0
+                    }
+                }
+            }
+        });
+
+        // --- 3. Business Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('businessMixChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['자동차 (SDV/전장)', '국방/원자력 (미션크리티컬)', '기타 (금융/통신 등)'],
+                datasets: [{
+                    data: [75, 20, 5], // Auto is still dominant, but Defense/Nuclear growing
+                    backgroundColor: [
+                        '#002b5c', // Navy
+                        '#28a745', // Green
+                        '#94a3b8'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술 독점력', '매출 성장성', '수익성', '재무 안정성', '고객 다변화']),
+                datasets: [{
+                    label: '슈어소프트테크 평가',
+                    data: [95, 90, 85, 90, 75], // High Tech/Growth, Improving Profit/Diversification
+                    backgroundColor: 'rgba(0, 114, 206, 0.2)', // Blue transparent
+                    borderColor: '#0072ce',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#002b5c'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
