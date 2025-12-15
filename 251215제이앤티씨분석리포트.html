@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이앤티씨 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* JNTC Brand Colors (Blue/Cyan/Dark) */
+        .jn-blue { color: #0056b3; } /* Corporate Blue */
+        .jn-cyan { color: #00bcd4; } /* Glass Tech */
+        .jn-dark { color: #1e293b; }
+        .jn-purple { color: #8b5cf6; } /* Future/Semiconductor */
+        
+        .border-jn-blue { border-color: #0056b3; }
+        .border-jn-cyan { border-color: #00bcd4; }
+        .border-jn-purple { border-color: #8b5cf6; }
+        
+        .bg-jn-blue-light { background-color: #eff6ff; }
+        .bg-jn-purple-light { background-color: #f3e8ff; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">제이앤티씨 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">화웨이 폴더블폰 흥행과 유리기판(TGV) 신성장 동력 확보</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 16일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Profit Growth -->
+            <div class="card text-center border-t-4 border-jn-blue">
+                <h3 class="text-lg font-bold jn-blue mb-2">영업이익 급증</h3>
+                <p class="kpi-value jn-dark">1,023억 원</p>
+                <p class="text-gray-500 text-sm">2025년 연간 추정치<br>(전년 대비 턴어라운드 본격화)</p>
+            </div>
+            <!-- KPI 2: Key Customer -->
+            <div class="card text-center border-t-4 border-jn-cyan">
+                <h3 class="text-lg font-bold jn-cyan mb-2">핵심 파트너</h3>
+                <p class="kpi-value jn-dark">화웨이(Huawei)</p>
+                <p class="text-gray-500 text-sm">트리플 폴드폰 등<br>신제품 커버글라스 독점 공급</p>
+            </div>
+            <!-- KPI 3: Future Engine -->
+            <div class="card text-center border-t-4 border-jn-purple">
+                <h3 class="text-lg font-bold jn-purple mb-2">게임 체인저</h3>
+                <p class="kpi-value jn-dark">TGV 유리기판</p>
+                <p class="text-gray-500 text-sm">반도체 패키징용 기판<br>2025년 시제품 및 양산 준비</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "모바일 부활과 반도체 진입"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2025년 제이앤티씨는 주요 고객사인 <strong>화웨이의 스마트폰 부활(Mate 70, Mate XT 등)</strong>에 힘입어 모바일 커버글라스 매출이 폭발적으로 성장했습니다. 
+                 또한, 미래 먹거리인 <strong>반도체 패키징용 유리기판(TGV)</strong> 기술 개발을 완료하고 베트남 4공장 양산 체제를 구축하며 포트폴리오를 다변화했습니다. 
+                 3분기 일시적인 재고 조정이 있었으나, 4분기 신제품 출시 효과로 실적 V자 반등에 성공했습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">📱</div>
+                     <h4 class="font-bold text-slate-700">모바일 (Cash Cow)</h4>
+                     <p class="text-sm text-gray-500 mt-1">3D 커버글라스 독보적 입지<br>화웨이향 매출 비중 50%+</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-jn-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🚗</div>
+                     <h4 class="font-bold jn-blue">전장 (Expansion)</h4>
+                     <p class="text-sm text-gray-600 mt-1">대형 차량용 디스플레이<br>곡면 유리 수주 확대</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-jn-purple-light border border-purple-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">💎</div>
+                     <h4 class="font-bold jn-purple">유리기판 (New Tech)</h4>
+                     <p class="text-sm text-gray-600 mt-1">TGV(유리 관통 전극) 기술<br>AI 반도체 시장 진입</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-jn-blue mr-2 rounded"></span>
+                    연간 매출 및 영업이익 추이 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년은 화웨이 효과로 매출 5,000억 원 근접 예상</p>
+            </div>
+             <!-- Business Portfolio Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-jn-purple mr-2 rounded"></span>
+                    2026년 예상 매출 비중 (포트폴리오 변화)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 유리기판(Glass Core) 매출 본격화로 모바일 의존도 완화</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     유진투자증권 등은 <strong>화웨이 내 점유율</strong>과 <strong>유리기판 선점 효과</strong>를 높게 평가하며, 
+                     PER 11배 수준의 현재 주가를 저평가 구간으로 분석하고 있습니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-jn-blue">
+                        <h3 class="font-bold jn-blue text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>독보적인 3D 커버글라스 가공 기술</li>
+                            <li>화웨이와의 끈끈한 파트너십 (전략적 협력)</li>
+                            <li>베트남 공장의 높은 생산 효율성 및 수율</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>특정 고객사(화웨이)에 대한 높은 매출 의존도</li>
+                            <li>중국 내수 경기 변동에 따른 실적 민감도</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-purple-50 border-l-4 border-jn-purple">
+                        <h3 class="font-bold jn-purple text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-purple-800 mt-2 text-xs leading-relaxed">
+                            <li>AI 반도체용 유리기판(TGV) 시장 개화</li>
+                            <li>전기차 디스플레이 대형화 및 곡면화 트렌드</li>
+                            <li>폴더블/롤러블 등 폼팩터 다양화 수혜</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-gray-200 border-l-4 border-gray-500">
+                        <h3 class="font-bold text-gray-700 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 text-xs leading-relaxed">
+                            <li>미-중 무역 분쟁 심화 가능성</li>
+                            <li>중국 로컬 유리 가공 업체들의 기술 추격</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">증권사 리포트 종합 및 2026년 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 코멘트 (2025.11~12 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>유진투자증권 (2025.11.21):</strong> "4분기 신제품 출시로 실적 성장세 전환. 2025년 영업이익 1,023억 원 전망. 목표주가 26,000원 상향."</li>
+                        <li><strong>디일렉/ZDNet (보도):</strong> "TGV 유리기판 양산 준비 완료. 반도체 패키징 시장 진입이 밸류에이션 확장의 트리거."</li>
+                        <li><strong>NH투자증권:</strong> "화웨이 Mate 시리즈 흥행 지속으로 모바일 사업부문의 캐시카우 역할 공고화."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-jn-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 5,000억 원 육박, 영업이익 1,000억 원 돌파 유력.<br>
+                            <span class="jn-cyan font-medium">화웨이 Mate 70 및 폴더블폰향 공급 확대.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-jn-purple w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>베트남 유리기판 전용 공장 본격 가동.</strong><br>
+                            글로벌 반도체 패키징 업체향 시제품 공급 및 퀄 테스트 완료.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-jn-dark w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기 ~ 2027년</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            유리기판 매출 1,000억 원 이상 기여 목표.<br>
+                            매출 7,000억 원 및 영업이익 1,500억 원 도전.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on JNTC 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(E)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [3230, 3050, 5000, 6800], // Dip in 2024, Surge in 2025/26
+                        backgroundColor: '#0056b3', // Blue
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [285, 5, 1023, 1580], // Huge Turnaround
+                        type: 'line',
+                        borderColor: '#00bcd4', // Cyan
+                        backgroundColor: '#00bcd4',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#00bcd4',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: 0,
+                        suggestedMax: 2000
+                    }
+                }
+            }
+        });
+
+        // --- 3. Business Portfolio Chart (Doughnut) ---
+        const ctxMix = document.getElementById('portfolioChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['강화유리 (모바일)', '전장용 유리', '유리기판 (신사업)', '기타'],
+                datasets: [{
+                    data: [65, 20, 10, 5], // Mobile dominant, Glass Substrate emerging
+                    backgroundColor: [
+                        '#0056b3', // Blue
+                        '#00bcd4', // Cyan
+                        '#8b5cf6', // Purple
+                        '#94a3b8'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술력 (3D유리)', '성장 잠재력(TGV)', '수익성 개선', '고객 의존도 리스크', '전장 사업 확장']),
+                datasets: [{
+                    label: '제이앤티씨 평가',
+                    data: [95, 90, 85, 60, 80], // High Tech/Growth, Risk on client dependency
+                    backgroundColor: 'rgba(0, 188, 212, 0.2)', // Cyan transparent
+                    borderColor: '#00bcd4',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#0056b3'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
