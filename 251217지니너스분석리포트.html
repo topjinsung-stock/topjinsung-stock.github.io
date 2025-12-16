@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지니너스 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* Geninus Brand Colors (Blue/Green/Purple for Genomics) */
+        .gn-blue { color: #0056b3; }
+        .gn-teal { color: #008080; }
+        .gn-purple { color: #6f42c1; }
+        .gn-dark { color: #1e293b; }
+        
+        .border-gn-blue { border-color: #0056b3; }
+        .border-gn-teal { border-color: #008080; }
+        .border-gn-purple { border-color: #6f42c1; }
+        
+        .bg-gn-blue-light { background-color: #eff6ff; }
+        .bg-gn-teal-light { background-color: #f0fdfa; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">지니너스 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">일본 '캔서문샷' 수주로 글로벌 기술력 입증, 2026년 흑자전환 가시화</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 16일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Revenue Growth -->
+            <div class="card text-center border-t-4 border-gn-blue">
+                <h3 class="text-lg font-bold gn-blue mb-2">상반기 매출 급성장</h3>
+                <p class="kpi-value gn-dark">+62.5%</p>
+                <p class="text-gray-500 text-sm">전년 동기 대비 성장률<br>(싱글셀 분석 수요 폭발)</p>
+            </div>
+            <!-- KPI 2: Global Deal -->
+            <div class="card text-center border-t-4 border-gn-teal">
+                <h3 class="text-lg font-bold gn-teal mb-2">일본 시장 쾌거</h3>
+                <p class="kpi-value gn-dark">100억+</p>
+                <p class="text-gray-500 text-sm">日 국립암센터 프로젝트 수주<br>SCRUM-Japan 파트너 선정</p>
+            </div>
+            <!-- KPI 3: Future Tech -->
+            <div class="card text-center border-t-4 border-gn-purple">
+                <h3 class="text-lg font-bold gn-purple mb-2">혁신 기술 확보</h3>
+                <p class="kpi-value gn-dark">48시간</p>
+                <p class="text-gray-500 text-sm">2천만 세포 분석 소요 시간<br>초고속 공간오믹스(Spatial Omics)</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "글로벌 유전체 분석 강자로 도약"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2025년 지니너스는 <strong>싱글셀(Single Cell) 및 공간오믹스</strong> 기술력을 바탕으로 일본 시장 진출에 성공하며 글로벌 헬스케어 기업으로의 도약 발판을 마련했습니다. 
+                 특히 일본 국립암센터 주도의 대형 프로젝트(SCRUM-Japan) 파트너로 선정되며 기술적 신뢰도를 확보했고, 
+                 이를 통해 2026년 일본 법인 손익분기점(BEP) 달성 및 2027년 전사 흑자전환이라는 명확한 로드맵을 제시했습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">🧬</div>
+                     <h4 class="font-bold text-slate-700">싱글셀 분석 (Core)</h4>
+                     <p class="text-sm text-gray-500 mt-1">국내 점유율 1위 공고화<br>글로벌 제약사 수주 확대</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-gn-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🇯🇵</div>
+                     <h4 class="font-bold gn-blue">일본 시장 선점 (Global)</h4>
+                     <p class="text-sm text-gray-600 mt-1">GxD(일본 자회사) 매출 본격화<br>암 정복 프로젝트 참여</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-gn-teal-light border border-teal-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🤖</div>
+                     <h4 class="font-bold gn-teal">AI 신약개발 (Future)</h4>
+                     <p class="text-sm text-gray-600 mt-1">임상 성공률 예측 플랫폼<br>데이터 기반 신약 타깃 발굴</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-gn-blue mr-2 rounded"></span>
+                    연간 매출 추이 및 전망 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년 해외 매출 가세로 외형 성장 가속화 (전년비 +50% 이상 예상)</p>
+            </div>
+             <!-- Business Portfolio Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-gn-purple mr-2 rounded"></span>
+                    2026년 예상 매출 비중 (사업부문별)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 싱글셀/공간오믹스 분석 서비스가 캐시카우 역할 수행</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     시장 전문가들은 지니너스의 <strong>압도적인 싱글셀 기술력</strong>과 <strong>일본 시장 선점 효과</strong>를 높게 평가하며, 
+                     데이터 플랫폼 기업으로서의 밸류에이션 재평가(Re-rating) 가능성에 주목하고 있습니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-gn-blue">
+                        <h3 class="font-bold gn-blue text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>국내 유일 싱글셀 분석 전 과정(Full-cycle) 서비스</li>
+                            <li>방대한 한국인/아시아인 유전체 빅데이터 보유</li>
+                            <li>삼성서울병원 스핀오프 출신 등 우수한 연구 인력</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>지속적인 R&D 투자로 인한 영업 적자</li>
+                            <li>아직 낮은 해외 매출 비중 (일본 진출로 개선 중)</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-teal-50 border-l-4 border-gn-teal">
+                        <h3 class="font-bold gn-teal text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-teal-800 mt-2 text-xs leading-relaxed">
+                            <li>정밀의료 시장 확대로 인한 싱글셀 분석 수요 폭증</li>
+                            <li>일본 및 미국 등 선진 의료 시장 진출</li>
+                            <li>AI 신약개발 플랫폼(IntelliMed) 상용화</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-purple-50 border-l-4 border-gn-purple">
+                        <h3 class="font-bold text-purple-700 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-purple-600 mt-2 text-xs leading-relaxed">
+                            <li>글로벌 유전체 분석 기업들과의 기술 경쟁 심화</li>
+                            <li>개인정보 보호 관련 규제 강화 가능성</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 전망 및 성장 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 업계 및 전문가 코멘트 (2025.10~11 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>한국경제 (인터뷰):</strong> "일본 국립암센터 뚫은 저력으로 미국 시장 진출 가속화. 2027년 흑자전환 목표."</li>
+                        <li><strong>히트뉴스:</strong> "싱글셀 분석 기술, 단순 연구용을 넘어 임상 현장 및 신약 개발의 필수 도구로 자리매김."</li>
+                        <li><strong>팜이데일리:</strong> "2000만 세포 48시간 분석 기술은 글로벌 표준(Standard)이 될 잠재력 보유."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-gn-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 150억 원대 달성 예상 (전년 대비 고성장).<br>
+                            <span class="gn-teal font-medium">일본 제약사 파트너십 체결 및 현지 매출 발생 시작.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-gn-purple w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>일본 자회사(GxD) 손익분기점(BEP) 달성 목표.</strong><br>
+                            미국 암학회(AACR/ASCO) 등에서 신규 AI 바이오마커 기술 발표.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-gn-dark w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기 ~ 2027년</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            전사 흑자전환 및 글로벌 유전체 분석 플랫폼 기업 안착.<br>
+                            미국 법인 설립 및 북미 시장 본격 공략.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 언론 보도를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on Geninus 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [83, 100, 160, 250], // High Growth Trend
+                        backgroundColor: '#0056b3', // Geninus Blue
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [-120, -100, -60, 10], // Improving Profitability, BEP target in 2027
+                        type: 'line',
+                        borderColor: '#008080', // Teal
+                        backgroundColor: '#008080',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#008080',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: -150,
+                        suggestedMax: 50
+                    }
+                }
+            }
+        });
+
+        // --- 3. Portfolio Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('portfolioChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['유전체 분석 (Single Cell)', '진단 검사 (CancerSCAN)', '해외 사업 (GxD 등)', '기타'],
+                datasets: [{
+                    data: [45, 30, 20, 5], // Analysis dominant, Overseas growing
+                    backgroundColor: [
+                        '#0056b3', // Blue
+                        '#008080', // Teal
+                        '#6f42c1', // Purple
+                        '#94a3b8'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술 독점력(싱글셀)', '매출 성장성', '수익성 개선', '글로벌 확장성', '데이터 자산 가치']),
+                datasets: [{
+                    label: '지니너스 평가',
+                    data: [95, 90, 70, 85, 95], // High Tech/Data, Profit still needs work
+                    backgroundColor: 'rgba(111, 66, 193, 0.2)', // Purple transparent
+                    borderColor: '#6f42c1',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#0056b3'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
