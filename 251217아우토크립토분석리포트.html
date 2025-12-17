@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아우토크립트 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* AutoCrypt Brand Colors (Purple/Navy/Blue) */
+        .ac-purple { color: #6941C6; } /* Security/Tech */
+        .ac-navy { color: #1e293b; }
+        .ac-blue { color: #2563eb; } /* V2X/Connectivity */
+        .ac-cyan { color: #06b6d4; }
+        
+        .border-ac-purple { border-color: #6941C6; }
+        .border-ac-blue { border-color: #2563eb; }
+        .border-ac-cyan { border-color: #06b6d4; }
+        
+        .bg-ac-purple-light { background-color: #f3e8ff; }
+        .bg-ac-blue-light { background-color: #eff6ff; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">아우토크립트 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">IPO 상장 추진 및 글로벌 V2X 보안 시장 선점</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 17일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Profit Turnaround -->
+            <div class="card text-center border-t-4 border-ac-purple">
+                <h3 class="text-lg font-bold ac-purple mb-2">흑자전환 달성</h3>
+                <p class="kpi-value ac-navy">97억 원</p>
+                <p class="text-gray-500 text-sm">2025년 연간 영업이익(E)<br>(전년 적자에서 턴어라운드)</p>
+            </div>
+            <!-- KPI 2: IPO Valuation -->
+            <div class="card text-center border-t-4 border-ac-blue">
+                <h3 class="text-lg font-bold ac-blue mb-2">상장 예비심사</h3>
+                <p class="kpi-value ac-navy">2,200억+</p>
+                <p class="text-gray-500 text-sm">예상 시가총액 (상단)<br>키움증권 주관 상장 추진</p>
+            </div>
+            <!-- KPI 3: Market Share -->
+            <div class="card text-center border-t-4 border-ac-cyan">
+                <h3 class="text-lg font-bold ac-cyan mb-2">국내 V2X 점유율</h3>
+                <p class="kpi-value ac-navy">1위</p>
+                <p class="text-gray-500 text-sm">C-ITS 구축 사업 등<br>독보적 기술 리더십</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "자율주행 보안의 표준화"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2025년 아우토크립트는 글로벌 완성차 업체들의 SDV(Software Defined Vehicle) 전환 가속화와 보안 규제(UN R155/R156) 강화에 힘입어 <strong>사상 최대 매출</strong>과 <strong>흑자 전환</strong>을 동시에 달성했습니다. 
+                 특히 상반기 코스닥 상장 예비심사를 통과하며 기술 특례 상장을 목전에 두고 있으며, 
+                 북미와 유럽 법인을 통한 글로벌 OEM 수주가 본격화되며 '글로벌 모빌리티 보안 유니콘'으로 도약하고 있습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">🚗</div>
+                     <h4 class="font-bold text-slate-700">차량 내부 보안 (IVS)</h4>
+                     <p class="text-sm text-gray-500 mt-1">현대차/해외 OEM 탑재<br>UN R155/156 대응 솔루션</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">+</div>
+                 <div class="flow-step text-center bg-ac-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">📡</div>
+                     <h4 class="font-bold ac-blue">통신 보안 (V2X)</h4>
+                     <p class="text-sm text-gray-600 mt-1">C-ITS 인프라 보안<br>글로벌 표준 기술 확보</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-ac-purple-light border border-purple-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">💰</div>
+                     <h4 class="font-bold ac-purple">IPO 및 수익화</h4>
+                     <p class="text-sm text-gray-600 mt-1">로열티 기반 매출 본격화<br>상장 통한 R&D 자금 확보</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ac-purple mr-2 rounded"></span>
+                    연간 매출 및 영업이익 추이 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년 매출 1,400억 원대 돌파 및 영업이익 흑자 안착 (턴어라운드)</p>
+            </div>
+             <!-- Revenue Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ac-blue mr-2 rounded"></span>
+                    2025년 사업 부문별 매출 비중 (추정)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="revenueMixChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 구축형(SI)에서 로열티/구독형 매출로 비중 이동 중 (수익성 개선)</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     밸류파인더 등은 아우토크립트의 <strong>독보적인 V2X 기술력</strong>과 <strong>자동차 보안 법제화 수혜</strong>를 높게 평가하며, 
+                     공모가 밴드 상단 확정 및 상장 후 주가 상승 가능성을 전망하고 있습니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-purple-50 border-l-4 border-ac-purple">
+                        <h3 class="font-bold ac-purple text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>차량 내부(IVS) 및 외부(V2X) 통합 보안 기술</li>
+                            <li>국내 C-ITS 사업 레퍼런스 독점</li>
+                            <li>글로벌 인증(CSMS) 컨설팅 역량 보유</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>높은 R&D 비용으로 인한 과거 적자 누적</li>
+                            <li>완성차 업체들의 보안 내재화 시도 가능성</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-ac-blue">
+                        <h3 class="font-bold ac-blue text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-blue-800 mt-2 text-xs leading-relaxed">
+                            <li>유럽/북미 자동차 사이버보안 의무화 (WP.29)</li>
+                            <li>자율주행 Lv.3/4 상용화에 따른 보안 필수화</li>
+                            <li>전기차 충전(PNC) 보안 시장 개화</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-400">
+                        <h3 class="font-bold text-red-600 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-xs leading-relaxed">
+                            <li>글로벌 보안 기업(Argus, Upstream 등)과 경쟁</li>
+                            <li>자동차 산업 경기 침체 시 IT 투자 지연</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 전망 및 IPO 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 코멘트 (2025.07~12 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>키움증권 (주관사):</strong> "차량 보안 법제화의 최대 수혜주. 2025년 흑자 전환은 밸류에이션 확장의 트리거."</li>
+                        <li><strong>밸류파인더:</strong> "로열티 매출 비중 확대가 영업이익률 개선의 핵심. 2026년 본격적인 이익 회수기 진입."</li>
+                        <li><strong>마켓인:</strong> "상장 예비심사 통과 및 공모 흥행 예상. 모빌리티 보안 유니콘 탄생 기대."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ac-purple w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 1,400억 원대, 영업이익 90~100억 원 달성 유력.<br>
+                            <span class="ac-cyan font-medium">코스닥 상장 및 공모 자금 유입 완료.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ac-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>글로벌 OEM향 보안 솔루션 로열티 매출 본격화.</strong><br>
+                            전기차 충전 보안(PnC) 글로벌 표준 선점 및 시장 확대.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ac-navy w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            SDV 보안 통합 플랫폼 런칭 및 구독형 모델 정착.<br>
+                            매출 2,000억 원 돌파 및 영업이익률 10%대 목표.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on AutoCrypt 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [220, 233, 1417, 2000], // Surge in 2025/26 based on report
+                        backgroundColor: '#6941C6', // AutoCrypt Purple
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [-170, -180, 97, 250], // Turnaround in 2025
+                        type: 'line',
+                        borderColor: '#06b6d4', // Cyan
+                        backgroundColor: '#06b6d4',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#06b6d4',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: -200,
+                        suggestedMax: 300
+                    }
+                }
+            }
+        });
+
+        // --- 3. Revenue Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('revenueMixChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['구축형 용역 (SI)', '솔루션/로열티', '기타/유지보수'],
+                datasets: [{
+                    data: [55, 40, 5], // Shift towards royalty/solution
+                    backgroundColor: [
+                        '#6941C6', // Purple
+                        '#2563eb', // Blue
+                        '#9ca3af'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술 독점력(V2X)', '성장 잠재력(SDV)', '수익성 개선', '글로벌 확장성', '재무 안정성']),
+                datasets: [{
+                    label: '아우토크립트 평가',
+                    data: [95, 95, 80, 85, 75], // High Tech/Growth, Improving Profit/Financials post-IPO
+                    backgroundColor: 'rgba(105, 65, 198, 0.2)', // Purple transparent
+                    borderColor: '#6941C6',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#1e293b'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

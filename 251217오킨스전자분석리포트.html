@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오킨스전자 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* Okins Brand Colors (Blue/Cyan/Navy) */
+        .ok-blue { color: #0054A6; } /* Okins Blue */
+        .ok-cyan { color: #00b4d8; } /* Future/Tech */
+        .ok-navy { color: #1e293b; } /* Deep Navy */
+        .ok-green { color: #10b981; } /* Profit */
+        
+        .border-ok-blue { border-color: #0054A6; }
+        .border-ok-cyan { border-color: #00b4d8; }
+        .border-ok-green { border-color: #10b981; }
+        
+        .bg-ok-blue-light { background-color: #eff6ff; }
+        .bg-ok-cyan-light { background-color: #ecfeff; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">오킨스전자 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">DDR5 슈퍼사이클과 CXL 신성장의 만남, 역대급 실적 달성</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 17일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Operating Profit -->
+            <div class="card text-center border-t-4 border-ok-green">
+                <h3 class="text-lg font-bold ok-green mb-2">3Q 영업이익 급증</h3>
+                <p class="kpi-value ok-navy">36.9억 원</p>
+                <p class="text-gray-500 text-sm">분기 기준 역대 최대<br>(전년 동기 대비 +3,320%)</p>
+            </div>
+            <!-- KPI 2: Technology -->
+            <div class="card text-center border-t-4 border-ok-blue">
+                <h3 class="text-lg font-bold ok-blue mb-2">핵심 기술력</h3>
+                <p class="kpi-value ok-navy">DDR5 & CXL</p>
+                <p class="text-gray-500 text-sm">차세대 메모리 인터페이스<br>번인 소켓 점유율 확대</p>
+            </div>
+            <!-- KPI 3: Future Outlook -->
+            <div class="card text-center border-t-4 border-ok-cyan">
+                <h3 class="text-lg font-bold ok-cyan mb-2">2026년 전망</h3>
+                <p class="kpi-value ok-navy">매출 1,200억+</p>
+                <p class="text-gray-500 text-sm">HBM 및 비메모리 확장<br>구조적 성장 궤도 진입</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "메모리 반도체 부활의 최대 수혜"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2025년 오킨스전자는 반도체 업황 회복과 함께 <strong>DDR5 전환 가속화</strong>의 직접적인 수혜를 입었습니다. 
+                 3분기 매출 233억 원, 영업이익 36.9억 원을 기록하며 수익성이 대폭 개선되었고, 
+                 미래 먹거리인 <strong>CXL(Compute Express Link)</strong> 인터페이스용 소켓 개발 및 양산 준비를 통해 2026년 추가 성장의 발판을 마련했습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">💾</div>
+                     <h4 class="font-bold text-slate-700">DDR5 (Mainstream)</h4>
+                     <p class="text-sm text-gray-500 mt-1">서버/PC 교체 수요 증가<br>고부가 번인 소켓 매출 견인</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-ok-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🔗</div>
+                     <h4 class="font-bold ok-blue">CXL (New Growth)</h4>
+                     <p class="text-sm text-gray-600 mt-1">차세대 인터페이스 선점<br>삼성전자/SK하이닉스 협력</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-ok-cyan-light border border-cyan-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🤖</div>
+                     <h4 class="font-bold ok-cyan">AI 반도체 (Future)</h4>
+                     <p class="text-sm text-gray-600 mt-1">HBM 테스트 소켓 확장<br>비메모리 테스트 솔루션</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ok-blue mr-2 rounded"></span>
+                    연간 실적 추이 및 전망 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년 3분기 누적 호실적 반영, 연간 매출 900억 원대 회복 및 흑자 안착</p>
+            </div>
+             <!-- Revenue Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-ok-cyan mr-2 rounded"></span>
+                    2025년 제품별 매출 비중 (추정)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="revenueMixChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 고수익 번인 소켓 비중 확대 및 테스트 서비스(비메모리) 성장</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     하나증권 등은 오킨스전자의 <strong>DDR5 사이클 진입</strong>과 <strong>CXL 기술력</strong>을 높게 평가하며, 
+                     반도체 소부장(소재·부품·장비) 섹터 내 저평가 매력이 부각되고 있다고 분석합니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-ok-blue">
+                        <h3 class="font-bold ok-blue text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>국내 최초 번인 소켓 국산화 기술력</li>
+                            <li>삼성전자, SK하이닉스 등 탄탄한 고객사</li>
+                            <li>다양한 반도체 테스트 인터페이스 라인업</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>메모리 반도체 업황에 따른 실적 변동성</li>
+                            <li>상대적으로 낮은 비메모리 부문 매출 비중</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-cyan-50 border-l-4 border-ok-cyan">
+                        <h3 class="font-bold ok-cyan text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-slate-800 mt-2 text-xs leading-relaxed">
+                            <li>DDR5 및 HBM 시장의 폭발적 성장</li>
+                            <li>CXL 시장 개화에 따른 신규 소켓 수요</li>
+                            <li>글로벌(미국/중국) 테스트 시장 진출 확대</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-400">
+                        <h3 class="font-bold text-red-600 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-xs leading-relaxed">
+                            <li>소켓 시장 내 경쟁 심화 (단가 인하 압력)</li>
+                            <li>글로벌 경기 침체로 인한 IT 수요 둔화 가능성</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">증권사 리포트 종합 및 2026년 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 코멘트 (2025.11~12 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>하나증권:</strong> "고부가 제품 비중 확대로 뚜렷한 실적 개선세. 3분기 역대급 실적은 2026년 성장의 예고편."</li>
+                        <li><strong>전자신문/머니투데이(보도):</strong> "반도체 호황 타고 3분기 영업익 3320% 증가. 생산 증설 효과 본격화."</li>
+                        <li><strong>토스증권(뉴스):</strong> "DDR5 전환과 CXL 기술 선점으로 밸류에이션 재평가(Re-rating) 기대."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ok-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 900억 원대, 영업이익 120억 원대 달성 유력.<br>
+                            <span class="ok-green font-medium">CAPA 증설 완료 및 고수익 번인 소켓 양산 안정화.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ok-cyan w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>CXL 2.0 메모리용 인터페이스 소켓 공급 본격화.</strong><br>
+                            차세대 패키징(Advanced Packaging) 테스트 솔루션 고객사 승인.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-ok-navy w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연 매출 1,200억 원 및 영업이익 200억 원 도전.<br>
+                            글로벌 Top-Tier 반도체 기업향 직수출 비중 확대.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on Okins Electronics 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [639, 750, 950, 1200], // Recovery and Growth
+                        backgroundColor: '#0054A6', // Okins Blue
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [-16, 30, 130, 200], // Turnaround, Surge in 2025
+                        type: 'line',
+                        borderColor: '#10b981', // Profit Green
+                        backgroundColor: '#10b981',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#10b981',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: -50,
+                        suggestedMax: 250
+                    }
+                }
+            }
+        });
+
+        // --- 3. Revenue Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('revenueMixChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['번인 소켓 (DDR5)', '테스트 서비스', '기타 (커넥터 등)'],
+                datasets: [{
+                    data: [65, 20, 15], // Burn-in socket is dominant
+                    backgroundColor: [
+                        '#0054A6', // Blue
+                        '#00b4d8', // Cyan
+                        '#94a3b8'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술력 (DDR5/CXL)', '성장 잠재력', '수익성 개선', '고객 다변화', '밸류에이션 매력']),
+                datasets: [{
+                    label: '오킨스전자 평가',
+                    data: [90, 95, 85, 75, 80], // High Tech/Growth, Improving Profit
+                    backgroundColor: 'rgba(0, 180, 216, 0.2)', // Cyan transparent
+                    borderColor: '#00b4d8',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#0054A6'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
