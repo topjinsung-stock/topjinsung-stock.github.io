@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디어유 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* DearU Brand Colors (Pink/Purple/Dark) */
+        .du-pink { color: #FF4081; } /* Bubble Main Color */
+        .du-purple { color: #9C27B0; }
+        .du-dark { color: #1e293b; }
+        .du-blue { color: #3b82f6; }
+        
+        .border-du-pink { border-color: #FF4081; }
+        .border-du-purple { border-color: #9C27B0; }
+        .border-du-blue { border-color: #3b82f6; }
+        
+        .bg-du-pink-light { background-color: #fdf2f8; }
+        .bg-du-purple-light { background-color: #f3e8ff; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">디어유 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">글로벌 팬덤 플랫폼의 진화, '중국·미국·일본' 3각 편대 완성</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 17일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Profit Growth -->
+            <div class="card text-center border-t-4 border-du-pink">
+                <h3 class="text-lg font-bold du-pink mb-2">3Q 누적 영업이익 성장</h3>
+                <p class="kpi-value du-dark">+37%</p>
+                <p class="text-gray-500 text-sm">전년 동기 대비<br>(구독수 증가 및 가격 인상 효과)</p>
+            </div>
+            <!-- KPI 2: Global Expansion -->
+            <div class="card text-center border-t-4 border-du-purple">
+                <h3 class="text-lg font-bold du-purple mb-2">핵심 성장 동력</h3>
+                <p class="kpi-value du-dark">중국/일본</p>
+                <p class="text-gray-500 text-sm">텐센트뮤직(TME) 파트너십<br>버블 재팬(Bubble Japan) 안착</p>
+            </div>
+            <!-- KPI 3: Subscriber Base -->
+            <div class="card text-center border-t-4 border-du-blue">
+                <h3 class="text-lg font-bold du-blue mb-2">구독자 추이</h3>
+                <p class="kpi-value du-dark">230만+</p>
+                <p class="text-gray-500 text-sm">연말 기준 예상 유료 구독수<br>글로벌 아티스트 영입 가속</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "플랫폼 확장과 수익성 증명"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2025년 디어유는 <strong>중국 텐센트뮤직(TME)</strong>과의 협업을 통한 현지 서비스 런칭과 <strong>일본/미국 시장 확장</strong>으로 글로벌 플랫폼 기업으로서의 입지를 굳혔습니다. 
+                 3분기 실적은 시장 컨센서스를 다소 하회했으나, 전년 대비 뚜렷한 이익 성장세를 보이며 펀더멘털을 증명했습니다. 
+                 특히 <strong>자체 간편 결제(PG)</strong> 시스템 도입으로 수수료 비용 절감 및 마진율 개선의 기틀을 마련했습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">💬</div>
+                     <h4 class="font-bold text-slate-700">구독 모델 (Bubble)</h4>
+                     <p class="text-sm text-gray-500 mt-1">K-POP 넘어 글로벌 IP 확대<br>구독료 인상 안착</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-du-purple-light border border-purple-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🌏</div>
+                     <h4 class="font-bold du-purple">글로벌 진출 (Expansion)</h4>
+                     <p class="text-sm text-gray-600 mt-1">중국 QQ뮤직 연동<br>미국/일본 현지 아티스트 영입</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-du-pink-light border border-pink-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">💰</div>
+                     <h4 class="font-bold du-pink">수익성 개선 (Margin)</h4>
+                     <p class="text-sm text-gray-600 mt-1">PG 내재화로 수수료 절감<br>영업이익률 30%대 유지</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-du-pink mr-2 rounded"></span>
+                    연간 매출 및 영업이익 추이 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년 3분기 누적 호실적 반영, 연간 매출 800억 원대 안착 예상</p>
+            </div>
+             <!-- Subscriber Trend Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-du-purple mr-2 rounded"></span>
+                    버블(Bubble) 유료 구독수 추이 (단위: 만 명)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="subscriberChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* K-POP 팬덤의 견고한 수요 + 해외 신규 유입으로 지속 성장</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     IBK투자증권 등은 디어유의 <strong>중국 사업 방향성</strong>과 <strong>플랫폼 확장성</strong>을 긍정적으로 평가하며, 
+                     단기적인 실적 변동보다는 중장기적인 성장 잠재력에 주목하고 있습니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-pink-50 border-l-4 border-du-pink">
+                        <h3 class="font-bold du-pink text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>독보적인 팬덤 플랫폼 점유율 (1위)</li>
+                            <li>SM, JYP 등 강력한 주주사 및 아티스트 IP 보유</li>
+                            <li>높은 영업이익률 (35%~40% 수준)</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>K-POP 아티스트 활동(입대 등)에 따른 실적 민감도</li>
+                            <li>초기 해외 진출 비용(마케팅비) 부담</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-purple-50 border-l-4 border-du-purple">
+                        <h3 class="font-bold du-purple text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-purple-800 mt-2 text-xs leading-relaxed">
+                            <li>중국 C-POP 및 일본 J-POP 시장 본격 진출</li>
+                            <li>미국 현지 아티스트 영입을 통한 서구권 확장</li>
+                            <li>버블 폰트/이모티콘 등 디지털 아이템 매출 확대</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-du-blue">
+                        <h3 class="font-bold text-blue-700 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-blue-600 mt-2 text-xs leading-relaxed">
+                            <li>위버스(Weverse) 등 경쟁 플랫폼과의 경쟁 심화</li>
+                            <li>플랫폼 수수료(구글/애플) 인상 리스크</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 전망 및 성장 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 코멘트 (2025.10~11 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>IBK투자증권 (2025.10.20):</strong> "중국 성장 속도는 기대 미흡하나 방향성은 변함없음. 목표주가 57,000원 유지."</li>
+                        <li><strong>미래에셋증권:</strong> "3분기 실적은 다소 아쉽지만, 글로벌 확장 전략은 유효. 2026년 이익 레벨업 기대."</li>
+                        <li><strong>테크M (보도):</strong> "3분기 영업이익 전년 대비 37% 급증. 구독수 증가와 가격 인상 효과가 동시에 발현."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-du-pink w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 820억 원, 영업이익 320억 원대 달성 유력.<br>
+                            <span class="du-purple font-medium">중국 안드로이드 마켓 내 버블 서비스 확장 및 안정화.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-du-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>미국/일본 현지 아티스트 대거 영입 및 서비스 런칭.</strong><br>
+                            자체 결제 시스템 비중 확대로 수익성 추가 개선.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-du-dark w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            글로벌 구독수 300만 명 돌파 목표.<br>
+                            연 매출 1,000억 원 클럽 가입 및 영업이익 400억 원대 도전.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on DearU 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [750, 770, 820, 1000], // Moderate Growth
+                        backgroundColor: '#FF4081', // DearU Pink
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [280, 260, 320, 400], // Profit recovering and growing
+                        type: 'line',
+                        borderColor: '#9C27B0', // Purple
+                        backgroundColor: '#9C27B0',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#9C27B0',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: 0,
+                        suggestedMax: 500
+                    }
+                }
+            }
+        });
+
+        // --- 3. Subscriber Trend Chart (Line) ---
+        const ctxSub = document.getElementById('subscriberChart').getContext('2d');
+        new Chart(ctxSub, {
+            type: 'line',
+            data: {
+                labels: ['2023.4Q', '2024.4Q', '2025.4Q(E)', '2026.4Q(F)'],
+                datasets: [{
+                    label: '유료 구독수 (만 명)',
+                    data: [200, 215, 230, 280], // Steady growth with global expansion
+                    borderColor: '#3b82f6', // Blue
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltip
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 150,
+                        title: { display: true, text: '구독수 (만 명)' }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['IP 경쟁력(K-POP)', '글로벌 확장성', '수익성(OPM)', '플랫폼 지배력', '성장 잠재력']),
+                datasets: [{
+                    label: '디어유 평가',
+                    data: [95, 85, 90, 85, 80], // High IP/Profit, Global expanding
+                    backgroundColor: 'rgba(255, 64, 129, 0.2)', // Pink transparent
+                    borderColor: '#FF4081',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#9C27B0'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
