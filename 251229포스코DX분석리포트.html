@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포스코DX 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* POSCO DX Brand Colors (Blue/Cyan/Dark Gray) */
+        .pdx-blue { color: #0054A6; } /* POSCO Blue */
+        .pdx-cyan { color: #00A3E0; } /* DX/Digital */
+        .pdx-dark { color: #1e293b; }
+        .pdx-gray { color: #475569; }
+        
+        .border-pdx-blue { border-color: #0054A6; }
+        .border-pdx-cyan { border-color: #00A3E0; }
+        .border-pdx-gray { border-color: #475569; }
+        
+        .bg-pdx-blue-light { background-color: #eef7ff; }
+        .bg-pdx-cyan-light { background-color: #e0faff; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">포스코DX 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">전방 산업 둔화 속 내실 다지기, 'AI·로봇'으로 2026년 도약 준비</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 29일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Order Intake -->
+            <div class="card text-center border-t-4 border-pdx-cyan">
+                <h3 class="text-lg font-bold pdx-cyan mb-2">공장자동화 수주 급증</h3>
+                <p class="kpi-value pdx-dark">+163%</p>
+                <p class="text-gray-500 text-sm">3분기 신규 수주액 증가율<br>(이차전지 투자 재개 효과)</p>
+            </div>
+            <!-- KPI 2: Profit Margin -->
+            <div class="card text-center border-t-4 border-pdx-blue">
+                <h3 class="text-lg font-bold pdx-blue mb-2">수익성 방어</h3>
+                <p class="kpi-value pdx-dark">9.3%</p>
+                <p class="text-gray-500 text-sm">3분기 영업이익률<br>(전년 동기 대비 +1.8%p 개선)</p>
+            </div>
+            <!-- KPI 3: Future Tech -->
+            <div class="card text-center border-t-4 border-pdx-gray">
+                <h3 class="text-lg font-bold pdx-gray mb-2">신성장 동력</h3>
+                <p class="kpi-value pdx-dark">Physical AI</p>
+                <p class="text-gray-500 text-sm">산업용 AI 및 로봇 융합<br>2026년 핵심 전략 사업</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "숨 고르기 후 재도약 모색"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2025년 포스코DX는 철강 및 이차전지 등 주요 전방 산업의 투자 위축으로 매출 외형은 다소 축소되었으나, 
+                 원가 절감과 공정 효율화를 통해 <strong>이익률을 개선</strong>하며 내실을 다졌습니다. 
+                 특히 하반기 들어 이차전지 공장 자동화 설비 교체 수요 등으로 <strong>수주가 급반등</strong>하며 2026년 실적 회복의 신호를 알렸습니다. 
+                 또한, 그룹 차원의 AI·로봇 융합 연구소 신설과 연계하여 <strong>'피지컬 AI(Physical AI)'</strong> 사업을 구체화했습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">🏭</div>
+                     <h4 class="font-bold text-slate-700">스마트 팩토리 (Base)</h4>
+                     <p class="text-sm text-gray-500 mt-1">포스코 제철소 고도화<br>이차전지 소재 공장 자동화</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-pdx-cyan-light border border-cyan-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🤖</div>
+                     <h4 class="font-bold pdx-cyan">산업용 로봇 (Growth)</h4>
+                     <p class="text-sm text-gray-600 mt-1">고위험 작업 무인화<br>이기종 로봇 통합 제어</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-pdx-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🧠</div>
+                     <h4 class="font-bold pdx-blue">AI 융합 (Future)</h4>
+                     <p class="text-sm text-gray-600 mt-1">피지컬 AI 기반 자율 제조<br>디지털 트윈 시뮬레이션</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-pdx-blue mr-2 rounded"></span>
+                    연간 매출 및 영업이익 추이 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년 매출은 숨 고르기, 영업이익률은 개선. 2026년 반등 예상.</p>
+            </div>
+             <!-- Business Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-pdx-cyan mr-2 rounded"></span>
+                    2025년 사업 부문별 매출 비중 (3분기 기준)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="businessMixChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* IT서비스와 EIC자동화가 양대 축, 물류 자동화 비중 확대 중</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     주달 등 시장 분석에 따르면 포스코DX는 <strong>그룹사 캡티브 마켓의 안정성</strong>과 <strong>로봇/AI 신사업 잠재력</strong>을 보유하고 있으며, 
+                     현재 주가는 장기 조정 후 반등을 모색하는 구간으로 평가됩니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-pdx-blue">
+                        <h3 class="font-bold pdx-blue text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>포스코 그룹의 확실한 캡티브(Captive) 물량</li>
+                            <li>철강/이차전지 공정에 특화된 IT/OT 융합 기술</li>
+                            <li>안정적인 재무 구조 및 높은 배당 성향 가능성</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>높은 내부거래 비중 (그룹사 의존도 심화)</li>
+                            <li>전방 산업(철강, 전기차) 경기 민감도 높음</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-cyan-50 border-l-4 border-pdx-cyan">
+                        <h3 class="font-bold pdx-cyan text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-slate-800 mt-2 text-xs leading-relaxed">
+                            <li>2026년 포스코 그룹 해외 투자(인도, 미국) 본격화</li>
+                            <li>스마트팩토리 고도화(인텔리전트 팩토리) 수요 증가</li>
+                            <li>산업용 로봇 및 물류 자동화 시장 확대</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-400">
+                        <h3 class="font-bold text-red-600 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-xs leading-relaxed">
+                            <li>글로벌 경기 침체 장기화에 따른 IT 투자 지연</li>
+                            <li>SI(시스템 통합) 업계 경쟁 심화 및 단가 압력</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 전망 및 성장 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 및 시장 코멘트 (2025.10~12 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>이데일리 (2025.10):</strong> "3분기 실적은 아쉽지만, 4분기 그룹 내 대형 IT 시스템 수주로 매출 회복 기대."</li>
+                        <li><strong>디일렉:</strong> "공장자동화 수주액 163% 급증은 턴어라운드의 강력한 시그널. 피지컬 AI 사업 구체화 긍정적."</li>
+                        <li><strong>주달 (AI 분석):</strong> "장기 조정 마무리 국면. PBR 밴드 하단으로 저평가 매력 부각. 2026년 실적 개선 시 주가 탄력 기대."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-pdx-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 약 1.4조 원 내외, 영업이익률 9%대 방어.<br>
+                            <span class="pdx-cyan font-medium">그룹사 DX 조직 개편 및 AI로봇융합연구소 설립 지원.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-pdx-gray w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>포스코 인터내셔널/퓨처엠 DX 프로젝트 본격 착수.</strong><br>
+                            피지컬 AI(크레인, 로봇 자동화) 상용화 실증 완료.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-pdx-cyan w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            해외(인도, 북미) 스마트팩토리 구축 매출 인식 확대.<br>
+                            매출 성장세 전환 및 로봇 자동화 사업 비중 확대.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on POSCO DX 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [14860, 15500, 14000, 15500], // 2025 dip, 2026 recovery
+                        backgroundColor: '#0054A6', // POSCO Blue
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [1100, 1200, 1250, 1400], // Profit stability
+                        type: 'line',
+                        borderColor: '#00A3E0', // Cyan
+                        backgroundColor: '#00A3E0',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#00A3E0',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: 0,
+                        suggestedMax: 1600
+                    }
+                }
+            }
+        });
+
+        // --- 3. Business Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('businessMixChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['IT서비스 (SI/SM)', 'EIC자동화 (Engineering)', '물류자동화'],
+                datasets: [{
+                    data: [60, 25, 15], // IT dominant
+                    backgroundColor: [
+                        '#0054A6', // Blue
+                        '#00A3E0', // Cyan
+                        '#475569'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['수익성(OPM)', '그룹 시너지', '신사업(로봇/AI)', '재무 안정성', '매출 성장성']),
+                datasets: [{
+                    label: '포스코DX 평가',
+                    data: [90, 95, 85, 90, 70], // High Profit/Synergy/Stability, Moderate Growth (Current dip)
+                    backgroundColor: 'rgba(0, 163, 224, 0.2)', // Cyan transparent
+                    borderColor: '#00A3E0',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#0054A6'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+
+
+[\[영상\] 포스코DX, 신사업 피지컬AI 어디까지 왔나](https://www.youtube.com/watch?v=1pMmU1q5u0U)
+
+*주의: 검색 결과에 포함된 유튜브 영상 링크는 텍스트 기반 정보이므로, 실제 유튜브에서 '포스코DX 피지컬AI' 등으로 검색하여 최신 영상을 확인하시는 것을 권장합니다. 위 링크는 예시입니다.*
