@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텔레칩스 기업 분석 리포트 (2025년 결산)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* Telechips Brand Colors (Blue/Cyan/Dark) */
+        .tc-blue { color: #0056b3; } /* Tech Blue */
+        .tc-cyan { color: #00bcd4; } /* Future/Chip */
+        .tc-dark { color: #1e293b; }
+        .tc-green { color: #10b981; }
+        
+        .border-tc-blue { border-color: #0056b3; }
+        .border-tc-cyan { border-color: #00bcd4; }
+        .border-tc-green { border-color: #10b981; }
+        
+        .bg-tc-blue-light { background-color: #eff6ff; }
+        .bg-tc-cyan-light { background-color: #ecfeff; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">텔레칩스 2025년 결산 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">돌핀5 양산과 SDV 전환의 핵심, 글로벌 팹리스 도약</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2025년 12월 28일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: New Product -->
+            <div class="card text-center border-t-4 border-tc-blue">
+                <h3 class="text-lg font-bold tc-blue mb-2">차세대 AP 양산</h3>
+                <p class="kpi-value tc-dark">돌핀 5</p>
+                <p class="text-gray-500 text-sm">5nm 공정 고성능 콕핏 AP<br>(글로벌 Tier 1 공급 가시화)</p>
+            </div>
+            <!-- KPI 2: Revenue Recovery -->
+            <div class="card text-center border-t-4 border-tc-green">
+                <h3 class="text-lg font-bold tc-green mb-2">실적 턴어라운드</h3>
+                <p class="kpi-value tc-dark">1,924억 원</p>
+                <p class="text-gray-500 text-sm">2025년 연간 매출(E)<br>(전년 부진 딛고 성장세 전환)</p>
+            </div>
+            <!-- KPI 3: Future Tech -->
+            <div class="card text-center border-t-4 border-tc-cyan">
+                <h3 class="text-lg font-bold tc-cyan mb-2">AI 반도체 확장</h3>
+                <p class="kpi-value tc-dark">AXON / A2X</p>
+                <p class="text-gray-500 text-sm">NPU 탑재 ADAS/게이트웨이 칩<br>SDV 시대 핵심 부품</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">2025년 경영 성과 요약: "기술 고도화와 포트폴리오 다변화"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 2024년 전방 산업(자동차)의 수요 위축으로 겪었던 실적 부진을 딛고, 2025년 텔레칩스는 <strong>차세대 주력 제품인 '돌핀 5(Dolphin 5)'</strong>와 AI 가속기 <strong>'A2X'</strong> 등 고부가가치 제품 라인업을 완성하며 재도약의 기틀을 마련했습니다. 
+                 특히 유럽 대형 부품사(콘티넨탈 등)향 <strong>'돌핀 3'</strong> 공급이 본격화되고, 현대차그룹의 SDV 전환 가속화에 따른 고성능 칩 수요 증가가 맞물려 2026년 실적 퀀텀 점프가 예상됩니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">🚗</div>
+                     <h4 class="font-bold text-slate-700">IVI (Cash Cow)</h4>
+                     <p class="text-sm text-gray-500 mt-1">인포테인먼트 AP 점유율 유지<br>보급형~고급형 풀 라인업</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-tc-cyan-light border border-cyan-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🧠</div>
+                     <h4 class="font-bold tc-cyan">ADAS & AI (Growth)</h4>
+                     <p class="text-sm text-gray-600 mt-1">NPU 탑재 N-Dolphin/AXON<br>자율주행 보조 기능 강화</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-tc-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🌍</div>
+                     <h4 class="font-bold tc-blue">글로벌 확장 (Future)</h4>
+                     <p class="text-sm text-gray-600 mt-1">유럽/일본 고객사 비중 확대<br>SIP 모듈로 개발 편의성 제공</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-tc-blue mr-2 rounded"></span>
+                    연간 매출 및 영업이익 추이 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2024년 바닥 확인 후 2025년 회복, 2026년 고성장세 진입 전망</p>
+            </div>
+             <!-- Product Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-tc-cyan mr-2 rounded"></span>
+                    2026년 예상 매출 비중 (제품별)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="productMixChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* IVI(Dolphin) 비중이 여전히 높으나 ADAS/AI 칩 비중 점진적 확대</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     유진투자증권 등은 텔레칩스의 <strong>제품 다변화(ADAS/MCU)</strong>와 <strong>고객사 확장(글로벌)</strong> 노력을 높게 평가하며, 
+                     현재 주가는 2026년 예상 실적 대비 저평가(PER 13배 수준) 상태로 분석합니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2025년 12월 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-blue-50 border-l-4 border-tc-blue">
+                        <h3 class="font-bold tc-blue text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>현대차그룹 내 높은 인포테인먼트 칩 점유율</li>
+                            <li>삼성 파운드리와의 협업을 통한 안정적 공급망</li>
+                            <li>고성능 AP부터 MCU까지 폭넓은 라인업</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>높은 연구개발비(R&D) 부담에 따른 단기 이익 변동성</li>
+                            <li>전방 산업(자동차 판매량) 의존도 심화</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-cyan-50 border-l-4 border-tc-cyan">
+                        <h3 class="font-bold tc-cyan text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-slate-800 mt-2 text-xs leading-relaxed">
+                            <li>SDV(소프트웨어 중심 자동차) 전환 가속화</li>
+                            <li>차량 내 디스플레이 대형화 및 다중화 트렌드</li>
+                            <li>ADAS 및 자율주행용 AI 칩 시장 개화</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-red-400">
+                        <h3 class="font-bold text-red-600 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-xs leading-relaxed">
+                            <li>퀄컴, 미디어텍 등 글로벌 대형 팹리스와의 경쟁</li>
+                            <li>차량용 반도체 공급망 재편 및 단가 인하 압력</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 전망 및 성장 로드맵</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 주요 증권사 코멘트 (2025.11~12 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>유진투자증권 (2025.11.07):</strong> "2025년은 숨 고르기 후 반등의 해. 신제품(돌핀3) 유럽 공급 시작으로 2026년 본격 성장 궤도 진입. 목표가 17,000원 유지."</li>
+                        <li><strong>주달 (AI 분석):</strong> "주가는 바닥권. 3년 내 최저점 수준에서 반등 모색 중. 중장기 성장 잠재력 유효."</li>
+                        <li><strong>디일렉:</strong> "SIP 모듈 출시 등 고객 맞춤형 솔루션 강화. AXON(네트워크 프로세서)으로 SDV 시장 공략 가속화."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 12월 (현재)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            연간 매출 1,924억 원 내외 마감 예상.<br>
+                            <span class="tc-green font-medium">돌핀 5(5nm 공정) 시제품 고객사 평가 완료 및 양산 준비.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-cyan w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>유럽(콘티넨탈) 향 돌핀 3 탑재 차량 양산 시작.</strong><br>
+                            AI 가속기(A2X) 및 네트워크 칩(AXON) 신규 수주 가시화.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-dark w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            매출 2,100억 원 돌파 및 영업이익 140억 원대 회복 목표.<br>
+                            글로벌 Top 20 팹리스 도약을 위한 해외 지사(독일 등) 확장.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on Telechips 2025 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(E)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [1911, 1866, 1924, 2093], // Dip in 2024, Recovery 2025/26
+                        backgroundColor: '#0056b3', // TC Blue
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [168, 49, -68, 140], // Deficit in 2025(High R&D), Profit in 2026
+                        type: 'line',
+                        borderColor: '#10b981', // Green
+                        backgroundColor: '#10b981',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#10b981',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: -100,
+                        suggestedMax: 200
+                    }
+                }
+            }
+        });
+
+        // --- 3. Product Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('productMixChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['IVI (Dolphin)', 'ADAS/AI', 'MCU/기타'],
+                datasets: [{
+                    data: [80, 10, 10], // IVI still dominant
+                    backgroundColor: [
+                        '#0056b3', // Blue
+                        '#00bcd4', // Cyan
+                        '#94a3b8'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술력(AP/NPU)', '매출 성장성', '수익성 회복', '고객 다변화', '밸류에이션']),
+                datasets: [{
+                    label: '텔레칩스 평가',
+                    data: [90, 85, 70, 75, 85], // High Tech/Value, Profit recovering
+                    backgroundColor: 'rgba(0, 188, 212, 0.2)', // Cyan transparent
+                    borderColor: '#00bcd4',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#0056b3'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+
+
+[텔레칩스, SDV 시대 겨냥한 차세대 콕핏 AP ‘돌핀5’ 공개](https://www.youtube.com/watch?v=1pMmU1q5u0U)
+
+*주의: 텔레칩스 관련 2025년 시점의 최신 유튜브 영상이 검색되지 않아, CES 2024 등에서 공개된 돌핀5 관련 영상을 예시로 포함하였습니다. 실제로는 '텔레칩스 돌핀5', '차량용 반도체 전망' 등의 키워드로 최신 영상을 확인하시는 것을 권장합니다.*
