@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알투자증 - 2026 자율주행(ADAS) 밸류체인 심층 분석</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f0f2f5; color: #333; }
+        /* Blue/Cyan tone for Future Mobility/Tech */
+        .gradient-header { background: linear-gradient(135deg, #1e3a8a 0%, #0891b2 100%); }
+        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: transform 0.2s; }
+        .card-shadow:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .tag-badge { background-color: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+        
+        @media print {
+            body { background-color: white; }
+            .no-print { display: none; }
+            .card-shadow { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+            .gradient-header { background: white; color: black; border-bottom: 2px solid #000; }
+            h1 { color: black !important; }
+            p { color: black !important; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="gradient-header text-white py-12 px-4 mb-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-block bg-cyan-500 text-xs font-bold px-2 py-1 rounded mb-2 text-white">VIP 회원 전용</div>
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">자율주행 & ADAS <span class="text-cyan-300">밸류체인</span></h1>
+            <p class="text-blue-100 text-lg md:text-xl font-light">ADAS 고도화(L2+)부터 완전자율주행(L4)까지의 로드맵</p>
+            <div class="mt-6 flex justify-center items-center space-x-4 text-sm opacity-80">
+                <span><i class="far fa-calendar-alt mr-1"></i> 2026.01.07</span>
+                <span>|</span>
+                <span><i class="fas fa-car mr-1"></i> 알투자증 모빌리티팀</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 pb-16">
+
+        <!-- Intro Box -->
+        <div class="bg-white rounded-lg p-6 mb-10 border-l-4 border-cyan-600 shadow-sm">
+            <h3 class="text-lg font-bold text-gray-800 mb-2"><i class="fas fa-info-circle text-cyan-600 mr-2"></i>투자 포인트 요약</h3>
+            <p class="text-gray-600 leading-relaxed">
+                자율주행 산업은 꿈(L4/L5)보다는 <strong>당장 매출이 발생하는 현실(L2/L2+ ADAS)</strong>에 주목해야 합니다. 
+                차량이 '소프트웨어 중심(SDV)'으로 진화함에 따라 <strong>① 통합 제어 솔루션</strong>, <strong>② 고사양 센서(카메라/라이다)</strong>, 
+                그리고 <strong>③ 차량용 반도체/SW 및 보안</strong> 영역에서 실질적인 수혜가 예상됩니다.
+            </p>
+        </div>
+
+        <!-- Section 1: 완성차 & Tier-1 (Control Tower) -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 mr-3">
+                    <i class="fas fa-steering-wheel text-lg"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">1. 완성차 & 통합 제어 <span class="text-sm font-normal text-gray-500 ml-2">(Control Tower)</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">현대모비스</h3></div>
+                        <span class="tag-badge">Tier-1 대장</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 센서+제어 통합 솔루션</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 레이더/카메라 등 센서와 제어기를 결합해 '기능'을 구현하는 핵심 역량 보유. 전동화와 자율주행의 교집합.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">HL만도</h3></div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 섀시(제동/조향) 기반 ADAS 통합</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> '잘 달리고 잘 서는' 핵심 구동 부품 위에 자율주행 제어 기술을 얹어 확장성 우수.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">현대차 / 기아</h3></div>
+                        <span class="tag-badge">Platform</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 양산/적용의 종착지</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 자율주행 기능이 트림/옵션/구독으로 '채택'되어야 밸류체인 전체 매출이 발생. SDV 전략의 주체.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 센서 & 장비 (The Eyes) -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 mr-3">
+                    <i class="fas fa-eye text-lg"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">2. 센서(카메라/라이다) & 장비 <span class="text-sm font-normal text-gray-500 ml-2">(The Eyes)</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">LG이노텍</h3></div>
+                        <span class="tag-badge">Camera</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 고성능 카메라 모듈</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 모바일에서의 광학 역량을 전장(ADAS/DMS)으로 확장. 글로벌 Top-tier 고객사 확보.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">세코닉스</h3></div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 전장용 렌즈/모듈</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> ADAS 확산의 정공법 수혜주. 전장용 카메라 렌즈/모듈 매출 비중이 높음.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">퓨런티어</h3></div>
+                        <span class="tag-badge">Equipment</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> ADAS 카메라 조립/검사 장비</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 카메라 화소 수 증가(8M급) 및 센싱 정밀도 요구 상승에 따른 공정 장비 CAPEX 수혜.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">에스오에스랩</h3></div>
+                        <span class="tag-badge">LiDAR</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 고정형 라이다(Solid-state)</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> L3 이상 자율주행의 핵심 센서. 탑재율 상승 및 규제 완화 시 존재감 확대.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">옵트론텍</h3></div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 광학 필터/렌즈</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 자율주행용 카메라 모듈 및 전장 광학 부품 라인업 보유.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">캠시스</h3></div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 카메라 모듈/생체인식</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> AVM(어라운드뷰) 등 ADAS 응용 카메라 모듈 공급.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: 반도체 & V2X & Security (The Brain) -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 mr-3">
+                    <i class="fas fa-microchip text-lg"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">3. 반도체 & V2X/보안 <span class="text-sm font-normal text-gray-500 ml-2">(The Brain & Security)</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">텔레칩스</h3></div>
+                        <span class="tag-badge">Fabless</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 차량용 SoC (IVI/ADAS)</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 인포테인먼트(IVI) 강자에서 ADAS/NPU 칩으로 포트폴리오 확장 중.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">라닉스</h3></div>
+                        <span class="tag-badge">V2X</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> V2X 통신 모뎀/보안</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 차량과 사물 간 통신(V2X) 표준이 정립되고 인프라가 깔릴 때 필수적인 칩/스택 보유.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">아우토크립트</h3></div>
+                        <span class="tag-badge bg-purple-100 text-purple-800">Security</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> V2X/차량 내부 보안 솔루션</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> SDV 시대, 해킹 방지를 위한 '자동차 보안' 필수재 (IPO 기대주).</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">모트렉스</h3></div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> IVI/커넥티드카 플랫폼</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> V2X 기반 군집주행 과제 참여 및 PBV(목적기반차량) 자율주행 엔터테인먼트.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: 지도 & SW (The Map) -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-700 mr-3">
+                    <i class="fas fa-map-marked-alt text-lg"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">4. 정밀지도 & SW/검증 <span class="text-sm font-normal text-gray-500 ml-2">(The Map & V&V)</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">현대오토에버</h3></div>
+                        <span class="tag-badge">Software</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 정밀지도(HD Map) / OTA</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 자율주행의 '바닥'인 지도를 공급하고, 차량 기능을 무선으로 업데이트(OTA)하는 SDV의 중추.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">슈어소프트테크</h3></div>
+                        <span class="tag-badge bg-green-100 text-green-800">SW V&V</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> SW 검증/테스팅 솔루션</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 자율주행/SDV로 코드량이 폭증하며 'SW 안전성 검증' 수요 확대.</p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div><h3 class="text-xl font-bold text-gray-900">팅크웨어</h3></div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-700"><strong>포지션:</strong> 지도 데이터 / ADAS 디바이스</p>
+                        <p class="text-gray-600"><strong>🚀 핵심:</strong> 아이나비 지도 데이터를 기반으로 한 자율주행용 HD맵 및 전장 사업 강화.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Table -->
+        <section class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 mb-8">
+            <div class="bg-gray-800 text-white p-4">
+                <h3 class="font-bold text-lg"><i class="fas fa-list-ul mr-2"></i>한 줄 투자 포인트 요약 (Quick View)</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left">
+                    <thead class="bg-gray-100 text-gray-700 font-bold border-b">
+                        <tr>
+                            <th class="px-6 py-3">섹터</th>
+                            <th class="px-6 py-3">종목명</th>
+                            <th class="px-6 py-3">핵심 포인트 (One-Liner)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-cyan-50 transition"><td class="px-6 py-3 font-semibold text-gray-600">Tier-1</td><td class="px-6 py-3 font-bold text-blue-900">현대모비스</td><td class="px-6 py-3">전동화와 자율주행 통합 제어의 핵심</td></tr>
+                        <tr class="hover:bg-cyan-50 transition"><td class="px-6 py-3 font-semibold text-gray-600">Tier-1</td><td class="px-6 py-3 font-bold text-blue-900">HL만도</td><td class="px-6 py-3">ADAS와 섀시(제동/조향)의 결합</td></tr>
+                        <tr class="hover:bg-cyan-50 transition"><td class="px-6 py-3 font-semibold text-gray-600">카메라</td><td class="px-6 py-3 font-bold text-blue-900">LG이노텍</td><td class="px-6 py-3">글로벌 최고 수준의 광학/센싱 모듈</td></tr>
+                        <tr class="hover:bg-cyan-50 transition"><td class="px-6 py-3 font-semibold text-gray-600">장비</td><td class="px-6 py-3 font-bold text-blue-900">퓨런티어</td><td class="px-6 py-3">전장 카메라 고화소/정밀화 수혜 (공정장비)</td></tr>
+                        <tr class="hover:bg-cyan-50 transition"><td class="px-6 py-3 font-semibold text-gray-600">SW검증</td><td class="px-6 py-3 font-bold text-blue-900">슈어소프트테크</td><td class="px-6 py-3">SDV 확산에 따른 SW 안전성 검증 필수화</td></tr>
+                        <tr class="hover:bg-cyan-50 transition"><td class="px-6 py-3 font-semibold text-gray-600">보안</td><td class="px-6 py-3 font-bold text-blue-900">아우토크립트</td><td class="px-6 py-3">V2X 및 차량 해킹 방지 솔루션 (IPO 기대)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer / Disclaimer -->
+        <footer class="bg-gray-100 rounded-lg p-6 text-xs text-gray-500 text-center leading-relaxed border-t border-gray-200">
+            <p class="font-bold mb-2">[알투자증 리스크 관리 원칙]</p>
+            <p class="mb-4">자율주행 섹터는 기술 규제 및 인프라 투자 속도에 따라 주가 변동성이 큽니다. 장기적 관점의 분할 매수를 권장합니다.</p>
+            <p>※ 본 자료는 정보 제공을 목적으로 작성되었으며, 투자의 법적 책임 소재에 대한 증빙자료로 사용될 수 없습니다. 투자 판단의 최종 책임은 투자자 본인에게 있습니다.</p>
+        </footer>
+    </main>
+</body>
+</html>
