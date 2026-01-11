@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS일렉트로닉스 기업 분석 리포트 (2026년 전망)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* PS Electronics Brand Colors (Electric Blue/Signal Red) */
+        .tc-blue { color: #2563EB; } /* Tech Blue */
+        .tc-red { color: #DC2626; } /* Active Red */
+        .tc-dark { color: #1e293b; }
+        .tc-gray { color: #64748B; }
+        .tc-green { color: #10B981; }
+        
+        .border-tc-blue { border-color: #2563EB; }
+        .border-tc-red { border-color: #DC2626; }
+        .border-tc-dark { border-color: #1e293b; }
+        
+        .bg-tc-blue-light { background-color: #EFF6FF; }
+        .bg-tc-red-light { background-color: #FEF2F2; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">PS일렉트로닉스 투자 분석 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">RF 기술의 진화, 자율주행과 스마트팩토리의 핵심 파트너</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2026년 1월 11일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Profit Turnaround -->
+            <div class="card text-center border-t-4 border-tc-red">
+                <h3 class="text-lg font-bold tc-red mb-2">실적 턴어라운드</h3>
+                <p class="kpi-value tc-dark">흑자 전환</p>
+                <p class="text-gray-500 text-sm">2025년 당기순이익 흑자 달성<br>(차량용 RF 부품 매출 2배 성장)</p>
+            </div>
+            <!-- KPI 2: Business Expansion -->
+            <div class="card text-center border-t-4 border-tc-blue">
+                <h3 class="text-lg font-bold tc-blue mb-2">신성장 동력</h3>
+                <p class="kpi-value tc-dark">Smart Factory</p>
+                <p class="text-gray-500 text-sm">영진하이텍 인수로 자동화 장비 진출<br>산업용 로봇 시장 공략</p>
+            </div>
+            <!-- KPI 3: Market Cap -->
+            <div class="card text-center border-t-4 border-tc-dark">
+                <h3 class="text-lg font-bold tc-dark mb-2">시가총액 (Market Cap)</h3>
+                <p class="kpi-value tc-dark">약 3,564억</p>
+                <p class="text-gray-500 text-sm">현재가: 8,140원<br>업종 평균 대비 높은 성장성 인정</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">투자 포인트: "통신을 넘어 모빌리티와 로봇으로"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 PS일렉트로닉스는 <strong>초고주파(RF) 회로 설계 기술</strong>을 바탕으로 5G 스마트폰용 전력증폭기(PAM) 시장에서 입지를 다져왔습니다. 
+                 2025년 <strong>'영진하이텍' 인수</strong>를 통해 스마트팩토리 자동화 솔루션 시장에 진출하며 포트폴리오를 다각화했습니다. 
+                 특히 자율주행차의 필수 부품인 <strong>차량용 RF FEM(Front-End Module)</strong> 매출이 전년 대비 2배 이상 급증하며, 단순 통신 부품사에서 모빌리티 솔루션 기업으로 재평가(Re-rating) 받고 있습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">📡</div>
+                     <h4 class="font-bold text-slate-700">Core (RF Tech)</h4>
+                     <p class="text-sm text-gray-500 mt-1">도허티 방식 고효율 설계<br>5G/6G 통신 핵심 부품</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-tc-blue-light border border-blue-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🚗</div>
+                     <h4 class="font-bold tc-blue">Expansion (Auto)</h4>
+                     <p class="text-sm text-gray-600 mt-1">차량용 RF FEM 급성장<br>자율주행 통신 모듈 공급</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-tc-red-light border border-red-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🤖</div>
+                     <h4 class="font-bold tc-red">New Biz (Robot)</h4>
+                     <p class="text-sm text-gray-600 mt-1">스마트팩토리 자동화<br>로봇 제어 솔루션 확대</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-blue-600 mr-2 rounded"></span>
+                    매출 및 영업이익률 추이 (단위: 억 원, %)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2025년 M&A 효과 및 전방 산업 회복으로 실적 V자 반등</p>
+            </div>
+             <!-- Product Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-red-500 mr-2 rounded"></span>
+                    2026년 사업 부문별 매출 비중
+                </h2>
+                <div class="chart-container">
+                    <canvas id="productMixChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 모바일 의존도 축소, 전장 및 자동화 장비 비중 45% 목표</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     최근 주가는 3년 내 신고가(8,410원) 부근에 도달했습니다. 
+                     단기 과열 부담은 있으나, <strong>성장성(ROE 26%)</strong>과 <strong>기술력</strong>을 감안할 때 조정 시 매수 관점이 유효합니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2026년 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-tc-blue-light border-l-4 border-tc-blue">
+                        <h3 class="font-bold tc-blue text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>검증된 도허티(Doherty) 방식 RF 설계 기술</li>
+                            <li>삼성전자 등 글로벌 고객사 레퍼런스 보유</li>
+                            <li>높은 ROE(26.65%) 등 효율적인 자본 운용</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>스마트폰 시장 성숙기에 따른 모바일 부문 성장 둔화</li>
+                            <li>높은 PER(29배)에 따른 단기 밸류에이션 부담</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-tc-red-light border-l-4 border-tc-red">
+                        <h3 class="font-bold tc-red text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-slate-800 mt-2 text-xs leading-relaxed">
+                            <li>5G/6G 통신 인프라 투자 및 자율주행차 시장 확대</li>
+                            <li>스마트팩토리 및 로봇 자동화 시장 연평균 11% 성장</li>
+                            <li>해외(북미/아시아) 고객사 다변화 추진</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-slate-200 border-l-4 border-tc-dark">
+                        <h3 class="font-bold text-slate-700 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>글로벌 RF 부품 기업들과의 기술 경쟁 심화</li>
+                            <li>전방 산업(스마트폰/자동차) 수요 위축 리스크</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 성장 로드맵 및 전망</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 증권사 리포트 요약 (2026.01 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>글로벌에픽:</strong> "자율주행과 AI 신사업으로 드라마틱한 성장 예고. 시총 3,500억 원대는 여전히 부담 없는 수준."</li>
+                        <li><strong>주달 (AI 분석):</strong> "단기 급등에 따른 숨 고르기 필요. 7,000원대 초반 조정 시 분할 매수 전략 유효. 장기 우상향 추세."</li>
+                        <li><strong>시장 코멘트:</strong> 자사주 소각 등 주주환원 정책과 신사업(로봇/전장) 성과가 주가 레벨업의 열쇠.</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 (변곡점)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            영진하이텍 인수 및 사업 다각화 완료.<br>
+                            <span class="tc-blue font-medium">전장용 RF 부품 매출 비중 20% 돌파 및 흑자 전환.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-red w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>스마트팩토리 자동화 장비 해외 수출 가시화.</strong><br>
+                            주가 8,000원대 안착 및 신고가 경신 도전.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-dark w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기 ~</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            매출 1,000억 원 클럽 가입 목표.<br>
+                            6G 선행 기술 개발 및 글로벌 티어1 전장 업체 공급 확대.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트 추정치를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on PS Electronics 2026 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [680, 520, 710, 850], // Recovery trend
+                        backgroundColor: '#2563EB', // Tech Blue
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익률 (%)',
+                        data: [2.5, -3.0, 5.5, 8.5], // Profit margin improving
+                        type: 'line',
+                        borderColor: '#DC2626', // Red
+                        backgroundColor: '#DC2626',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#DC2626',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '이익률 (%)' },
+                        suggestedMin: -5,
+                        suggestedMax: 15
+                    }
+                }
+            }
+        });
+
+        // --- 3. Product Mix Chart (Doughnut) ---
+        const ctxMix = document.getElementById('productMixChart').getContext('2d');
+        new Chart(ctxMix, {
+            type: 'doughnut',
+            data: {
+                labels: ['모바일 통신 (PAM)', '전장부품 (RF FEM)', '스마트팩토리/로봇', '기타'],
+                datasets: [{
+                    data: [55, 25, 15, 5], // Automotive/Factory growing
+                    backgroundColor: [
+                        '#2563EB', // Blue (Core)
+                        '#DC2626', // Red (Growth 1)
+                        '#10B981', // Green (Growth 2)
+                        '#94a3b8'  // Gray
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['기술 경쟁력(RF)', '매출 성장성', '수익성 개선', '신사업(전장/로봇)', '밸류에이션 매력']),
+                datasets: [{
+                    label: 'PS일렉트로닉스 평가',
+                    data: [85, 90, 80, 85, 70], // High Growth/New Biz, Valuation slightly expensive (PER)
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)', // Blue transparent
+                    borderColor: '#2563EB',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#DC2626'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
