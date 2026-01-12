@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>휴젤 기업 분석 리포트 (2026년 전망)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .flow-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .swot-quadrant {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+        }
+        
+        /* Hugel Brand Colors (Aesthetic Purple/Royal Gold) */
+        .tc-purple { color: #6D28D9; } /* Main Brand Color */
+        .tc-gold { color: #D97706; } /* Premium/Global */
+        .tc-blue { color: #2563EB; } /* Trust/Medical */
+        .tc-dark { color: #1e293b; }
+        .tc-red { color: #EF4444; }
+        
+        .border-tc-purple { border-color: #6D28D9; }
+        .border-tc-gold { border-color: #D97706; }
+        .border-tc-blue { border-color: #2563EB; }
+        
+        .bg-tc-purple-light { background-color: #F3E8FF; }
+        .bg-tc-gold-light { background-color: #FEF3C7; }
+        .bg-tc-blue-light { background-color: #EFF6FF; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">휴젤(Hugel) 투자 분석 리포트</h1>
+            <p class="text-lg text-slate-600 font-medium">글로벌 톡신 시장의 Game Changer, 미국을 삼키다</p>
+            <p class="text-sm text-slate-400 mt-2">기준일: 2026년 1월 12일</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- KPI 1: Revenue Forecast -->
+            <div class="card text-center border-t-4 border-tc-purple">
+                <h3 class="text-lg font-bold tc-purple mb-2">실적 고성장</h3>
+                <p class="kpi-value tc-dark">4,908억 원</p>
+                <p class="text-gray-500 text-sm">2026년 예상 매출액<br>(전년 대비 약 +18% 성장)</p>
+            </div>
+            <!-- KPI 2: Global Market -->
+            <div class="card text-center border-t-4 border-tc-gold">
+                <h3 class="text-lg font-bold tc-gold mb-2">수출 비중 확대</h3>
+                <p class="kpi-value tc-dark">60%↑</p>
+                <p class="text-gray-500 text-sm">해외 매출 비중 전망<br>미국·중국·유럽 빅마켓 동시 공략</p>
+            </div>
+            <!-- KPI 3: Market Cap -->
+            <div class="card text-center border-t-4 border-tc-blue">
+                <h3 class="text-lg font-bold tc-blue mb-2">시가총액 (Market Cap)</h3>
+                <p class="kpi-value tc-dark">약 3.1조</p>
+                <p class="text-gray-500 text-sm">현재가: 242,500원 기준<br>글로벌 피어 대비 밸류에이션 매력</p>
+            </div>
+        </section>
+
+        <!-- Main Analysis Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold mb-6 text-center text-slate-800">투자 포인트: "글로벌 톡신 원년(Global Year One)"</h2>
+             
+             <p class="text-center text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                 휴젤은 국내 톡신 기업 중 유일하게 <strong>미국(FDA), 중국(NMPA), 유럽(EMA)</strong> 3대 빅마켓 허가를 모두 획득한 기업입니다. 
+                 2025년 하반기부터 본격화된 <strong>'레티보(Letybo)'의 미국 선적</strong>이 2026년 실적 성장을 견인할 전망입니다. 
+                 특히 경쟁이 치열한 국내 시장(저가형 톡신 난립)에서의 점유율 방어보다는, 고수익 해외 시장 확대를 통해 <strong>이익률(OPM) 40%대</strong>를 유지하는 질적 성장에 집중하고 있습니다.
+             </p>
+
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-4">
+                 <div class="flow-step text-center bg-slate-50 rounded-lg w-full md:w-1/3 py-6">
+                     <div class="text-4xl mb-3">🇺🇸</div>
+                     <h4 class="font-bold text-slate-700">USA Expansion</h4>
+                     <p class="text-sm text-gray-500 mt-1">FDA 승인 레티보 출시<br>동·서부 전역 영업망 확장</p>
+                 </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-tc-purple-light border border-purple-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                    <div class="text-4xl mb-3">🇨🇳</div>
+                     <h4 class="font-bold tc-purple">China Recovery</h4>
+                     <p class="text-sm text-gray-600 mt-1">정품 시장 수요 회복<br>안정적 공급 및 점유율 확대</p>
+                </div>
+                 <div class="hidden md:block text-2xl font-bold text-gray-300">→</div>
+                 <div class="flow-step text-center bg-tc-gold-light border border-yellow-200 rounded-lg w-full md:w-1/3 py-6 shadow-sm">
+                     <div class="text-4xl mb-3">🇧🇷</div>
+                     <h4 class="font-bold tc-gold">New Markets</h4>
+                     <p class="text-sm text-gray-600 mt-1">브라질/남미 본격 판매<br>글로벌 영토 확장 가속화</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Financial Chart -->
+            <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-purple-600 mr-2 rounded"></span>
+                    연간 매출 및 영업이익 전망 (단위: 억 원)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 2026년 매출 5,000억 원 육박 및 영업이익 2,300억 원 전망</p>
+            </div>
+             <!-- Product/Region Mix Chart -->
+             <div class="card">
+                <h2 class="text-lg font-bold text-center mb-4 flex items-center justify-center">
+                    <span class="w-2 h-6 bg-yellow-500 mr-2 rounded"></span>
+                    2026년 예상 매출 비중 (지역별)
+                </h2>
+                <div class="chart-container">
+                    <canvas id="regionChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">* 북미/유럽 등 선진 시장 비중이 아시아/내수를 추월하는 추세</p>
+            </div>
+        </section>
+
+        <!-- Radar & SWOT Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Investment Radar -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">투자 매력도 (Investment Appeal)</h2>
+                 <p class="text-center text-sm text-gray-600 mb-6">
+                     최근 주가는 3년 고점 대비 조정을 거치며 <strong>밸류에이션 매력</strong>이 다시 부각되고 있습니다. 
+                     글로벌 확장성과 압도적인 <strong>이익률(High Margin)</strong>은 동종 업계 최고 수준입니다.
+                 </p>
+                 <div class="chart-container" style="height: 300px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- SWOT Analysis -->
+            <section class="card">
+                <h2 class="text-lg font-bold text-center mb-4">SWOT 분석 (2026년 기준)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Strength -->
+                    <div class="swot-quadrant bg-tc-purple-light border-l-4 border-tc-purple">
+                        <h3 class="font-bold tc-purple text-sm">강점 (Strength)</h3>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 text-xs leading-relaxed">
+                            <li>국내 유일 美/中/歐 3대 시장 진출 톡신 기업</li>
+                            <li>검증된 제품력과 높은 영업이익률 (40% 후반)</li>
+                            <li>히알루론산 필러와의 번들링(Bundling) 판매 시너지</li>
+                        </ul>
+                    </div>
+                    <!-- Weakness -->
+                    <div class="swot-quadrant bg-slate-100 border-l-4 border-slate-400">
+                        <h3 class="font-bold text-slate-600 text-sm">약점 (Weakness)</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 text-xs leading-relaxed">
+                            <li>국내 시장 내 저가형 제품 난립으로 인한 경쟁 심화</li>
+                            <li>해외 판관비 및 지급수수료 증가에 따른 비용 부담</li>
+                        </ul>
+                    </div>
+                    <!-- Opportunity -->
+                    <div class="swot-quadrant bg-tc-gold-light border-l-4 border-tc-gold">
+                        <h3 class="font-bold tc-gold text-sm">기회 (Opportunity)</h3>
+                        <ul class="list-disc list-inside text-slate-800 mt-2 text-xs leading-relaxed">
+                            <li>미국 미용 톡신 시장 점유율 본격 확대 (목표 M/S 10%+)</li>
+                            <li>태국, 브라질 등 이머징 마켓의 고성장세 지속</li>
+                            <li>E-Boutique 등 신규 브랜드 전략 안착</li>
+                        </ul>
+                    </div>
+                    <!-- Threat -->
+                    <div class="swot-quadrant bg-red-50 border-l-4 border-tc-blue">
+                        <h3 class="font-bold text-red-600 text-sm">위협 (Threat)</h3>
+                        <ul class="list-disc list-inside text-red-700 mt-2 text-xs leading-relaxed">
+                            <li>ITC 소송 이슈 잔존 (최종 판결 리스크 관리 필요)</li>
+                            <li>글로벌 경기 침체에 따른 미용 의료 소비 둔화 가능성</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Future Roadmap Section -->
+        <section class="card">
+             <h2 class="text-2xl font-bold text-center mb-8">2026년 성장 로드맵 및 전망</h2>
+             
+             <div class="space-y-6">
+                <!-- Analyst Consensus Box -->
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">📢 증권사 리포트 요약 (2026.01 종합)</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>LS증권:</strong> "2026년은 글로벌 톡신 원년. 미국 사업 가속화로 기업 가치 레벨업 기대. 목표가 36만원 유지."</li>
+                        <li><strong>키움증권:</strong> "저가 경쟁 심화에도 견고한 실적. 4분기 컨센서스 상회 전망. 수출 데이터가 주가 반등의 열쇠."</li>
+                        <li><strong>주달 (AI 분석):</strong> "현재 주가는 조정 국면이나 22만원대 지지 시 강력한 매수 기회. 장기 성장성 훼손 없음."</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-2 border-slate-300 ml-4 md:ml-6 mt-6">
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-purple w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2025년 (도약의 해)</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            레티보 미국 FDA 승인 및 초도 물량 선적.<br>
+                            <span class="tc-purple font-medium">연 매출 3,700억 원대 돌파, 역대 최대 실적 경신.</span>
+                        </p>
+                    </div>
+                    <div class="mb-8 ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-gold w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 상반기</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            <strong>미국 타깃 지역 동부까지 확대 및 마케팅 강화.</strong><br>
+                            유럽 주요 국가(독일/영국 등) 시장 점유율 상승.
+                        </p>
+                    </div>
+                    <div class="ml-8 relative">
+                        <span class="absolute -left-10 top-0 bg-white border-2 border-tc-blue w-4 h-4 rounded-full"></span>
+                        <h4 class="font-bold text-slate-800">2026년 하반기 ~</h4>
+                        <p class="text-sm text-slate-600 mt-1">
+                            매출 5,000억 원 시대 개막.<br>
+                            글로벌 메디컬 에스테틱 Top-Tier 기업 안착.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <footer class="text-center mt-12 pb-8 text-xs text-slate-400">
+            <p>본 리포트는 검색된 공개 정보와 증권사 리포트 추정치를 바탕으로 재구성되었으며, 투자의 책임은 전적으로 투자자 본인에게 있습니다.</p>
+            <p class="mt-1">Generated by AI Analyst based on Hugel 2026 Data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- 1. Label Processing Logic ---
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 12;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) return label;
+                const words = label.split(' ');
+                const newLabels = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        newLabels.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                newLabels.push(currentLine);
+                return newLabels;
+            });
+        };
+
+        const commonTooltip = {
+            backgroundColor: 'rgba(30, 41, 59, 0.9)', // Slate-800
+            padding: 12,
+            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
+            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
+            callbacks: {
+                title: (tooltipItems) => {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- 2. Financial Chart (Bar & Line Combo) ---
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['2023(A)', '2024(A)', '2025(E)', '2026(F)'],
+                datasets: [
+                    {
+                        label: '매출액 (억 원)',
+                        data: [3197, 3613, 4150, 4908], // Steady Growth
+                        backgroundColor: '#6D28D9', // Aesthetic Purple
+                        borderRadius: 4,
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '영업이익 (억 원)',
+                        data: [1178, 1260, 1920, 2319], // Profitability improving
+                        type: 'line',
+                        borderColor: '#D97706', // Gold
+                        backgroundColor: '#D97706',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#D97706',
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        position: 'left',
+                        grid: { borderDash: [2, 2] },
+                        title: { display: true, text: '매출액 (억 원)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        title: { display: true, text: '영업이익 (억 원)' },
+                        suggestedMin: 500,
+                        suggestedMax: 2500
+                    }
+                }
+            }
+        });
+
+        // --- 3. Regional Mix Chart (Doughnut) ---
+        const ctxRegion = document.getElementById('regionChart').getContext('2d');
+        new Chart(ctxRegion, {
+            type: 'doughnut',
+            data: {
+                labels: ['국내 (Korea)', '아시아 (Asia/China)', '북미/남미 (Americas)', '유럽/기타 (Europe)'],
+                datasets: [{
+                    data: [35, 30, 20, 15], // Overseas accounts for ~65%
+                    backgroundColor: [
+                        '#6D28D9', // Purple (Domestic)
+                        '#9333EA', // Light Purple (Asia)
+                        '#D97706', // Gold (Americas - Growth)
+                        '#2563EB'  // Blue (Europe)
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 } } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- 4. Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['글로벌 확장성', '수익성(OPM)', '브랜드 인지도', 'R&D/파이프라인', '밸류에이션 매력']),
+                datasets: [{
+                    label: '휴젤 평가',
+                    data: [95, 90, 85, 80, 85], // High Profit/Growth, Good Valuation
+                    backgroundColor: 'rgba(109, 40, 217, 0.2)', // Purple transparent
+                    borderColor: '#6D28D9',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#D97706'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, weight: 'bold', family: "'Noto Sans KR', sans-serif" }, color: '#334155' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
