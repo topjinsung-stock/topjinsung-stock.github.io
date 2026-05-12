@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>주요 증권사 주식 스탑로스(자동주문) 완벽 가이드</title>
+    <!-- 라이브러리 로드 실패 대비를 위해 defer 속성 및 표준 경로 사용 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #F0Fdf4;
+            color: #1F2937;
+            margin: 0;
+            padding: 0;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 300px; /* 고정 높이 부여로 안정성 확보 */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card-hover {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+        }
+        .bg-gradient-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .bg-gradient-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        /* 로딩 표시기 */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 로딩 화면 (스크립트 실행 전까지 표시) -->
+    <div id="loading-overlay">
+        <div class="text-center">
+            <div class="inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+            <p class="mt-2 text-gray-500 font-medium">가이드를 불러오는 중...</p>
+        </div>
+    </div>
+
+    <header class="bg-gradient-primary text-white py-12 px-4 shadow-xl relative overflow-hidden text-center">
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h1 class="text-3xl md:text-5xl font-black mb-4 tracking-tight">주식 스탑로스 완벽 가이드</h1>
+            <p class="text-lg md:text-xl font-light opacity-90 max-w-2xl mx-auto">
+                모니터 앞에서 해방되세요. 설정 한 번으로 <strong>수익은 지키고 손실은 차단합니다.</strong>
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12 space-y-16">
+
+        <!-- 섹션 1: 정의 -->
+        <section>
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">💡 스탑로스(Stop-Loss)란?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    미리 설정한 가격에 도달하면 시스템이 <strong>자동으로 매도 주문</strong>을 내는 기능입니다. 바쁜 직장인이나 감정 매매를 피하고 싶은 분들께 필수입니다.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gradient-success rounded-2xl p-6 text-white shadow-lg card-hover">
+                    <h3 class="text-xl font-bold mb-2">📈 이익실현 (Take Profit)</h3>
+                    <p class="opacity-90">목표가 도달 시 자동으로 팔아 수익을 확정합니다.</p>
+                </div>
+                <div class="bg-gradient-danger rounded-2xl p-6 text-white shadow-lg card-hover">
+                    <h3 class="text-xl font-bold mb-2">🛑 손실제한 (Stop Loss)</h3>
+                    <p class="opacity-90">손절가 도달 시 자동으로 팔아 추가 손실을 막습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 2: 증권사별 메뉴 -->
+        <section class="bg-white rounded-3xl shadow-lg p-6 md:p-10 border border-blue-50">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-900 mb-8 text-center">📱 증권사별 메뉴 찾기</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- 키움 -->
+                <div class="border-2 border-blue-100 rounded-xl p-5 bg-blue-50/30">
+                    <h3 class="font-bold text-blue-800 mb-3 flex items-center">키움증권 (영웅문)</h3>
+                    <p class="text-sm text-gray-600 mb-1">HTS: <span class="font-bold text-blue-600">[0624]</span></p>
+                    <p class="text-sm text-gray-600">MTS: 주문 ➔ 주식자동주문</p>
+                </div>
+                <!-- 미래에셋 -->
+                <div class="border-2 border-orange-100 rounded-xl p-5 bg-orange-50/30">
+                    <h3 class="font-bold text-orange-800 mb-3 flex items-center">미래에셋증권</h3>
+                    <p class="text-sm text-gray-600 mb-1">HTS: <span class="font-bold text-orange-600">[0323]</span></p>
+                    <p class="text-sm text-gray-600">MTS: 주식 ➔ 자동주문</p>
+                </div>
+                <!-- NH -->
+                <div class="border-2 border-yellow-100 rounded-xl p-5 bg-yellow-50/30">
+                    <h3 class="font-bold text-yellow-800 mb-3 flex items-center">NH투자증권 (나무)</h3>
+                    <p class="text-sm text-gray-600 mb-1">HTS: <span class="font-bold text-yellow-600">[0345]</span></p>
+                    <p class="text-sm text-gray-600">MTS: 주식 ➔ 스탑로스</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 3: 유효기간 차트 -->
+        <section>
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-900 mb-6 text-center">📊 자동주문 유효기간 비교</h2>
+            <div class="bg-white rounded-3xl shadow-lg p-4">
+                <div class="chart-container">
+                    <canvas id="validityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 4: 설정 단계 -->
+        <section class="space-y-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-900 text-center">⚙️ 설정 5단계</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="flex items-start bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-500">
+                    <span class="bg-blue-500 text-white w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold mr-4">1</span>
+                    <div>
+                        <h4 class="font-bold">종목 선택</h4>
+                        <p class="text-sm text-gray-600">잔고에서 자동매도를 설정할 종목을 고릅니다.</p>
+                    </div>
+                </div>
+                <div class="flex items-start bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-500">
+                    <span class="bg-blue-500 text-white w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold mr-4">2</span>
+                    <div>
+                        <h4 class="font-bold">조건 입력</h4>
+                        <p class="text-sm text-gray-600">목표가(% 또는 가격)와 손절가를 입력합니다.</p>
+                    </div>
+                </div>
+                <div class="flex items-start bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-500">
+                    <span class="bg-blue-500 text-white w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold mr-4">3</span>
+                    <div>
+                        <h4 class="font-bold">주문 설정 (시장가 권장)</h4>
+                        <p class="text-sm text-gray-600">급락 시 체결을 위해 '시장가'로 설정하는 것이 안전합니다.</p>
+                    </div>
+                </div>
+                <div class="flex items-start bg-red-50 p-5 rounded-xl shadow-sm border-l-4 border-red-500">
+                    <span class="bg-red-500 text-white w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold mr-4">4</span>
+                    <div>
+                        <h4 class="font-bold text-red-800">감시 시작 버튼 클릭 (필수)</h4>
+                        <p class="text-sm text-red-700">설정 후 반드시 '플레이(▶)' 버튼을 눌러야 감시가 시작됩니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 5: 트레일링 스탑 -->
+        <section class="bg-indigo-900 text-white rounded-3xl shadow-xl p-6 md:p-10">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-center">🚀 트레일링 스탑 (Trailing Stop)</h2>
+            <p class="text-center opacity-80 mb-8">주가가 오르면 손절선도 같이 따라 올라가는 지능형 수익 보존 기술입니다.</p>
+            <div class="bg-white rounded-2xl p-4 mb-6">
+                <div class="chart-container">
+                    <canvas id="trailingChart"></canvas>
+                </div>
+            </div>
+            <div class="text-sm bg-indigo-800/50 p-4 rounded-xl opacity-90 leading-relaxed">
+                일반 스탑로스는 가격이 고정되지만, <strong>트레일링 스탑</strong>은 고점 대비 일정 비율 하락 시 매도되도록 감시망이 이동합니다. 덕분에 급등주 수익 극대화에 유리합니다.
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-400 text-xs py-10 border-t border-gray-100">
+            <p>© 2026 Smart Trading. 본 가이드는 참고용입니다.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // 호환성을 위해 window.onload 또는 DOMContentLoaded 사용
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 로딩 화면 제거
+            var loader = document.getElementById('loading-overlay');
+            if (loader) {
+                setTimeout(function() {
+                    loader.style.opacity = '0';
+                    setTimeout(function() { loader.style.display = 'none'; }, 500);
+                }, 300);
+            }
+
+            // 차트 기본 설정 (구형 문법 호환을 위해 객체 직접 할당)
+            var commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                }
+            };
+
+            // 1. 유효기간 차트
+            var ctx1 = document.getElementById('validityChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['키움', '미래', 'NH', '한투', '삼성'],
+                    datasets: [{
+                        label: '유효기간(일)',
+                        data: [90, 30, 30, 30, 30],
+                        backgroundColor: ['#2563eb', '#f97316', '#eab308', '#0ea5e9', '#4f46e5'],
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, max: 100 } }
+                }
+            });
+
+            // 2. 트레일링 스탑 차트
+            var ctx2 = document.getElementById('trailingChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: ['1일', '2일', '3일', '4일', '5일', '6일', '7일(매도)'],
+                    datasets: [
+                        {
+                            label: '주가',
+                            data: [10000, 10500, 11000, 11500, 12000, 11800, 11400],
+                            borderColor: '#3B82F6',
+                            borderWidth: 3,
+                            tension: 0.2,
+                            fill: false
+                        },
+                        {
+                            label: '트레일링 감시선',
+                            data: [9500, 9975, 10450, 10925, 11400, 11400, 11400],
+                            borderColor: '#8B5CF6',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            pointStyle: 'rectRot',
+                            pointRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { min: 9000, max: 13000 } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
