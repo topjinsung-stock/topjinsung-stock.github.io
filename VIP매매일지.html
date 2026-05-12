@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026-2030 VIP PREMIUM : 연간 정밀 수익 정산 시스템</title>
+    
+    <!-- 라이브러리 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;900&display=swap');
+        body { 
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            letter-spacing: -0.02em; 
+            -webkit-font-smoothing: antialiased; 
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .vip-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        .premium-shadow { box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1); }
+        input, select, button { appearance: none; -webkit-appearance: none; }
+        @media print { .no-print { display: none !important; } }
+        
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4f46e5;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-900">
+    <div id="root">
+        <div class="loader-container">
+            <div class="loader mb-4"></div>
+            <p class="text-slate-500 font-bold animate-pulse uppercase tracking-widest text-xs">System Initializing...</p>
+        </div>
+    </div>
+
+    <script type="text/babel" data-presets="react">
+        const { useState, useEffect, useRef, useMemo } = React;
+
+        const Icons = {
+            Plus: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
+            History: () => <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+            Trash: () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
+            FileText: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>,
+            Crown: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="gold" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>,
+            Calendar: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
+            Edit: () => <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        };
+
+        const App = () => {
+            const [memberName, setMemberName] = useState(() => localStorage.getItem('vip_member_name_open') || "VIP 회원");
+            const [selectedYear, setSelectedYear] = useState(2026);
+            const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+            
+            const [portfolio, setPortfolio] = useState(() => {
+                try {
+                    const saved = localStorage.getItem('vip_investment_v3_2030');
+                    return saved ? JSON.parse(saved) : [];
+                } catch(e) { 
+                    return []; 
+                }
+            });
+
+            const [newItem, setNewItem] = useState({ 
+                date: new Date().toISOString().split('T')[0], 
+                name: '', sector: '', buyPrice: '', quantity: '', market: 'KOSPI', buyFees: '', sellFees: '' 
+            });
+            const [modal, setModal] = useState({ isOpen: false, type: 'BUY', itemId: null });
+            const [historyInput, setHistoryInput] = useState({ date: new Date().toISOString().split('T')[0], price: '', quantity: '', buyFees: '', sellFees: '' });
+            
+            const dashboardRef = useRef();
+            const years = [2026, 2027, 2028, 2029, 2030];
+
+            useEffect(() => { 
+                localStorage.setItem('vip_member_name_open', memberName);
+            }, [memberName]);
+
+            useEffect(() => { 
+                try {
+                    localStorage.setItem('vip_investment_v3_2030', JSON.stringify(portfolio)); 
+                } catch(e) { console.error("Save error:", e); }
+            }, [portfolio]);
+
+            const handleNameChange = () => {
+                const newName = window.prompt("리포트에 표시될 이름을 입력하세요:", memberName);
+                if(newName && newName.trim().length > 0) {
+                    setMemberName(newName.trim());
+                }
+            };
+
+            const getNetAmount = (type, price, quantity, buyFees, sellFees) => {
+                const volume = Number(price) * Number(quantity);
+                const bFee = Number(buyFees) || 0;
+                const sFee = Number(sellFees) || 0;
+                return type === 'BUY' ? volume + bFee : volume - sFee;
+            };
+
+            const filtered = useMemo(() => {
+                return portfolio.filter(item => 
+                    item.year === selectedYear && item.month === selectedMonth
+                );
+            }, [portfolio, selectedYear, selectedMonth]);
+
+            const summary = useMemo(() => {
+                let totalInvestedCash = 0, totalRealizedGain = 0, totalUnrealizedGain = 0;
+                let totalBuyFees = 0, totalSellFees = 0;
+
+                filtered.forEach(item => {
+                    let currentQty = 0, currentCostBasis = 0, realizedForThisItem = 0, totalBuyCashForItem = 0;
+                    item.history.forEach(h => {
+                        const netAmount = getNetAmount(h.type, h.price, h.quantity, h.buyFees, h.sellFees);
+                        if (h.type === 'BUY') {
+                            totalBuyFees += (Number(h.buyFees) || 0);
+                            totalBuyCashForItem += netAmount;
+                            currentCostBasis += netAmount;
+                            currentQty += h.quantity;
+                        } else {
+                            totalSellFees += (Number(h.sellFees) || 0);
+                            const avgPriceBeforeSell = currentCostBasis / currentQty;
+                            const costOfSoldPortion = avgPriceBeforeSell * h.quantity;
+                            realizedForThisItem += (netAmount - costOfSoldPortion);
+                            currentQty -= h.quantity;
+                            currentCostBasis -= costOfSoldPortion;
+                        }
+                    });
+                    totalRealizedGain += realizedForThisItem;
+                    totalInvestedCash += totalBuyCashForItem;
+                    if (currentQty > 0) {
+                        const currentMarketValue = Number(item.currentPrice) * currentQty;
+                        totalUnrealizedGain += (currentMarketValue - currentCostBasis);
+                    }
+                });
+                const totalGain = totalRealizedGain + totalUnrealizedGain;
+                const roi = totalInvestedCash > 0 ? (totalGain / totalInvestedCash * 100).toFixed(2) : "0.00";
+                return { totalInvested: Math.floor(totalInvestedCash), realized: Math.floor(totalRealizedGain), unrealized: Math.floor(totalUnrealizedGain), totalGain: Math.floor(totalGain), totalBuyFees, totalSellFees, roi };
+            }, [filtered]);
+
+            const addItem = () => {
+                if (!newItem.name || !newItem.buyPrice || !newItem.quantity) {
+                    alert("종목명, 단가, 수량을 입력해주세요.");
+                    return;
+                }
+                const dateParts = newItem.date.split('-');
+                const itemYear = parseInt(dateParts[0], 10);
+                const itemMonth = parseInt(dateParts[1], 10);
+                
+                if (itemYear < 2026 || itemYear > 2030) {
+                    alert("2026년부터 2030년까지 기록 가능합니다.");
+                    return;
+                }
+
+                const item = {
+                    id: Date.now(),
+                    ...newItem,
+                    year: itemYear,
+                    month: itemMonth,
+                    buyPrice: Number(newItem.buyPrice),
+                    currentPrice: Number(newItem.buyPrice),
+                    status: 'HOLDING',
+                    history: [{ 
+                        id: Date.now() + 1, type: 'BUY', date: newItem.date, 
+                        price: Number(newItem.buyPrice), quantity: Number(newItem.quantity),
+                        buyFees: Number(newItem.buyFees) || 0, sellFees: Number(newItem.sellFees) || 0
+                    }]
+                };
+                setPortfolio(prev => [...prev, item]);
+                setSelectedYear(itemYear);
+                setSelectedMonth(itemMonth);
+                setNewItem({ ...newItem, name: '', sector: '', buyPrice: '', quantity: '', buyFees: '', sellFees: '' });
+            };
+
+            const handleHistorySubmit = () => {
+                const { itemId, type } = modal;
+                let { date, price, quantity, buyFees, sellFees } = historyInput;
+                if(!price || !quantity) return;
+                price = Number(price); quantity = Number(quantity);
+                setPortfolio(prev => prev.map(item => {
+                    if (item.id === itemId) {
+                        const currentQuantity = item.history.reduce((acc, h) => h.type === 'BUY' ? acc + h.quantity : acc - h.quantity, 0);
+                        if (type === 'SELL' && quantity > currentQuantity) {
+                            alert("보유 수량보다 많이 매도할 수 없습니다.");
+                            return item;
+                        }
+                        const newHistory = [...item.history, { id: Date.now(), type, date, price, quantity, buyFees: Number(buyFees), sellFees: Number(sellFees) }];
+                        let newAvgPrice = item.buyPrice;
+                        if (type === 'BUY') {
+                            const prevCost = item.buyPrice * currentQuantity;
+                            const newCost = price * quantity;
+                            newAvgPrice = Math.round((prevCost + newCost) / (currentQuantity + quantity));
+                        }
+                        return { 
+                            ...item, history: newHistory, buyPrice: newAvgPrice, 
+                            status: (currentQuantity + (type === 'BUY' ? quantity : -quantity)) <= 0 ? 'EXITED' : 'HOLDING' 
+                        };
+                    }
+                    return item;
+                }));
+                setModal({ isOpen: false });
+                setHistoryInput({ date: new Date().toISOString().split('T')[0], price: '', quantity: '', buyFees: '', sellFees: '' });
+            };
+
+            const downloadPDF = async () => {
+                try {
+                    const element = dashboardRef.current;
+                    const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#f8fafc' });
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+                    const imgWidth = 210;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                    pdf.save(`VIP_Report_${memberName}_${selectedYear}_${selectedMonth}.pdf`);
+                } catch(err) {
+                    alert("PDF 생성 중 오류가 발생했습니다.");
+                }
+            };
+
+            return (
+                <div className="max-w-6xl mx-auto p-4 md:p-10 relative">
+                    {/* 정산 모달 */}
+                    {modal.isOpen && (
+                        <div className="fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center p-4 backdrop-blur-md">
+                            <div className="bg-white rounded-[2rem] p-8 w-full max-w-sm premium-shadow border border-slate-100">
+                                <div className="flex items-center gap-2 mb-6 text-slate-400 text-xs font-bold uppercase tracking-widest"><Icons.Crown /> Premium Action</div>
+                                <h2 className="text-2xl font-black text-slate-800 mb-6">{modal.type === 'BUY' ? '추가 매수 정산' : '보유 비중 매도'}</h2>
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="flex flex-col gap-1">
+                                            <label className="text-[10px] font-bold text-slate-400 ml-1 uppercase">날짜</label>
+                                            <input type="date" value={historyInput.date} onChange={e => setHistoryInput({...historyInput, date: e.target.value})} className="w-full bg-slate-50 border-none p-3 rounded-xl outline-none font-bold text-sm" />
+                                        </div>
+                                        <div className="flex flex-col gap-1">
+                                            <label className="text-[10px] font-bold text-slate-400 ml-1 uppercase">수량</label>
+                                            <input type="number" value={historyInput.quantity} onChange={e => setHistoryInput({...historyInput, quantity: e.target.value})} className="w-full bg-slate-50 border-none p-3 rounded-xl outline-none font-bold text-sm" />
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col gap-1">
+                                        <label className="text-[10px] font-bold text-slate-400 ml-1 uppercase">단가 (원)</label>
+                                        <input type="number" value={historyInput.price} onChange={e => setHistoryInput({...historyInput, price: e.target.value})} className="w-full bg-slate-50 border-none p-3 rounded-xl outline-none font-bold text-sm" />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="flex flex-col gap-1">
+                                            <label className={`text-[10px] font-bold ml-1 uppercase tracking-tighter ${modal.type === 'BUY' ? 'text-blue-500' : 'text-slate-300'}`}>매수비용</label>
+                                            <input type="number" value={historyInput.buyFees} disabled={modal.type !== 'BUY'} onChange={e => setHistoryInput({...historyInput, buyFees: e.target.value})} className={`w-full p-3 rounded-xl outline-none font-bold text-sm ${modal.type === 'BUY' ? 'bg-blue-50 text-blue-600' : 'bg-slate-50 opacity-40'}`} />
+                                        </div>
+                                        <div className="flex flex-col gap-1">
+                                            <label className={`text-[10px] font-bold ml-1 uppercase tracking-tighter ${modal.type === 'SELL' ? 'text-rose-500' : 'text-slate-300'}`}>매도비용</label>
+                                            <input type="number" value={historyInput.sellFees} disabled={modal.type !== 'SELL'} onChange={e => setHistoryInput({...historyInput, sellFees: e.target.value})} className={`w-full p-3 rounded-xl outline-none font-bold text-sm ${modal.type === 'SELL' ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 opacity-40'}`} />
+                                        </div>
+                                    </div>
+                                    <button onClick={handleHistorySubmit} className={`w-full py-5 rounded-2xl font-black text-white shadow-xl active:scale-95 mt-4 transition-all ${modal.type === 'BUY' ? 'bg-indigo-600' : 'bg-rose-500'}`}>정산 데이터 기록</button>
+                                    <button onClick={() => setModal({isOpen:false})} className="w-full py-2 text-slate-400 font-bold text-sm">닫기</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div ref={dashboardRef} className="bg-[#F8FAFC]">
+                        {/* 헤더 섹션 */}
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+                            <div>
+                                <div className="flex items-center gap-2 mb-2">
+                                    <span className="bg-amber-100 text-amber-700 text-[10px] font-black px-2 py-0.5 rounded-full flex items-center gap-1 uppercase tracking-widest"><Icons.Crown /> VIP Member</span>
+                                    <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">2026-2030 Strategic Management</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <h1 className="text-4xl font-[900] text-slate-900 tracking-tight leading-none">{memberName} 님의 정산서</h1>
+                                    <button onClick={handleNameChange} className="no-print p-2 bg-slate-100 text-slate-400 hover:text-slate-900 rounded-lg transition-all shadow-sm"><Icons.Edit /></button>
+                                </div>
+                                <p className="text-slate-500 font-medium mt-3">{selectedYear}년 {selectedMonth}월 : 실시간 자산 성과 트래커</p>
+                            </div>
+                            <div className="no-print flex gap-2">
+                                <button onClick={downloadPDF} className="bg-slate-900 text-white px-6 py-4 rounded-2xl font-black flex items-center gap-2 hover:bg-black transition-all shadow-lg active:scale-95"><Icons.FileText /> PDF 리포트 추출</button>
+                            </div>
+                        </div>
+
+                        {/* 필터 섹션 */}
+                        <div className="no-print space-y-4 mb-8">
+                            <div className="flex items-center gap-4 flex-wrap">
+                                <div className="flex items-center gap-2 text-slate-400 font-black text-xs uppercase tracking-tighter"><Icons.Calendar /> Year Select</div>
+                                <div className="flex gap-2">
+                                    {years.map(y => (
+                                        <button key={y} onClick={() => setSelectedYear(y)} className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${selectedYear === y ? 'bg-slate-900 text-white shadow-lg scale-105' : 'bg-white text-slate-400 border border-slate-200 hover:bg-slate-50'}`}>{y}년</button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                {[...Array(12)].map((_, i) => (
+                                    <button key={i+1} onClick={() => setSelectedMonth(i+1)} className={`px-6 py-3 rounded-2xl text-sm font-black transition-all whitespace-nowrap ${selectedMonth === i+1 ? 'bg-indigo-600 text-white shadow-xl scale-105' : 'bg-white text-slate-400 hover:bg-slate-50 border border-slate-200'}`}>{i+1}월</button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 대시보드 요약 */}
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
+                            <div className="bg-white p-6 rounded-[2rem] premium-shadow border border-slate-100">
+                                <p className="text-slate-400 font-bold text-[10px] mb-2 uppercase tracking-widest">월간 총 투자 원금</p>
+                                <p className="text-2xl font-black text-slate-900 leading-none">{summary.totalInvested.toLocaleString()}<span className="text-sm ml-1 opacity-50 font-bold">원</span></p>
+                            </div>
+                            <div className="bg-white p-6 rounded-[2rem] border border-slate-100">
+                                <p className="text-blue-500 font-bold text-[10px] mb-2 uppercase tracking-widest">누적 매수비용</p>
+                                <p className="text-xl font-black text-slate-900 leading-none">{summary.totalBuyFees.toLocaleString()}<span className="text-xs ml-1 opacity-50 font-bold">원</span></p>
+                            </div>
+                            <div className="bg-white p-6 rounded-[2rem] border border-slate-100">
+                                <p className="text-rose-500 font-bold text-[10px] mb-2 uppercase tracking-widest">누적 매도비용</p>
+                                <p className="text-xl font-black text-slate-900 leading-none">{summary.totalSellFees.toLocaleString()}<span className="text-xs ml-1 opacity-50 font-bold">원</span></p>
+                            </div>
+                            <div className="bg-white p-6 rounded-[2rem] border border-slate-100">
+                                <p className="text-slate-400 font-bold text-[10px] mb-2 uppercase tracking-widest">통합 손익</p>
+                                <p className={`text-xl font-black leading-none ${summary.totalGain >= 0 ? 'text-rose-500' : 'text-blue-600'}`}>
+                                    {summary.totalGain > 0 ? '+' : ''}{summary.totalGain.toLocaleString()}
+                                    <span className="text-xs ml-1 opacity-50 font-bold">원</span>
+                                </p>
+                            </div>
+                            <div className="vip-gradient p-6 rounded-[2rem] shadow-2xl text-white col-span-2 md:col-span-1">
+                                <p className="text-slate-400 font-bold text-[10px] mb-2 uppercase tracking-widest">월간 수익률</p>
+                                <p className="text-3xl font-black leading-none tracking-tighter">{summary.roi}%</p>
+                            </div>
+                        </div>
+
+                        {/* 신규 등록 */}
+                        <div className="no-print space-y-6 mb-10">
+                            <div className="bg-white p-6 rounded-[2rem] premium-shadow border border-slate-100 flex flex-wrap gap-4 items-end">
+                                <div className="flex-1 min-w-[120px] flex flex-col gap-2">
+                                    <label className="text-[10px] font-black text-slate-400 ml-1 uppercase">시장</label>
+                                    <select value={newItem.market} onChange={e => setNewItem({...newItem, market: e.target.value})} className="bg-slate-50 border-none p-4 rounded-2xl text-sm font-bold outline-none"><option value="KOSPI">KOSPI</option><option value="KOSDAQ">KOSDAQ</option></select>
+                                </div>
+                                <div className="flex-[2] min-w-[160px] flex flex-col gap-2">
+                                    <label className="text-[10px] font-black text-slate-400 ml-1 uppercase">종목명</label>
+                                    <input type="text" placeholder="종목명" value={newItem.name} onChange={e => setNewItem({...newItem, name: e.target.value})} className="bg-slate-50 border-none p-4 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
+                                </div>
+                                <div className="flex-1 min-w-[120px] flex flex-col gap-2">
+                                    <label className="text-[10px] font-black text-slate-400 ml-1 uppercase">단가</label>
+                                    <input type="number" value={newItem.buyPrice} onChange={e => setNewItem({...newItem, buyPrice: e.target.value})} className="bg-slate-50 border-none p-4 rounded-2xl text-sm font-bold outline-none" />
+                                </div>
+                                <div className="flex-1 min-w-[100px] flex flex-col gap-2">
+                                    <label className="text-[10px] font-black text-slate-400 ml-1 uppercase">수량</label>
+                                    <input type="number" value={newItem.quantity} onChange={e => setNewItem({...newItem, quantity: e.target.value})} className="bg-slate-50 border-none p-4 rounded-2xl text-sm font-bold outline-none" />
+                                </div>
+                                <div className="flex-1 min-w-[120px] flex flex-col gap-2">
+                                    <label className="text-[10px] font-black text-slate-400 ml-1 uppercase">날짜</label>
+                                    <input type="date" value={newItem.date} onChange={e => setNewItem({...newItem, date: e.target.value})} className="bg-slate-50 border-none p-4 rounded-2xl text-sm font-bold outline-none" />
+                                </div>
+                                <button onClick={addItem} className="bg-indigo-600 text-white rounded-2xl font-[900] px-8 h-[56px] hover:bg-indigo-700 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"><Icons.Plus /> 종목 등록</button>
+                            </div>
+                        </div>
+
+                        {/* 종목 리스트 */}
+                        <div className="space-y-6">
+                            {filtered.length === 0 && (
+                                <div className="text-center py-20 bg-white rounded-[2.5rem] border-2 border-dashed border-slate-200">
+                                    <p className="text-slate-400 font-bold uppercase tracking-widest">{selectedYear}년 {selectedMonth}월 데이터가 없습니다</p>
+                                </div>
+                            )}
+                            {filtered.map(item => {
+                                let cQty = 0, cBasis = 0, cumulativeBuyCash = 0, realizedItemProfit = 0;
+                                item.history.forEach(h => {
+                                    const netAmount = getNetAmount(h.type, h.price, h.quantity, h.buyFees, h.sellFees);
+                                    if (h.type === 'BUY') {
+                                        cQty += h.quantity; cBasis += netAmount; cumulativeBuyCash += netAmount;
+                                    } else {
+                                        const avgPriceBefore = cBasis / cQty;
+                                        const costOfSoldPortion = avgPriceBefore * h.quantity;
+                                        realizedItemProfit += (netAmount - costOfSoldPortion);
+                                        cQty -= h.quantity; cBasis -= costOfSoldPortion;
+                                    }
+                                });
+                                const currentMarketValue = Number(item.currentPrice) * cQty;
+                                const unrealizedItemProfit = cQty > 0 ? (currentMarketValue - cBasis) : 0;
+                                const totalGainForThisItem = realizedItemProfit + unrealizedItemProfit;
+                                const itemRoi = cumulativeBuyCash > 0 ? (totalGainForThisItem / cumulativeBuyCash * 100).toFixed(2) : "0.00";
+                                const isExited = item.status === 'EXITED';
+
+                                return (
+                                    <div key={item.id} className={`bg-white rounded-[2.5rem] overflow-hidden transition-all premium-shadow border border-slate-100 ${isExited ? 'opacity-60 grayscale-[0.5]' : ''}`}>
+                                        <div className="p-8">
+                                            <div className="flex flex-wrap items-start justify-between gap-6 mb-8">
+                                                <div className="flex items-center gap-5">
+                                                    <div className={`w-16 h-16 rounded-[1.5rem] flex flex-col items-center justify-center font-black text-[10px] shadow-sm ${item.market === 'KOSPI' ? 'bg-indigo-600 text-white' : 'bg-slate-900 text-amber-400'}`}>
+                                                        {item.market}<span className="text-2xl mt-0.5">{item.name.substring(0,1)}</span>
+                                                    </div>
+                                                    <div>
+                                                        <div className="flex items-center gap-2 mb-1">
+                                                            <span className="text-[10px] text-slate-400 font-black border border-slate-200 px-2 py-0.5 rounded-lg uppercase tracking-widest">{item.market} LISTED</span>
+                                                            {isExited && <span className="text-[10px] bg-slate-100 text-slate-500 font-black px-2 py-0.5 rounded-lg uppercase tracking-widest">EXITED</span>}
+                                                        </div>
+                                                        <h3 className="text-2xl font-black text-slate-900 leading-none">{item.name}</h3>
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex flex-1 flex-wrap gap-10 justify-center">
+                                                    <div className="text-center">
+                                                        <p className="text-[10px] text-slate-400 font-black mb-2 uppercase tracking-widest">보유 / 평단</p>
+                                                        <p className="font-black text-slate-700">{cQty.toLocaleString()}주 / {item.buyPrice.toLocaleString()}원</p>
+                                                    </div>
+                                                    <div className="text-center">
+                                                        <p className="text-[10px] text-indigo-500 font-black mb-2 uppercase tracking-widest">현재가</p>
+                                                        <button disabled={isExited} onClick={() => { const val = window.prompt("현재가 입력:"); if (val && !isNaN(val)) setPortfolio(prev => prev.map(p => p.id === item.id ? {...p, currentPrice: Number(val)} : p)); }} className="text-xl font-black text-indigo-600 hover:scale-105 transition-transform">{item.currentPrice.toLocaleString()}<span className="text-xs ml-0.5 font-bold">원</span></button>
+                                                    </div>
+                                                    <div className="text-center">
+                                                        <p className="text-[10px] text-slate-400 font-black mb-2 uppercase tracking-widest">종목 순손익</p>
+                                                        <p className={`text-xl font-black ${totalGainForThisItem >= 0 ? 'text-rose-500' : 'text-blue-600'}`}>{totalGainForThisItem > 0 ? '+' : ''}{Math.floor(totalGainForThisItem).toLocaleString()}<span className="text-xs ml-0.5 font-bold">원</span></p>
+                                                    </div>
+                                                    <div className="text-center min-w-[100px]">
+                                                        <p className="text-[10px] text-slate-400 font-black mb-1 uppercase tracking-widest">수익률</p>
+                                                        <p className={`text-3xl font-[900] tracking-tighter ${itemRoi >= 0 ? 'text-rose-500' : 'text-blue-600'}`}>{itemRoi}%</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className="no-print flex items-center gap-2">
+                                                    {!isExited && (
+                                                        <>
+                                                            <button onClick={() => setModal({ isOpen: true, type: 'BUY', itemId: item.id })} className="bg-slate-50 text-slate-700 w-12 h-12 rounded-2xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm"><Icons.Plus /></button>
+                                                            <button onClick={() => setModal({ isOpen: true, type: 'SELL', itemId: item.id })} className="bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-xs font-black hover:bg-rose-500 hover:text-white transition-all shadow-sm">매도</button>
+                                                        </>
+                                                    )}
+                                                    <button onClick={() => { if(window.confirm("종목을 삭제하시겠습니까?")) setPortfolio(portfolio.filter(p => p.id !== item.id)); }} className="p-3 text-slate-200 hover:text-rose-500 transition-colors"><Icons.Trash /></button>
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-slate-50/50 rounded-[1.5rem] p-6">
+                                                <div className="flex items-center justify-between mb-4">
+                                                    <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest"><Icons.History /> Transaction Logs</div>
+                                                </div>
+                                                <div className="flex flex-wrap gap-3">
+                                                    {item.history.map((h) => {
+                                                        const netAmount = getNetAmount(h.type, h.price, h.quantity, h.buyFees, h.sellFees);
+                                                        return (
+                                                            <div key={h.id} className="bg-white px-5 py-4 rounded-[1.25rem] border border-slate-100 shadow-sm min-w-[180px]">
+                                                                <div className="flex justify-between items-center mb-2"><span className="text-[10px] font-bold text-slate-400">{h.date}</span><span className={`text-[9px] font-black px-2 py-0.5 rounded-lg ${h.type === 'BUY' ? 'bg-blue-100 text-blue-600' : 'bg-rose-100 text-rose-600'}`}>{h.type === 'BUY' ? '매수' : '매도'}</span></div>
+                                                                <div className="flex justify-between items-end mb-2"><span className="text-sm font-black text-slate-800">{h.price.toLocaleString()}원</span><span className="text-[10px] text-slate-400 font-bold">{h.quantity}주</span></div>
+                                                                <div className="border-t border-slate-50 pt-2 mt-1 space-y-0.5">
+                                                                    <div className="flex justify-between text-[9px] text-slate-400 font-medium italic"><span>Fee:</span><span>{Number(h.type === 'BUY' ? h.buyFees : h.sellFees || 0).toLocaleString()}원</span></div>
+                                                                    <div className="flex justify-between text-[10px] font-black text-slate-600"><span>실제 정산금</span><span>{Math.floor(netAmount).toLocaleString()}원</span></div>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* 푸터 */}
+                        <div className="mt-20 pt-10 border-t border-slate-200 text-center">
+                            <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.3em] mb-4">VIP PREMIUM MANAGEMENT REPORT : 2026-2030</p>
+                            <div className="bg-white p-8 rounded-[2rem] border border-slate-100 text-left max-w-3xl mx-auto">
+                                <h4 className="text-slate-800 font-black text-sm mb-4 flex items-center gap-2"><Icons.Crown /> 투자 유의사항 (Disclaimer)</h4>
+                                <ul className="text-[11px] text-slate-500 space-y-2 leading-relaxed font-medium">
+                                    <li>• 본 시스템은 2026-2030년 장기 투자 성과 관리를 위해 설계되었습니다.</li>
+                                    <li>• 모든 수익률 계산은 제비용을 포함한 실질 수익률(Realized ROI)을 기준으로 합니다.</li>
+                                    <li>• 데이터는 브라우저 로컬 저장소에 저장되므로 주기적으로 PDF 백업을 권장합니다.</li>
+                                </ul>
+                                <p className="mt-8 text-center text-[10px] font-black text-slate-300 tracking-tighter">COPYRIGHT 2026-2030. VIP PREMIUM INVESTMENT GROUP.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 초기화 및 렌더링
+        window.addEventListener('load', () => {
+            try {
+                const rootElement = document.getElementById('root');
+                const root = ReactDOM.createRoot(rootElement);
+                root.render(<App />);
+            } catch (err) {
+                console.error("Initialization Error:", err);
+                document.getElementById('root').innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-screen p-10 text-center">
+                        <h2 class="text-xl font-bold mb-2">시스템 로딩 오류</h2>
+                        <p class="text-slate-500 mb-4">일부 스크립트 로딩에 실패했습니다. 인터넷 연결을 확인해주세요.</p>
+                        <button onclick="window.location.reload()" class="bg-indigo-600 text-white px-6 py-2 rounded-xl">새로고침</button>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
