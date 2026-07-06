@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비나텍 & 슈퍼커패시터 인텔리전스 허브</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --bg-warm-neutral: #F9F7F2;
+            --card-bg: #FFFFFF;
+            --accent-blue: #2563EB;
+            --accent-green: #059669;
+            --text-main: #1F2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-warm-neutral);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            border-radius: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .active-tab {
+            border-bottom: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-warm-neutral); }
+        ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Chosen Palette: Warm Neutrals & Professional Blues -->
+    <!-- Application Structure Plan: 
+        1. Overview Dashboard: 핵심 요약 및 퀵 스탯.
+        2. Tech deep-dive: 슈퍼커패시터 원리와 배터리 비교 (인터랙티브 차트).
+        3. Data Center Solution: UPS 백업 프로세스 시각화.
+        4. VINATech Profile: 기업 역사, 생산 거점 및 M&A 성과.
+        5. Market & Financials: 블룸에너지/산미나 수주 분석 및 재무 추이 시각화.
+        이 구조는 기술 이해에서 시작해 사업적 가치와 재무적 결과로 이어지는 논리적 흐름을 제공하여 사용자가 보고서의 방대한 정보를 단계적으로 습득할 수 있도록 설계되었습니다.
+    -->
+    <!-- Visualization & Content Choices: 
+        - 기술 비교: Chart.js Bar 차트를 사용하여 LIB와 슈퍼커패시터의 성능 수치를 시각화.
+        - 데이터센터 응답: HTML/CSS를 이용한 타임라인형 프로세스 뷰.
+        - 수주 현황: 인터랙티브 카드 레이아웃.
+        - 재무 전망: Chart.js Line-Bar 복합 차트로 수익성 개선 추이 표현.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">V</div>
+                    <span class="text-xl font-bold tracking-tight text-gray-900">비나텍 인텔리전스</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#tech" class="nav-link text-gray-600 hover:text-blue-600">기술 분석</a>
+                    <a href="#datacenter" class="nav-link text-gray-600 hover:text-blue-600">데이터센터</a>
+                    <a href="#business" class="nav-link text-gray-600 hover:text-blue-600">사업 역량</a>
+                    <a href="#financial" class="nav-link text-gray-600 hover:text-blue-600">재무 전망</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Hero Section -->
+        <header class="mb-16 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                데이터센터 전력의 핵심 보루,<br><span class="text-blue-600">비나텍과 슈퍼커패시터 기술</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-gray-600">
+                AI 데이터센터의 폭발적 증가와 고전압 DC 아키텍처 전환 속에서 비나텍의 독보적인 고출력 에너지 저장 솔루션이 그리는 미래를 탐색해 보십시오.
+            </p>
+        </header>
+
+        <!-- Section Intro: 기술 분석 -->
+        <section id="tech" class="mb-20">
+            <div class="mb-8 border-l-4 border-blue-500 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">1. 슈퍼커패시터: 차세대 에너지 저장의 원리</h2>
+                <p class="text-gray-600 mt-2">화학적 반응이 아닌 물리적 전하 분리를 통해 초고속 충·방전을 구현하는 슈퍼커패시터의 기술적 특징과 배터리와의 차이점을 분석합니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="glass-card p-6 shadow-sm">
+                    <h3 class="font-bold text-lg mb-4 text-gray-800">기술 유형별 특성 비교</h3>
+                    <div class="chart-container">
+                        <canvas id="techComparisonChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500 text-center">에너지 밀도 vs 출력 밀도 (로그 스케일 개념)</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                        <h4 class="font-bold text-blue-800">⚡ EDLC (전기 이중층 커패시터)</h4>
+                        <p class="text-sm text-blue-700 mt-1">완벽한 가역성의 물리적 흡착 방식. 50만 회 이상의 장수명과 최고의 출력을 자랑합니다. 비나텍의 3.0V Hy-Cap이 대표적입니다.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg border border-green-100">
+                        <h4 class="font-bold text-green-800">🔋 하이브리드 커패시터 (VPC)</h4>
+                        <p class="text-sm text-green-700 mt-1">EDLC 양극과 배터리 음극의 결합. 에너지 밀도를 2배 이상 높이면서도 배터리보다 우수한 출력과 수명을 유지합니다.</p>
+                    </div>
+                    <div class="p-4 bg-orange-50 rounded-lg border border-orange-100">
+                        <h4 class="font-bold text-orange-800">💡 리튬 이온 커패시터 (LIC)</h4>
+                        <p class="text-sm text-orange-700 mt-1">미래 로드맵의 핵심. 차세대 800V DC 데이터센터 아키텍처에 대응하기 위한 초고밀도 전력 저장 장치입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Intro: 데이터센터 -->
+        <section id="datacenter" class="mb-20">
+            <div class="mb-8 border-l-4 border-emerald-500 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">2. 데이터센터 무정전 전원 시스템(UPS) 혁신</h2>
+                <p class="text-gray-600 mt-2">순간적인 전압 강하와 발전기 가동 사이의 'Critical Gap'을 메우는 슈퍼커패시터의 역할을 시각화합니다.</p>
+            </div>
+
+            <div class="glass-card p-8 shadow-md bg-white">
+                <div class="relative py-10">
+                    <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2"></div>
+                    <div class="grid grid-cols-4 gap-4 relative z-10">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold shadow-lg">0s</div>
+                            <h4 class="font-bold text-sm">정전 발생</h4>
+                            <p class="text-xs text-gray-500 mt-1">메인 그리드 차단</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold shadow-lg">μs</div>
+                            <h4 class="font-bold text-sm">슈퍼커패시터 방전</h4>
+                            <p class="text-xs text-gray-500 mt-1">ESR이 낮아 즉각 반응</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-blue-400 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold shadow-lg">30s</div>
+                            <h4 class="font-bold text-sm">비상 발전 가동</h4>
+                            <p class="text-xs text-gray-500 mt-1">디젤/수소 발전기 인계</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold shadow-lg">End</div>
+                            <h4 class="font-bold text-sm">정상 복구</h4>
+                            <p class="text-xs text-gray-500 mt-1">상시 발전 모드 진입</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 border border-gray-100 rounded-lg">
+                        <span class="text-xs font-bold text-blue-600 uppercase">장점</span>
+                        <ul class="mt-2 space-y-2 text-sm">
+                            <li class="flex items-center">○ 500,000회 이상의 사이클 (교체 비용 절감)</li>
+                            <li class="flex items-center">○ 폭발 위험 없는 고체형 안전성</li>
+                            <li class="flex items-center">○ -40°C ~ 85°C의 넓은 작동 온도</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 border border-gray-100 rounded-lg">
+                        <span class="text-xs font-bold text-red-600 uppercase">보완점</span>
+                        <ul class="mt-2 space-y-2 text-sm">
+                            <li class="flex items-center">○ 짧은 백업 시간 (초 단위 특화)</li>
+                            <li class="flex items-center">○ 자가 방전에 따른 누설 전력 관리 필요</li>
+                            <li class="flex items-center">○ 높은 초기 도입 비용 (Wh당 단가)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Intro: 비나텍 사업 역량 -->
+        <section id="business" class="mb-20">
+            <div class="mb-8 border-l-4 border-indigo-500 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">3. 비나텍의 글로벌 사업 지배력</h2>
+                <p class="text-gray-600 mt-2">중형 슈퍼커패시터 세계 1위의 위상과 최근 체결된 대규모 공급 계약의 전략적 의미를 살펴봅니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Contract Card 1 -->
+                <div class="glass-card p-6 border-t-4 border-blue-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-3xl">🤝</span>
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded">독점 공급</span>
+                    </div>
+                    <h4 class="font-bold text-lg">블룸에너지(Bloom Energy)</h4>
+                    <p class="text-2xl font-black mt-2">412억 원</p>
+                    <p class="text-sm text-gray-500 mt-1">2026.06 수주 (매출 대비 50.1%)</p>
+                    <div class="mt-4 text-xs leading-relaxed text-gray-600">
+                        단순 셀 공급에서 '시스템 패키지' 직접 공급사로 진화. 중간 가치 유출 방지 및 ASP 획기적 개선.
+                    </div>
+                </div>
+                <!-- Contract Card 2 -->
+                <div class="glass-card p-6 border-t-4 border-indigo-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-3xl">🏭</span>
+                        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded">글로벌 EMS</span>
+                    </div>
+                    <h4 class="font-bold text-lg">산미나(SANMINA)</h4>
+                    <p class="text-2xl font-black mt-2">131억 원</p>
+                    <p class="text-sm text-gray-500 mt-1">2026.07 수주 (인도 시장 진출)</p>
+                    <div class="mt-4 text-xs leading-relaxed text-gray-600">
+                        글로벌 위탁 제조 공룡과의 파트너십. 인도 등 급성장하는 아시아 데이터센터 시장 교두보 확보.
+                    </div>
+                </div>
+                <!-- Infrastructure Card -->
+                <div class="glass-card p-6 border-t-4 border-gray-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-3xl">🌎</span>
+                        <span class="bg-gray-100 text-gray-700 text-xs font-bold px-2 py-1 rounded">생산 최적화</span>
+                    </div>
+                    <h4 class="font-bold text-lg">글로벌 생산 기지</h4>
+                    <ul class="mt-2 space-y-1 text-xs text-gray-600">
+                        <li class="font-semibold text-gray-900">● 전주/완주 (KOREA): R&D 및 MEA 생산</li>
+                        <li class="font-semibold text-gray-900">● 하노이/흥옌 (VIETNAM): 범용 셀/모듈 대량 양산</li>
+                        <li class="mt-2 italic">수산에너솔(현 비나에너솔) 인수로 고전압 폴리머 제품군 확보</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Intro: 재무 전망 -->
+        <section id="financial" class="mb-20">
+            <div class="mb-8 border-l-4 border-orange-500 pl-4">
+                <h2 class="text-2xl font-bold text-gray-900">4. 재무 퍼포먼스 및 미래 가치</h2>
+                <p class="text-gray-600 mt-2">R&D 투자와 화재 여파를 극복하고, 대규모 수주를 바탕으로 시작되는 기하급수적 성장 턴어라운드를 시각화합니다.</p>
+            </div>
+
+            <div class="glass-card p-6 shadow-lg bg-white">
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <span class="block text-gray-500 text-xs mb-1">2027 예상 매출</span>
+                        <span class="text-xl font-bold text-blue-600">2,329억</span>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <span class="block text-gray-500 text-xs mb-1">영업이익 턴어라운드</span>
+                        <span class="text-xl font-bold text-green-600">2026.H2~</span>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <span class="block text-gray-500 text-xs mb-1">ROE 목표(27E)</span>
+                        <span class="text-xl font-bold text-indigo-600">21.9%</span>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <span class="block text-gray-500 text-xs mb-1">글로벌 M/S</span>
+                        <span class="text-xl font-bold text-orange-600">No.1</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-4 mb-6">
+                <span class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center">⚡</span>
+                <span class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center">🔋</span>
+                <span class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center">🏢</span>
+            </div>
+            <p class="text-sm">본 애플리케이션은 비나텍의 공개 보고서 및 시장 데이터를 기반으로 시각화되었습니다.</p>
+            <p class="text-xs mt-2">© 2024 VINATech Intelligence Hub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Chart.js Configuration & Global Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Tech Comparison Chart
+            const ctxTech = document.getElementById('techComparisonChart').getContext('2d');
+            new Chart(ctxTech, {
+                type: 'bar',
+                data: {
+                    labels: ['EDLC (전기이중층)', 'VPC (하이브리드)', 'LIB (리튬배터리)'],
+                    datasets: [
+                        {
+                            label: '출력 밀도 (kW/kg)',
+                            data: [3.0, 1.5, 1.0],
+                            backgroundColor: 'rgba(37, 99, 235, 0.7)',
+                            borderColor: 'rgba(37, 99, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '에너지 밀도 (Wh/kg)',
+                            data: [0.5, 1.2, 25.0], // Simplified for visualization
+                            backgroundColor: 'rgba(5, 150, 105, 0.7)',
+                            borderColor: 'rgba(5, 150, 105, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: { enabled: true }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: '성능 지수 (상대값)', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+
+            // 2. Financial Performance Chart
+            const ctxFin = document.getElementById('financialChart').getContext('2d');
+            new Chart(ctxFin, {
+                type: 'bar',
+                data: {
+                    labels: ['2023(A)', '2024(A)', '2025(A)', '2026(E)', '2027(E)'],
+                    datasets: [
+                        {
+                            label: '매출액 (억원)',
+                            data: [550, 596, 822, 1457, 2329],
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: 'rgba(37, 99, 235, 1)',
+                            borderWidth: 2,
+                            type: 'line',
+                            tension: 0.3,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '영업이익 (억원)',
+                            data: [30, -81, 18, 44, 242],
+                            backgroundColor: function(context) {
+                                const val = context.dataset.data[context.dataIndex];
+                                return val < 0 ? 'rgba(239, 68, 68, 0.6)' : 'rgba(5, 150, 105, 0.6)';
+                            },
+                            borderRadius: 5,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: '연도별 실적 추이 및 전망', font: { size: 14, weight: 'bold' } }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: '매출액 (억원)' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            title: { display: true, text: '영업이익 (억원)' }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Navigation Highlight Logic
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-tab');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active-tab');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
