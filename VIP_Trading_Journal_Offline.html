@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>VIP Trading Journal</title>
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;
+  --navy:#0f172a;--indigo:#4f46e5;--indigo2:#4338ca;--rose:#f43f5e;--blue:#2563eb;
+  --amber:#b45309;--amber-bg:#fef3c7;--shadow:0 18px 45px rgba(15,23,42,.08)
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;background:var(--bg);color:var(--text);letter-spacing:-.02em}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.container{max-width:1180px;margin:0 auto;padding:28px 18px 70px}
+.hidden{display:none!important}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(135deg,#0f172a,#1e293b);color:white}
+.login-card{width:min(440px,100%);text-align:center}
+.lock{width:70px;height:70px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:30px}
+.login-title{font-size:42px;font-weight:900;margin:0 0 8px;letter-spacing:-.04em}
+.login-sub{color:#94a3b8;font-weight:700;margin:0 0 30px}
+.login-input{width:100%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;border-radius:18px;padding:17px 20px;text-align:center;font-weight:800;outline:none}
+.login-input:focus{border-color:#818cf8;box-shadow:0 0 0 4px rgba(99,102,241,.2)}
+.login-btn{width:100%;margin-top:12px;border:0;border-radius:18px;padding:17px;background:#fff;color:#0f172a;font-weight:900}
+.login-note{font-size:12px;color:#64748b;margin-top:18px;line-height:1.6}
+.header{display:flex;justify-content:space-between;gap:22px;align-items:flex-end;margin-bottom:28px}
+.badges{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.badge.vip{background:var(--amber-bg);color:var(--amber)}
+.badge.gray{color:#94a3b8;background:#eef2f7}
+h1{font-size:38px;line-height:1.05;margin:0;font-weight:900;letter-spacing:-.05em}
+.subtitle{margin:10px 0 0;color:var(--muted);font-weight:700}
+.actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:0;border-radius:15px;padding:13px 16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-dark{background:var(--navy);color:white}
+.btn-indigo{background:var(--indigo);color:white}
+.btn-indigo:hover{background:var(--indigo2)}
+.btn-light{background:white;color:#334155;border:1px solid var(--line)}
+.btn-danger{background:#fff1f2;color:#be123c;border:1px solid #ffe4e6}
+.btn-sm{padding:9px 11px;border-radius:11px;font-size:12px}
+.panel{background:white;border:1px solid #edf2f7;border-radius:25px;box-shadow:var(--shadow)}
+.selector{padding:18px;margin-bottom:18px}
+.selector-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.selector-label{font-size:11px;color:#94a3b8;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
+.pill{border:1px solid var(--line);background:white;color:#64748b;border-radius:12px;padding:9px 13px;font-size:12px;font-weight:900}
+.pill.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 8px 18px rgba(15,23,42,.18)}
+.months{display:flex;gap:8px;overflow-x:auto;padding:12px 0 1px;scrollbar-width:none}
+.months::-webkit-scrollbar{display:none}
+.month{min-width:65px;border:1px solid var(--line);background:white;color:#64748b;border-radius:14px;padding:11px 14px;font-weight:900}
+.month.active{background:var(--indigo);color:white;border-color:var(--indigo);box-shadow:0 9px 20px rgba(79,70,229,.25)}
+.summary-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
+.metric{background:white;border:1px solid #edf2f7;border-radius:22px;padding:20px;min-height:112px}
+.metric.dark{background:linear-gradient(135deg,#0f172a,#1e293b);color:white;box-shadow:0 18px 35px rgba(15,23,42,.2)}
+.metric-label{font-size:10px;color:#94a3b8;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.metric-value{font-size:23px;font-weight:900;word-break:break-all}
+.metric-value.small{font-size:19px}
+.metric.dark .metric-value{font-size:31px}
+.up{color:var(--rose)!important}.down{color:var(--blue)!important}
+.form-panel{padding:20px;margin-bottom:22px}
+.form-grid{display:grid;grid-template-columns:.75fr 1.4fr 1fr .8fr 1fr 1fr auto;gap:10px;align-items:end}
+.field label{display:block;font-size:10px;font-weight:900;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin:0 0 7px 4px}
+.field input,.field select{width:100%;border:1px solid transparent;background:#f8fafc;border-radius:14px;padding:14px 13px;font-weight:800;outline:none;min-height:49px}
+.field input:focus,.field select:focus{border-color:#a5b4fc;box-shadow:0 0 0 3px #eef2ff;background:white}
+.empty{padding:65px 20px;text-align:center;border:2px dashed var(--line);border-radius:28px;background:white;color:#94a3b8;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.stock-list{display:grid;gap:17px}
+.stock-card{background:white;border:1px solid #edf2f7;border-radius:28px;box-shadow:var(--shadow);overflow:hidden}
+.stock-card.exited{opacity:.67}
+.stock-main{padding:24px}
+.stock-head{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:start}
+.stock-id{display:flex;align-items:center;gap:14px;min-width:210px}
+.market-icon{width:59px;height:59px;border-radius:18px;background:var(--indigo);color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:900;letter-spacing:.04em}
+.market-icon.kosdaq{background:var(--navy);color:#fbbf24}
+.market-icon b{font-size:22px;margin-top:2px}
+.stock-name{font-size:24px;font-weight:900;margin:4px 0 0}
+.tiny{font-size:9px;color:#94a3b8;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(105px,1fr));gap:14px;align-items:start}
+.stat{text-align:center}
+.stat label{display:block;font-size:9px;color:#94a3b8;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.stat strong{font-size:16px}
+.stat .roi{font-size:27px;font-weight:900}
+.price-btn{border:0;background:transparent;color:var(--indigo);font-weight:900;font-size:18px;padding:0}
+.card-actions{display:flex;gap:7px;align-items:center}
+.log-box{background:#f8fafc;border-radius:20px;padding:17px;margin-top:19px}
+.log-title{font-size:10px;color:#94a3b8;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px}
+.logs{display:flex;gap:10px;flex-wrap:wrap}
+.log{background:white;border:1px solid #edf2f7;border-radius:16px;padding:13px 14px;min-width:180px;box-shadow:0 5px 13px rgba(15,23,42,.04)}
+.log-top,.log-row{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.log-top{margin-bottom:8px}.log-date{font-size:10px;color:#94a3b8;font-weight:800}
+.type{font-size:9px;font-weight:900;padding:3px 7px;border-radius:8px}.type.buy{background:#dbeafe;color:#2563eb}.type.sell{background:#ffe4e6;color:#e11d48}
+.log-row{font-size:11px;color:#64748b;margin-top:4px}.log-row.main{font-size:14px;color:#1e293b;font-weight:900}.log-row.total{border-top:1px solid #f1f5f9;padding-top:7px;margin-top:7px;font-weight:900;color:#475569}
+.footer{margin-top:55px;padding-top:26px;border-top:1px solid var(--line);text-align:center;color:#94a3b8;font-size:11px;font-weight:800;line-height:1.7}
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.78);backdrop-filter:blur(5px);z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}
+.modal{width:min(420px,100%);background:white;border-radius:27px;padding:25px;box-shadow:0 30px 70px rgba(0,0,0,.3)}
+.modal h2{font-size:24px;margin:5px 0 20px;font-weight:900}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal .field{margin-bottom:10px}
+.modal-actions{display:grid;gap:8px;margin-top:9px}
+.toast{position:fixed;right:20px;bottom:20px;z-index:99;background:#0f172a;color:white;padding:13px 16px;border-radius:13px;font-size:13px;font-weight:800;box-shadow:0 15px 35px rgba(15,23,42,.28);max-width:330px}
+.file-input{display:none}
+.notice{margin-top:12px;background:#eef2ff;color:#3730a3;border:1px solid #e0e7ff;padding:12px 14px;border-radius:14px;font-size:12px;font-weight:700;line-height:1.6}
+@media(max-width:1000px){.summary-grid{grid-template-columns:repeat(3,1fr)}.form-grid{grid-template-columns:repeat(3,1fr)}.form-grid .add-wrap{grid-column:span 3}.form-grid .add-wrap .btn{width:100%}.stock-head{grid-template-columns:1fr}.stock-id{min-width:0}.card-actions{justify-content:flex-end}.stats{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:720px){.container{padding:20px 12px 55px}.header{align-items:flex-start;flex-direction:column}.actions{justify-content:flex-start;width:100%}.actions .btn{flex:1}h1{font-size:31px}.summary-grid{grid-template-columns:repeat(2,1fr)}.metric:last-child{grid-column:span 2}.form-grid{grid-template-columns:1fr 1fr}.form-grid .wide{grid-column:span 2}.form-grid .add-wrap{grid-column:span 2}.stock-main{padding:17px}.stats{grid-template-columns:1fr 1fr}.stock-head{gap:16px}.stock-id{min-width:0}.card-actions{justify-content:flex-start;flex-wrap:wrap}.login-title{font-size:34px}}
+@media print{
+  body{background:white}.container{max-width:none;padding:0}.no-print,.modal-backdrop,.toast{display:none!important}.panel,.metric,.stock-card{box-shadow:none}.stock-card{break-inside:avoid;margin-bottom:12px}.summary-grid{grid-template-columns:repeat(5,1fr)}.header{margin-bottom:18px}.footer{margin-top:25px}
+}
+</style>
+</head>
+<body>
+<section id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="lock">🔒</div>
+    <h1 class="login-title">VIP Trading Journal</h1>
+    <p class="login-sub">회원 전용 투자 매매일지</p>
+    <form id="loginForm">
+      <input id="memberInput" class="login-input" type="text" minlength="2" maxlength="30" placeholder="회원 성함을 입력하세요" autocomplete="name" required>
+      <button class="login-btn" type="submit">매매일지 시작</button>
+    </form>
+    <p class="login-note">이 파일은 외부 서버에 연결하지 않는 독립형 파일입니다.<br>입력 데이터는 현재 브라우저에만 저장됩니다.</p>
+  </div>
+</section>
+
+<main id="app" class="container hidden">
+  <header class="header">
+    <div>
+      <div class="badges"><span class="badge vip">♛ VIP Member</span><span class="badge gray">Offline Standalone Edition</span></div>
+      <h1><span id="memberName"></span> 님의 VIP 매매일지</h1>
+      <p id="periodText" class="subtitle"></p>
+    </div>
+    <div class="actions no-print">
+      <button id="printBtn" class="btn btn-dark">🖨 PDF 저장</button>
+      <button id="exportBtn" class="btn btn-light">⬇ 데이터 백업</button>
+      <button id="importBtn" class="btn btn-light">⬆ 데이터 복원</button>
+      <button id="changeUserBtn" class="btn btn-light">사용자 변경</button>
+      <input id="importFile" class="file-input" type="file" accept="application/json,.json">
+    </div>
+  </header>
+
+  <section class="panel selector no-print">
+    <div class="selector-row"><span class="selector-label">Year</span><div id="yearButtons"></div></div>
+    <div id="monthButtons" class="months"></div>
+    <div class="notice">회원 배포 시 이 HTML 파일 자체를 전달하세요. 메신저의 임시 미리보기 링크가 아니라, 파일을 기기에 다운로드한 뒤 Chrome·Edge·Safari에서 열어야 장기간 사용할 수 있습니다.</div>
+  </section>
+
+  <section id="summaryGrid" class="summary-grid"></section>
+
+  <section class="panel form-panel no-print">
+    <div class="form-grid">
+      <div class="field"><label>시장</label><select id="newMarket"><option>KOSPI</option><option>KOSDAQ</option></select></div>
+      <div class="field wide"><label>종목명</label><input id="newName" type="text" placeholder="예: 삼성전자"></div>
+      <div class="field"><label>매수가</label><input id="newPrice" type="number" min="0" step="1" placeholder="0"></div>
+      <div class="field"><label>수량</label><input id="newQty" type="number" min="1" step="1" placeholder="0"></div>
+      <div class="field"><label>매수비용</label><input id="newFee" type="number" min="0" step="1" placeholder="수수료·세금"></div>
+      <div class="field"><label>매수일</label><input id="newDate" type="date"></div>
+      <div class="add-wrap"><button id="addItemBtn" class="btn btn-indigo" style="min-height:49px">＋ 종목 등록</button></div>
+    </div>
+  </section>
+
+  <section id="stockList" class="stock-list"></section>
+
+  <footer class="footer">
+    <strong>VIP TRADING JOURNAL</strong><br>
+    본 매매일지는 투자 기록 및 성과 관리용이며 투자 수익을 보장하지 않습니다.<br>
+    브라우저 데이터 삭제에 대비해 정기적으로 “데이터 백업” 파일을 보관하십시오.
+  </footer>
+</main>
+
+<div id="modalBackdrop" class="modal-backdrop hidden">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="tiny">VIP TRANSACTION</div>
+    <h2 id="modalTitle">거래 입력</h2>
+    <div class="modal-grid">
+      <div class="field"><label>날짜</label><input id="txDate" type="date"></div>
+      <div class="field"><label>수량</label><input id="txQty" type="number" min="1" step="1"></div>
+    </div>
+    <div class="field"><label>단가</label><input id="txPrice" type="number" min="0" step="1"></div>
+    <div class="field"><label id="txFeeLabel">거래비용</label><input id="txFee" type="number" min="0" step="1" placeholder="수수료·세금"></div>
+    <div class="modal-actions">
+      <button id="saveTxBtn" class="btn btn-indigo">거래 기록</button>
+      <button id="closeModalBtn" class="btn btn-light">닫기</button>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+(function(){
+'use strict';
+const STORAGE_KEY='vip_investment_v3_2030';
+const MEMBER_KEY='vip_member_name';
+const years=[2026,2027,2028,2029,2030];
+const $=id=>document.getElementById(id);
+const state={member:'',year:2026,month:new Date().getMonth()+1,portfolio:[],modal:{itemId:null,type:'BUY'}};
+
+function localDate(){
+  const d=new Date(); const y=d.getFullYear(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function uid(){return Date.now()+Math.floor(Math.random()*100000)}
+function n(v){const x=Number(v);return Number.isFinite(x)?x:0}
+function money(v){return Math.floor(n(v)).toLocaleString('ko-KR')}
+function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.remove('hidden');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.add('hidden'),2600)}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state.portfolio))}catch(e){toast('저장 공간이 부족하거나 브라우저 저장이 차단되었습니다.')}}
+function load(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);state.portfolio=raw?JSON.parse(raw):[]}catch(e){state.portfolio=[]}
+  state.member=localStorage.getItem(MEMBER_KEY)||'';
+}
+function getNet(h){const gross=n(h.price)*n(h.quantity);return h.type==='BUY'?gross+n(h.buyFees):gross-n(h.sellFees)}
+function calcItem(item){
+  let qty=0,basis=0,buyCash=0,realized=0,buyFees=0,sellFees=0;
+  const history=Array.isArray(item.history)?item.history:[];
+  history.slice().sort((a,b)=>String(a.date).localeCompare(String(b.date))).forEach(h=>{
+    const q=n(h.quantity), net=getNet(h);
+    if(h.type==='BUY'){
+      qty+=q;basis+=net;buyCash+=net;buyFees+=n(h.buyFees);
+    }else if(qty>0){
+      const sellQty=Math.min(q,qty); const avg=basis/qty; const soldCost=avg*sellQty;
+      realized+=(n(h.price)*sellQty-n(h.sellFees))-soldCost;
+      qty-=sellQty;basis-=soldCost;sellFees+=n(h.sellFees);
+    }
+  });
+  if(Math.abs(qty)<1e-9)qty=0;if(Math.abs(basis)<1e-6)basis=0;
+  const marketValue=n(item.currentPrice)*qty;
+  const unrealized=qty>0?marketValue-basis:0;
+  const total=realized+unrealized;
+  return {qty,basis,buyCash,realized,unrealized,total,buyFees,sellFees,avg:qty>0?basis/qty:0,roi:buyCash>0?total/buyCash*100:0};
+}
+function filtered(){return state.portfolio.filter(x=>n(x.year)===state.year&&n(x.month)===state.month)}
+function calcSummary(items){
+  return items.reduce((a,item)=>{const c=calcItem(item);a.invested+=c.buyCash;a.realized+=c.realized;a.unrealized+=c.unrealized;a.gain+=c.total;a.buyFees+=c.buyFees;a.sellFees+=c.sellFees;return a},{invested:0,realized:0,unrealized:0,gain:0,buyFees:0,sellFees:0});
+}
+function renderSelectors(){
+  $('yearButtons').innerHTML=years.map(y=>`<button class="pill ${y===state.year?'active':''}" data-year="${y}">${y}년</button>`).join(' ');
+  $('monthButtons').innerHTML=Array.from({length:12},(_,i)=>i+1).map(m=>`<button class="month ${m===state.month?'active':''}" data-month="${m}">${m}월</button>`).join('');
+}
+function renderSummary(items){
+  const s=calcSummary(items), roi=s.invested>0?s.gain/s.invested*100:0;
+  $('summaryGrid').innerHTML=`
+    <article class="metric"><div class="metric-label">월간 총 투자 원금</div><div class="metric-value">${money(s.invested)}<small> 원</small></div></article>
+    <article class="metric"><div class="metric-label">누적 매수비용</div><div class="metric-value small">${money(s.buyFees)}<small> 원</small></div></article>
+    <article class="metric"><div class="metric-label">누적 매도비용</div><div class="metric-value small">${money(s.sellFees)}<small> 원</small></div></article>
+    <article class="metric"><div class="metric-label">통합 손익</div><div class="metric-value small ${s.gain>=0?'up':'down'}">${s.gain>0?'+':''}${money(s.gain)}<small> 원</small></div></article>
+    <article class="metric dark"><div class="metric-label">월간 수익률</div><div class="metric-value">${roi.toFixed(2)}%</div></article>`;
+}
+function historyHtml(item){
+  return (item.history||[]).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date))).map(h=>{
+    const fee=h.type==='BUY'?n(h.buyFees):n(h.sellFees);
+    return `<div class="log">
+      <div class="log-top"><span class="log-date">${esc(h.date)}</span><span class="type ${h.type==='BUY'?'buy':'sell'}">${h.type==='BUY'?'매수':'매도'}</span></div>
+      <div class="log-row main"><span>${money(h.price)}원</span><span>${money(h.quantity)}주</span></div>
+      <div class="log-row"><span>거래비용</span><span>${money(fee)}원</span></div>
+      <div class="log-row total"><span>실제 정산금</span><span>${money(getNet(h))}원</span></div>
+    </div>`
+  }).join('');
+}
+function renderStocks(items){
+  if(!items.length){$('stockList').innerHTML=`<div class="empty">${state.year}년 ${state.month}월 데이터가 없습니다</div>`;return}
+  $('stockList').innerHTML=items.map(item=>{
+    const c=calcItem(item), exited=c.qty<=0;
+    return `<article class="stock-card ${exited?'exited':''}" data-id="${item.id}">
+      <div class="stock-main">
+        <div class="stock-head">
+          <div class="stock-id">
+            <div class="market-icon ${item.market==='KOSDAQ'?'kosdaq':''}">${esc(item.market)}<b>${esc(String(item.name).slice(0,1))}</b></div>
+            <div><div class="tiny">${esc(item.market)} LISTED ${exited?'· EXITED':''}</div><div class="stock-name">${esc(item.name)}</div></div>
+          </div>
+          <div class="stats">
+            <div class="stat"><label>보유 / 실질 평단</label><strong>${money(c.qty)}주 / ${money(c.avg)}원</strong></div>
+            <div class="stat"><label>현재가</label><button class="price-btn no-print" data-action="price">${money(item.currentPrice)}원</button><strong class="print-only hidden">${money(item.currentPrice)}원</strong></div>
+            <div class="stat"><label>종목 순손익</label><strong class="${c.total>=0?'up':'down'}">${c.total>0?'+':''}${money(c.total)}원</strong></div>
+            <div class="stat"><label>수익률</label><div class="roi ${c.roi>=0?'up':'down'}">${c.roi.toFixed(2)}%</div></div>
+          </div>
+          <div class="card-actions no-print">
+            ${exited?'':`<button class="btn btn-light btn-sm" data-action="buy">＋ 추가매수</button><button class="btn btn-danger btn-sm" data-action="sell">매도</button>`}
+            <button class="btn btn-light btn-sm" data-action="delete">삭제</button>
+          </div>
+        </div>
+        <div class="log-box"><div class="log-title">Transaction Logs</div><div class="logs">${historyHtml(item)}</div></div>
+      </div>
+    </article>`;
+  }).join('');
+}
+function render(){
+  $('memberName').textContent=state.member;
+  $('periodText').textContent=`${state.year}년 ${state.month}월 · 투자 성과 트래커`;
+  renderSelectors(); const items=filtered(); renderSummary(items); renderStocks(items);
+}
+function showApp(){
+  $('loginScreen').classList.add('hidden');$('app').classList.remove('hidden');render();
+}
+function showLogin(){
+  $('app').classList.add('hidden');$('loginScreen').classList.remove('hidden');$('memberInput').value='';setTimeout(()=>$('memberInput').focus(),0);
+}
+function addItem(){
+  const name=$('newName').value.trim(), price=n($('newPrice').value), qty=n($('newQty').value), date=$('newDate').value, fee=n($('newFee').value);
+  if(!name||price<=0||qty<=0||!date){toast('종목명, 매수가, 수량, 날짜를 확인해 주세요.');return}
+  const [year,month]=date.split('-').map(Number);
+  if(year<2026||year>2030){toast('2026년부터 2030년까지 기록할 수 있습니다.');return}
+  const id=uid(); state.portfolio.push({id,name,market:$('newMarket').value,year,month,currentPrice:price,status:'HOLDING',history:[{id:uid(),type:'BUY',date,price,quantity:qty,buyFees:fee,sellFees:0}]});
+  state.year=year;state.month=month;save();
+  $('newName').value='';$('newPrice').value='';$('newQty').value='';$('newFee').value='';render();toast('종목을 등록했습니다.');
+}
+function findItem(id){return state.portfolio.find(x=>String(x.id)===String(id))}
+function openModal(id,type){
+  const item=findItem(id);if(!item)return;state.modal={itemId:item.id,type};
+  $('modalTitle').textContent=type==='BUY'?'추가 매수 기록':'보유 비중 매도';
+  $('txFeeLabel').textContent=type==='BUY'?'매수비용':'매도비용';
+  $('txDate').value=localDate();$('txQty').value='';$('txPrice').value='';$('txFee').value='';
+  $('saveTxBtn').className=`btn ${type==='BUY'?'btn-indigo':'btn-danger'}`;
+  $('modalBackdrop').classList.remove('hidden');
+}
+function closeModal(){$('modalBackdrop').classList.add('hidden')}
+function saveTransaction(){
+  const item=findItem(state.modal.itemId);if(!item)return;
+  const date=$('txDate').value,price=n($('txPrice').value),qty=n($('txQty').value),fee=n($('txFee').value);
+  if(!date||price<=0||qty<=0){toast('날짜, 단가, 수량을 확인해 주세요.');return}
+  const c=calcItem(item);if(state.modal.type==='SELL'&&qty>c.qty){toast(`현재 보유 수량 ${money(c.qty)}주를 초과할 수 없습니다.`);return}
+  item.history.push({id:uid(),type:state.modal.type,date,price,quantity:qty,buyFees:state.modal.type==='BUY'?fee:0,sellFees:state.modal.type==='SELL'?fee:0});
+  item.status=calcItem(item).qty<=0?'EXITED':'HOLDING';save();closeModal();render();toast('거래를 기록했습니다.');
+}
+function updatePrice(item){
+  const v=prompt(`${item.name} 현재가를 입력하세요.`,String(item.currentPrice||''));if(v===null)return;const p=n(v);if(p<=0){toast('올바른 현재가를 입력해 주세요.');return}item.currentPrice=p;save();render();
+}
+function deleteItem(item){if(confirm(`${item.name} 종목과 모든 거래 기록을 삭제하시겠습니까?`)){state.portfolio=state.portfolio.filter(x=>x.id!==item.id);save();render();toast('삭제했습니다.')}}
+function exportData(){
+  const payload={app:'VIP Trading Journal',version:1,exportedAt:new Date().toISOString(),member:state.member,portfolio:state.portfolio};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download=`VIP_Trading_Journal_Backup_${state.member}_${localDate()}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);toast('데이터 백업 파일을 저장했습니다.');
+}
+function importData(file){
+  if(!file)return;const r=new FileReader();r.onload=()=>{try{
+    const data=JSON.parse(r.result);const p=Array.isArray(data)?data:data.portfolio;if(!Array.isArray(p))throw new Error('invalid');
+    if(!confirm(`백업 데이터 ${p.length}개 종목을 불러오면 현재 데이터가 교체됩니다. 계속하시겠습니까?`))return;
+    state.portfolio=p;if(data.member){state.member=String(data.member);localStorage.setItem(MEMBER_KEY,state.member)}save();render();toast('데이터를 복원했습니다.');
+  }catch(e){toast('올바른 VIP 매매일지 백업 파일이 아닙니다.')}finally{$('importFile').value=''}};r.readAsText(file,'utf-8');
+}
+
+$('loginForm').addEventListener('submit',e=>{e.preventDefault();const name=$('memberInput').value.trim();if(name.length<2)return;state.member=name;localStorage.setItem(MEMBER_KEY,name);showApp()});
+$('yearButtons').addEventListener('click',e=>{const b=e.target.closest('[data-year]');if(!b)return;state.year=n(b.dataset.year);render()});
+$('monthButtons').addEventListener('click',e=>{const b=e.target.closest('[data-month]');if(!b)return;state.month=n(b.dataset.month);render()});
+$('addItemBtn').addEventListener('click',addItem);
+$('stockList').addEventListener('click',e=>{const action=e.target.closest('[data-action]');if(!action)return;const card=e.target.closest('[data-id]');const item=findItem(card.dataset.id);if(!item)return;const a=action.dataset.action;if(a==='price')updatePrice(item);if(a==='buy')openModal(item.id,'BUY');if(a==='sell')openModal(item.id,'SELL');if(a==='delete')deleteItem(item)});
+$('saveTxBtn').addEventListener('click',saveTransaction);$('closeModalBtn').addEventListener('click',closeModal);$('modalBackdrop').addEventListener('click',e=>{if(e.target===$('modalBackdrop'))closeModal()});
+$('printBtn').addEventListener('click',()=>window.print());$('exportBtn').addEventListener('click',exportData);$('importBtn').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',e=>importData(e.target.files[0]));
+$('changeUserBtn').addEventListener('click',()=>{if(confirm('사용자 이름만 변경합니다. 기존 매매 데이터는 유지됩니다.')){localStorage.removeItem(MEMBER_KEY);state.member='';showLogin()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+$('newDate').value=localDate();$('txDate').value=localDate();load();if(state.member)showApp();else showLogin();
+})();
+</script>
+</body>
+</html>
